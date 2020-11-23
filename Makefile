@@ -1,16 +1,18 @@
-# *** MACROS ***
-CC = cc
-LINK = -lSDL2 -lGL
-OBJECT_FILES = engine.o sandbox.o window.o
+LIBS = $(wildcard libs/*)
+INCLUDE_PATH = libs/
+LINKER = -lSDL2 -lGL
 
-# *** TARGETS ***
-all: engine
+engine: libraries
+	cc app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -o engine $(LINKER)
 
-%.o: %.c %.h
-	$(CC) -c $^
-
-engine:	$(OBJECT_FILES)
-	$(CC) -o $@ $^ $(LINK)
+libraries:
+	mkdir libraries/
+	for dir in $(LIBS); do \
+		cd $$dir; \
+		cc -c *.c -I../; \
+		mv *.o ../../libraries; \
+		cd -; \
+	done
 
 clean:
-	rm -rf *.o *.gch engine	
+	rm -rf libraries/ engine
