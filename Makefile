@@ -1,18 +1,16 @@
-# *** MACROS
+# *** MACROS ***
 CC = cc
+LINK = -lSDL2 -lGL
+OBJECT_FILES = engine.o sandbox.o window.o
 
-# *** TARGETS
-engine: engine.o sandbox.o window.o
-	$(CC) -o engine engine.o sandbox.o window.o -lSDL2 -lGL
+# *** TARGETS ***
+all: engine
 
-engine.o: engine.c sandbox.h
-	$(CC) -c engine.c
+%.o: %.c %.h
+	$(CC) -c $^
 
-sandbox.o: sandbox.c sandbox.h window.h
-	$(CC) -c sandbox.c
-
-window.o: window.c window.h
-	$(CC) -c window.c -lSDL2 -lGL
+engine:	$(OBJECT_FILES)
+	$(CC) -o $@ $^ $(LINK)
 
 clean:
-	rm -rf *.o
+	rm -rf *.o *.gch engine	
