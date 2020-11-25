@@ -3,7 +3,7 @@
 int main()
 {
     sandboxInit();
-
+    
     while(sandboxIsRunning())
     {
         sandboxPerFrame();

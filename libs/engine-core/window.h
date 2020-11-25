@@ -4,12 +4,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <stdbool.h>
+#include "../../vendor/logging/log.h"
+#include "../engine-core/errorManager.h"
 
 // --- Variables ---
-SDL_Window *window;
-SDL_GLContext *context;
-SDL_Event event;   
-bool isRunning;
+static SDL_Window *window;
+static SDL_GLContext *context;
+static SDL_Event event;   
+static bool isRunning;
 
 //--- Functions ---
 void windowInit();
