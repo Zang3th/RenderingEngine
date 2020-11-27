@@ -8,10 +8,10 @@
 #include "../engine-core/errorManager.h"
 
 // --- Variables ---
-static SDL_Window *window;
-static SDL_GLContext *context;
-static SDL_Event event;   
-static bool isRunning;
+static SDL_Window *s_window;
+static SDL_GLContext *s_context;
+static SDL_Event s_event;   
+static bool s_isRunning;
 
 //--- Functions ---
 void windowInit();

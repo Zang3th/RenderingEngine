@@ -1,7 +1,7 @@
 LIBS = $(wildcard libs/*) $(wildcard vendor/*)
 INCLUDE_PATH = libs/
 LINKER_LOCAL = -DLOG_USE_COLOR
-LINKER_GLOBAL = -lSDL2 -lGL
+LINKER_GLOBAL = -lSDL2 -lGL -lm
 
 engine: libraries vendor
 	cc app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -o engine $(LINKER_GLOBAL)
