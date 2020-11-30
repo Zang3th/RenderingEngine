@@ -13,6 +13,7 @@
    - [log.c](https://github.com/rxi/log.c)
    - [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
    - [cglm](https://github.com/recp/cglm)
+   - [glad](https://github.com/Dav1dde/glad)
     
 #### Using & Compiling
    - Clone the repository, install the dependencies (SDL2, cglm) and execute the Makefile
