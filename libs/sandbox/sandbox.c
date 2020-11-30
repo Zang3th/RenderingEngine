@@ -6,10 +6,11 @@ void sandboxInit()
 {
     windowInit();
 
-    unsigned int* cubeTexture = createTexture("res/textures/Block.jpg");
+    cubeTexture = createTexture("res/textures/Block.jpg");
     bindTexture(cubeTexture);
     
-    printVector(3.0f, 5.0f, 1.0f, 1.0f);
+    shader = createShader("res/shader/basic_vs.glsl", "res/shader/basic_fs.glsl");
+    //bindShader(shader);
 }
 
 bool sandboxIsRunning()
@@ -26,4 +27,6 @@ void sandboxPerFrame()
 void sandboxCleanUp()
 {
     windowCleanUp();
+    deleteTexture(cubeTexture);
+    deleteShader(shader);
 }    

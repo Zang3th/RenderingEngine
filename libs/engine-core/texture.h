@@ -2,7 +2,7 @@
 #define TEXTURE
 
 #include "../../vendor/image/stb_image.h"
-#include "engine-core/errorManager.h"
+#include "errorManager.h"
 #include "../../vendor/logging/log.h"
 
 //--- Functions ---

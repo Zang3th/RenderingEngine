@@ -1,9 +1,9 @@
 #ifndef ERROR_MANAGER
 #define ERROR_MANAGER
 
+#include "../../vendor/loading/glad.h"
 #include <stdio.h>
 #include "../../vendor/logging/log.h"
-#include <SDL2/SDL_opengl.h>
 #include <signal.h>
 
 // --- Macros ---
@@ -17,7 +17,6 @@ static GLenum error;
 
 // --- Functions ---
 void GLClearError();
-
 bool GLLogCall(const char* function, const char* file, int line);
 
 #endif

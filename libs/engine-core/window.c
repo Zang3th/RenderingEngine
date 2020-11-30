@@ -9,6 +9,7 @@ void windowInit()
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     s_window = SDL_CreateWindow("RenderingEngine (Sandbox)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_OPENGL);
     if(s_window == NULL)
@@ -26,6 +27,11 @@ void windowInit()
         log_error("Context could not be made current! SDL_Error: %s", SDL_GetError());
     else
         log_info("Context made current!");         
+
+    if(!gladLoadGL()) 
+        log_error("Couldn't load OpenGL via glad!");
+    else   
+        log_info("OpenGL loaded via glad!");
 
     s_isRunning = true;
 }
