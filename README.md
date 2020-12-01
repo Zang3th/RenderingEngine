@@ -3,10 +3,16 @@
 #### Objectives:
    - Simple OpenGL-Wrapper functions
    - Written entirely in C
-    
+      - It really should be 100% C-Code -> github detects some C++ files for whatever reason
+
 #### Planned functionalities   
    - 2D Sprite-Renderer
+   - GUI
+   - Graph- and pointrendering
    - Sandbox mode
+      - Box picking and placing
+      - Physics
+      - Liquids      
 
 #### Credits
    - [SDL2](https://www.libsdl.org/index.php)
