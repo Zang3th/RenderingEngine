@@ -8,9 +8,9 @@ void sandboxInit()
 
     cubeTexture = createTexture("res/textures/Block.jpg");
     bindTexture(cubeTexture);
-    
+
     shader = createShader("res/shader/basic_vs.glsl", "res/shader/basic_fs.glsl");
-    //bindShader(shader);
+    bindShader(shader);
 }
 
 bool sandboxIsRunning()

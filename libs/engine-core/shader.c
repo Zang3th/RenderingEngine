@@ -39,7 +39,7 @@ static unsigned int compileShader(unsigned int shaderType, const char* source)
         GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
         char msg[length];
         GLCall(glGetShaderInfoLog(id, length, &length, msg));
-        log_error("Failed to compile %d!", shaderType);
+        log_error("Failed to compile shader %d!", shaderType);
         log_error("%s", msg);
         GLCall(glDeleteShader(id));
 
@@ -51,25 +51,59 @@ static unsigned int compileShader(unsigned int shaderType, const char* source)
     return id;
 }
 
+static unsigned int buildShader(unsigned int vsID, unsigned int fsID)
+{
+    GLCall(unsigned int programID = glCreateProgram());
+    GLCall(glAttachShader(programID, vsID));
+    GLCall(glAttachShader(programID, fsID));
+    GLCall(glLinkProgram(programID));
+
+    //Errorhandling
+    int result;
+    GLCall(glGetProgramiv(programID, GL_LINK_STATUS, &result));
+    if(!result)
+    {
+        int length;
+        GLCall(glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &length));
+        char msg[length];
+        GLCall(glGetProgramInfoLog(programID, length, &length, msg));
+        log_error("Failed to link shader!");
+        log_error("%s", msg);
+        GLCall(glDeleteProgram(programID));
+
+        return -1;
+    }
+
+    GLCall(glValidateProgram(programID));
+
+    log_info("Successfully linked shader! (program: %d)", programID);
+
+    //Free shader
+	GLCall(glDetachShader(programID, vsID));
+	GLCall(glDetachShader(programID, fsID));
+	GLCall(glDeleteShader(vsID));
+	GLCall(glDeleteShader(fsID));
+
+    return programID;
+}
+
 unsigned int* createShader(const char* vsFilepath, const char* fsFilepath)
 {    
-    //read in shader files
+    //Read in shader files
     char* vsSource = parseShader(vsFilepath);
     char* fsSource = parseShader(fsFilepath);
-    //log_info("content:\n %s", vsSource);
-    //log_info("content:\n %s", fsSource);
 
-    //compile shader
+    //Compile shader
     unsigned int vsID = compileShader(GL_VERTEX_SHADER, vsSource);
     unsigned int fsID = compileShader(GL_FRAGMENT_SHADER, fsSource);
 
-    //free source strings after usage
+    //Free source strings after usage
     free(vsSource);
     free(fsSource);
 
-    //build shader
+    //Build shader
     unsigned int* shaderID = (unsigned int*)malloc(sizeof(unsigned int));
-    //shaderID = buildShader(vsID, fsID);
+    *shaderID = buildShader(vsID, fsID);
     
     return shaderID;
 }
@@ -77,4 +111,44 @@ unsigned int* createShader(const char* vsFilepath, const char* fsFilepath)
 void deleteShader(unsigned int* shaderID)
 {
     free(shaderID);
+}
+
+void bindShader(const unsigned int* shaderID)
+{
+    GLCall(glUseProgram(*shaderID));
+}
+
+void unbindShader()
+{
+    GLCall(glUseProgram(0));
+}
+
+void setUniform1i(const unsigned int* shaderID, const char* name, int value)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniform1i(location, value));
+}
+
+void setUniform1f(const unsigned int* shaderID, const char* name, float value)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniform1f(location, value));
+}
+
+void setUniform4f(const unsigned int* shaderID, const char* name, float v0, float v1, float v2, float v3)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniform4f(location, v0, v1, v2, v3));
+}
+
+void setUniformMat4f(const unsigned int* shaderID, const char* name, const mat4* matrix)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniformMatrix4fv(location, 1, GL_FALSE, (float*)matrix)); //<cglm> documentation recommends this
+}
+
+void setUniformVec3f(const unsigned int* shaderID, const char* name, const vec3* vector)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniform3fv(location, 1, (float*)vector));
 }
