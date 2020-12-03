@@ -1,9 +1,11 @@
 #version 330 core
   
-out vec4 vertexColor;
+layout(location = 0) in vec4 Pos_Tex_In;
+
+out vec2 Tex_Coords;
 
 void main()
 {
-    gl_Position = vec4(1.0);
-    vertexColor = vec4(0.5, 0.0, 0.5, 1.0);
+    Tex_Coords = Pos_Tex_In.zw;
+    gl_Position = vec4(Pos_Tex_In.xy, 1.0f, 1.0f);
 }
