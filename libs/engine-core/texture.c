@@ -2,11 +2,10 @@
 
 unsigned int* createTexture(const char* path)
 {
-    unsigned int width, height, BPP; 
-    unsigned int* rendererID = (unsigned int *)malloc(sizeof(unsigned int));
-    unsigned char* localBuffer;
+    int width, height, BPP; 
+    unsigned int* rendererID = (unsigned int*)malloc(sizeof(unsigned int));
     stbi_set_flip_vertically_on_load(1);
-    localBuffer = stbi_load(path, &width, &height, &BPP, 0);
+    unsigned char* localBuffer = stbi_load(path, &width, &height, &BPP, 0);
 
     if(localBuffer)
     {
@@ -24,18 +23,19 @@ unsigned int* createTexture(const char* path)
         }            
 
         GLCall(glGenTextures(1, rendererID));
-        GLCall(glActiveTexture(GL_TEXTURE0));
-        GLCall(glBindTexture(GL_TEXTURE_2D, *rendererID));
+        bindTexture(rendererID);
         GLCall(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, localBuffer));
 
         log_info("Successfully load texture at %s", path);
         stbi_image_free(localBuffer);
+
         return rendererID;
     }
     else
     {
         log_error("Failed to load texture at %s", path);
         stbi_image_free(localBuffer);
+
         return NULL;
     }
 }

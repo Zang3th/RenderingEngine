@@ -8,15 +8,8 @@
 #include <cglm/cglm.h>
 #include <stdlib.h>
 
-typedef struct{
-    vec2 position;
-    vec2 size;
-    float rotation;
-    vec3 color;
-} Sprite;
-
 unsigned int* initSpriteData();
-void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, Sprite* spriteStruct);
+void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, vec3 color);
 void deleteSpriteData(unsigned int* spriteData);
 
 #endif

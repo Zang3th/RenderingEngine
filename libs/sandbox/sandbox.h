@@ -11,7 +11,6 @@
 static unsigned int* cubeTexture;
 static unsigned int* shader;
 static unsigned int* spriteData;
-static Sprite* spriteStruct;
 
 //--- Functions ---
 void sandboxInit();

@@ -16,7 +16,8 @@ static bool s_isRunning;
 //--- Functions ---
 void windowInit();
 bool windowIsRunning();
-void windowRender();
+void windowPrepare();
+void windowSwapBuffer();
 void windowCleanUp();
 void windowPollEvents();
 

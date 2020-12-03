@@ -34,6 +34,7 @@ void windowInit()
         log_info("OpenGL loaded via glad!");
 
     s_isRunning = true;
+    SDL_GL_SetSwapInterval(1);
 }
 
 bool windowIsRunning()
@@ -61,10 +62,14 @@ void windowPollEvents()
     } 
 }
 
-void windowRender()
+void windowPrepare()
 {
-    GLCall(glClearColor(1.0, 1.0, 0.0, 1.0));
+    GLCall(glClearColor(0.0, 0.0, 0.0, 1.0));
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+}
+
+void windowSwapBuffer()
+{    
     SDL_GL_SwapWindow(s_window);
 }
 

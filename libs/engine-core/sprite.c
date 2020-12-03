@@ -26,15 +26,15 @@ unsigned int* initSpriteData()
     //Unbind vao, vbo and delete vbo
     unbindVertexArray(vao);
     unbindVertexBuffer(vbo);
-    //deleteVertexBuffer(vbo);
+    deleteVertexBuffer(vbo);
 
     return vao;
 }
 
-void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, Sprite* spriteStruct)
+void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, vec3 color)
 {
     bindShader(shader);  
-    setUniformVec3f(shader, "color", spriteStruct->color);
+    setUniformVec3f(shader, "color", (float*)color);
     bindTexture(texture);
     bindVertexArray(spriteData);
 
