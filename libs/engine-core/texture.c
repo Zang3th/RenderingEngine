@@ -25,6 +25,7 @@ unsigned int* createTexture(const char* path)
         GLCall(glGenTextures(1, rendererID));
         bindTexture(rendererID);
         GLCall(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, localBuffer));
+        GLCall(glGenerateMipmap(GL_TEXTURE_2D));
 
         log_info("Successfully load texture at %s", path);
         stbi_image_free(localBuffer);

@@ -7,7 +7,7 @@ void sandboxInit()
     //Allocate resources
     cubeTexture = createTexture("res/textures/Block.jpg");
     shader = createShader("res/shader/basic_vs.glsl", "res/shader/basic_fs.glsl");
-    spriteData = initSpriteData();
+    spriteData = initSpriteData();    
 }
 
 bool sandboxIsRunning()
@@ -17,9 +17,15 @@ bool sandboxIsRunning()
 
 void sandboxPerFrame()
 {
-    windowPrepare();
+    windowFrametime();
+    windowPrepare();    
 
-    renderSprite(spriteData, cubeTexture, shader, (vec3){1.0f, 1.0f, 1.0f});
+    // --- Render
+    float velocity = 10.0f * deltaTime;
+    lastPos[0] += velocity;
+    renderSprite(spriteData, cubeTexture, shader,
+                lastPos, (vec2){500.0f, 500.0f},
+                45.0f, (vec3){1.0f, 1.0f, 0.0f});
 
     windowSwapBuffer();
     windowPollEvents();   

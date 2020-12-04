@@ -1,5 +1,8 @@
 #include "window.h"
-   
+
+float deltaTime = 0.0f;
+long lastFrame = 0;
+
 void windowInit()
 {
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -7,11 +10,13 @@ void windowInit()
     else
         log_info("SDL initialized!");
 
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    s_window = SDL_CreateWindow("RenderingEngine (Sandbox)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1600, 900, SDL_WINDOW_OPENGL);
+    s_window = SDL_CreateWindow("RenderingEngine (Sandbox)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
     if(s_window == NULL)
         log_error("Window could not be created! SDL_Error: %s", SDL_GetError());
     else
@@ -79,3 +84,14 @@ void windowCleanUp()
     SDL_DestroyWindow(s_window);
     SDL_Quit();
 }   
+
+void windowFrametime()
+{
+    long currentFrame = SDL_GetTicks();
+    
+    if(currentFrame > lastFrame)
+    {
+       deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
+       lastFrame = currentFrame;
+    }
+}

@@ -13,6 +13,12 @@ static SDL_GLContext *s_context;
 static SDL_Event s_event;   
 static bool s_isRunning;
 
+#define WIDTH 1600
+#define HEIGHT 900
+
+extern long lastFrame;
+extern float deltaTime;
+
 //--- Functions ---
 void windowInit();
 bool windowIsRunning();
@@ -20,5 +26,6 @@ void windowPrepare();
 void windowSwapBuffer();
 void windowCleanUp();
 void windowPollEvents();
+void windowFrametime();
 
 #endif

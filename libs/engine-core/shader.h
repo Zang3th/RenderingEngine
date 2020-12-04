@@ -19,7 +19,7 @@ void unbindShader();
 void setUniform1i(const unsigned int* shaderID, const char* name, int value);
 void setUniform1f(const unsigned int* shaderID, const char* name, float value);
 void setUniform4f(const unsigned int* shaderID, const char* name, float v0, float v1, float v2, float v3);
-void setUniformMat4f(const unsigned int* shaderID, const char* name, const float* matrix);
-void setUniformVec3f(const unsigned int* shaderID, const char* name, const float* vector);
+void setUniformMat4f(const unsigned int* shaderID, const char* name, float* matrix);
+void setUniformVec3f(const unsigned int* shaderID, const char* name, float* vector);
 
 #endif

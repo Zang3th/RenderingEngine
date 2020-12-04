@@ -11,6 +11,7 @@
 static unsigned int* cubeTexture;
 static unsigned int* shader;
 static unsigned int* spriteData;
+static vec2 lastPos = (vec2){60.0f, 60.0f};
 
 //--- Functions ---
 void sandboxInit();

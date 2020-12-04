@@ -31,11 +31,32 @@ unsigned int* initSpriteData()
     return vao;
 }
 
-void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, vec3 color)
+void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, vec2 position, vec2 size, float rotation, vec3 color)
 {
     bindShader(shader);  
-    setUniformVec3f(shader, "color", (float*)color);
+
+    //Projection matrix
+    mat4 projection;
+    glm_ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f, projection);
+
+    //Model matrix and transformations 
+    mat4 model;
+    glm_mat4_identity(model);
+
+    glm_translate(model, (vec3){position[0], position[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
+
+    glm_translate(model, (vec3){size[0] * 0.5f, size[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
+    glm_rotate(model, rotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
+    glm_translate(model, (vec3){size[0] * -0.5f, size[1] * -0.5f, 0.0f}); //Move origin back
+
+    glm_scale(model, (vec3){size[0], size[1], 1.0f});
+
+    setUniformVec3f(shader, "color", color);
+    setUniformMat4f(shader, "model", (float*)model);
+    setUniformMat4f(shader, "projection", (float*)projection);
+
     bindTexture(texture);
+
     bindVertexArray(spriteData);
 
     //Render quad

@@ -141,13 +141,13 @@ void setUniform4f(const unsigned int* shaderID, const char* name, float v0, floa
     GLCall(glUniform4f(location, v0, v1, v2, v3));
 }
 
-void setUniformMat4f(const unsigned int* shaderID, const char* name, const float* matrix)
+void setUniformMat4f(const unsigned int* shaderID, const char* name, float* matrix)
 {
     GLCall(int location = glGetUniformLocation(*shaderID, name));
-    GLCall(glUniformMatrix4fv(location, 1, GL_FALSE, (float*)matrix)); //<cglm> documentation recommends this
+    GLCall(glUniformMatrix4fv(location, 1, GL_FALSE, matrix)); //<cglm> documentation recommends this
 }
 
-void setUniformVec3f(const unsigned int* shaderID, const char* name, const float* vector)
+void setUniformVec3f(const unsigned int* shaderID, const char* name, float* vector)
 {
     GLCall(int location = glGetUniformLocation(*shaderID, name));
     GLCall(glUniform3fv(location, 1, (float*)vector));
