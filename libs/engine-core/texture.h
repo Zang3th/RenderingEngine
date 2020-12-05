@@ -5,7 +5,7 @@
 #include "errorManager.h"
 #include "../../vendor/logging/log.h"
 
-//--- Functions ---
+// --- Functions ---
 unsigned int* createTexture(const char* path);
 void deleteTexture(unsigned int* textureID);
 void bindTexture(const unsigned int* textureID);

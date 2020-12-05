@@ -5,7 +5,7 @@
 #include "errorManager.h"
 #include <stdlib.h>
 
-//--- Functions ---
+// --- Functions ---
 unsigned int* createIndexBuffer(const void* data, unsigned int size);
 void deleteIndexBuffer(unsigned int* iboID);
 void bindIndexBuffer(const unsigned int* iboID);

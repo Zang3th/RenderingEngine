@@ -5,7 +5,7 @@
 #include "errorManager.h"
 #include <stdlib.h>
 
-//--- Functions ---
+// --- Functions ---
 unsigned int* createVertexArray();
 void deleteVertexArray(unsigned int* vaoID);
 void bindVertexArray(const unsigned int* vaoID);

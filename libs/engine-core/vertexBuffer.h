@@ -5,7 +5,7 @@
 #include "errorManager.h"
 #include <stdlib.h>
 
-//--- Functions ---
+// --- Functions ---
 unsigned int* createVertexBuffer(const void* data, unsigned int size);
 void deleteVertexBuffer(unsigned int* vboID);
 void bindVertexBuffer(const unsigned int* vboID);

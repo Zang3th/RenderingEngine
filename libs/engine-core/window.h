@@ -19,7 +19,7 @@ static bool s_isRunning;
 extern long lastFrame;
 extern float deltaTime;
 
-//--- Functions ---
+// --- Functions ---
 void windowInit();
 bool windowIsRunning();
 void windowPrepare();

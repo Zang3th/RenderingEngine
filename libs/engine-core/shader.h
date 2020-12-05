@@ -7,7 +7,7 @@
 #include "../../vendor/logging/log.h"
 #include <cglm/cglm.h>
 
-//--- Functions ---
+// --- Functions ---
 static char* parseShader(const char* filepath);
 static unsigned int compileShader(unsigned int shaderType, const char* source);
 static unsigned int buildShader(unsigned int vsID, unsigned int fsID);

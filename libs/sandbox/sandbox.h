@@ -1,19 +1,9 @@
 #ifndef SANDBOX
 #define SANDBOX
 
-#include "../engine-core/window.h"
-#include "../engine-core/texture.h"
-#include "../engine-core/shader.h"
-#include "../engine-core/sprite.h"
-#include <stdlib.h>
+#include "ui.h"
 
-// --- Variables ---
-static unsigned int* cubeTexture;
-static unsigned int* shader;
-static unsigned int* spriteData;
-static vec2 lastPos = (vec2){60.0f, 60.0f};
-
-//--- Functions ---
+// --- Functions ---
 void sandboxInit();
 bool sandboxIsRunning();
 void sandboxPerFrame();
