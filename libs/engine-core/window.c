@@ -2,6 +2,8 @@
 
 float deltaTime = 0.0f;
 long lastFrame = 0;
+bool leftMousePressed = false;
+bool rightMousePressed = false;
 
 void windowInit()
 {
@@ -49,22 +51,41 @@ bool windowIsRunning()
 
 void windowPollEvents()
 {
-    SDL_PollEvent(&s_event);
+    while(SDL_PollEvent(&s_event))
+    {
+        leftMousePressed = false; 
+        rightMousePressed = false;
 
-    if(s_event.type == SDL_QUIT)
-    {
-        s_isRunning = false;
-        log_info("Quitting!");
-    }
-    else if(s_event.type == SDL_KEYDOWN)
-    {
-        switch(s_event.key.keysym.sym)
+        switch(s_event.type)
         {
-            case SDLK_ESCAPE:
-            s_isRunning = false;
-            log_info("Quitting!");
+            case SDL_QUIT:
+                s_isRunning = false;
+                log_info("Quitting!");
+                break;
+
+            case SDL_KEYDOWN:
+                switch(s_event.key.keysym.sym)
+                {
+                    case SDLK_ESCAPE:
+                    s_isRunning = false;
+                    log_info("Quitting!");
+                    break;
+                }
+                break;
+
+            case SDL_MOUSEBUTTONDOWN:
+                handleMouseClick(&s_event.button);                    
+                break;       
         }
-    } 
+    }
+}
+
+void handleMouseClick(SDL_MouseButtonEvent* MBE)
+{
+  if(MBE->button == SDL_BUTTON_LEFT)  
+    leftMousePressed = true;
+  else if(MBE->button == SDL_BUTTON_RIGHT)
+    rightMousePressed = true;  
 }
 
 void windowPrepare()
@@ -94,4 +115,9 @@ void windowFrametime()
        deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
        lastFrame = currentFrame;
     }
+}
+
+void windowGetMousePos(int* x, int* y)
+{
+    SDL_GetMouseState(x, y);
 }

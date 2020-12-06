@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include "../../vendor/logging/log.h"
 #include "../engine-core/errorManager.h"
+#include <stdbool.h> 
 
 // --- Variables ---
 static SDL_Window *s_window;
@@ -18,6 +19,8 @@ static bool s_isRunning;
 
 extern long lastFrame;
 extern float deltaTime;
+extern bool leftMousePressed;
+extern bool rightMousePressed;
 
 // --- Functions ---
 void windowInit();
@@ -27,5 +30,7 @@ void windowSwapBuffer();
 void windowCleanUp();
 void windowPollEvents();
 void windowFrametime();
+void windowGetMousePos(int* x, int* y);
+static void handleMouseClick(SDL_MouseButtonEvent* MBE);
 
 #endif

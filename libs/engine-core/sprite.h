@@ -8,6 +8,7 @@
 #include <cglm/cglm.h>
 #include <stdlib.h>
 #include "window.h"
+#include <stdbool.h> 
 
 // --- Variables ---
 typedef struct{
@@ -17,14 +18,15 @@ typedef struct{
     vec2 position;
     vec2 size;
     float rotation;
-    vec3 color;
+    vec3 basecolor;
+    bool isClickable;
+    bool gotClicked;
 } Sprite;
 
 // --- Functions ---
 unsigned int* createVertexData();
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* color);
-void testSprite(Sprite* sprite);
-void renderSprite(Sprite* sprite);
+Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* basecolor, bool clickable);
+void renderSprite(Sprite* sprite, float scale, float* color);
 void deleteSprite(Sprite* sprite);
 void deleteVertexData(unsigned int* vertexData);
 

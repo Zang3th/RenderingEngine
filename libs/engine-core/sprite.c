@@ -31,7 +31,7 @@ unsigned int* createVertexData()
     return vao;
 }
 
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, vec2 position, vec2 size, float rotation, vec3 color)
+Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* basecolor, bool clickable)
 {   
     Sprite sprite; 
 
@@ -43,9 +43,11 @@ Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned i
     sprite.size[0] = size[0];
     sprite.size[1] = size[1];
     sprite.rotation = rotation;
-    sprite.color[0] = color[0];
-    sprite.color[1] = color[1];
-    sprite.color[2] = color[2];
+    sprite.basecolor[0] = basecolor[0];
+    sprite.basecolor[1] = basecolor[1];
+    sprite.basecolor[2] = basecolor[2];
+    sprite.isClickable = clickable;
+    sprite.gotClicked = false;
 
     void* mem = malloc(sizeof(Sprite));
     memcpy(mem, &sprite, sizeof(sprite));
@@ -53,18 +55,7 @@ Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned i
     return (Sprite*)mem;
 }
 
-void testSprite(Sprite* sprite)
-{
-    log_info("vertex: %d", *sprite->vertexData);
-    log_info("texture: %d", *sprite->texture);
-    log_info("shader: %d", *sprite->shader);
-    log_info("pos: %f, %f", sprite->position[0], sprite->position[1]);
-    log_info("size: %f, %f", sprite->size[0], sprite->size[1]);
-    log_info("rotation: %f, %f", sprite->rotation);
-    log_info("color: %f, %f, %f", sprite->color[0], sprite->color[1], sprite->color[2]);
-}
-
-void renderSprite(Sprite* sprite)
+void renderSprite(Sprite* sprite, float scale, float* color)
 {
     bindShader(sprite->shader);  
 
@@ -82,9 +73,9 @@ void renderSprite(Sprite* sprite)
     glm_rotate(model, sprite->rotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
     glm_translate(model, (vec3){sprite->size[0] * -0.5f, sprite->size[1] * -0.5f, 0.0f}); //Move origin back
 
-    glm_scale(model, (vec3){sprite->size[0], sprite->size[1], 1.0f});
+    glm_scale(model, (vec3){sprite->size[0] * scale, sprite->size[1] * scale, 1.0f});
 
-    setUniformVec3f(sprite->shader, "color", sprite->color);
+    setUniformVec3f(sprite->shader, "color", color);
     setUniformMat4f(sprite->shader, "model", (float*)model);
     setUniformMat4f(sprite->shader, "projection", (float*)projection);
 
@@ -94,6 +85,10 @@ void renderSprite(Sprite* sprite)
 
     //Render quad
     GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
+
+    unbindVertexArray(sprite->vertexData);
+    unbindTexture(sprite->texture);
+    unbindShader(sprite->shader);
 }
 
 void deleteSprite(Sprite* sprite)
