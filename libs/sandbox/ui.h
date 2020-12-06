@@ -7,9 +7,12 @@
 #include "../engine-core/sprite.h"
 
 // --- Variables ---
+#define UI_ELEMENTS 5
+
 static unsigned int* blockTexture, *blockSolidTexture, *pickaxeTexture, *bgTexture, *sbTexture;
 static unsigned int* shader;
-static unsigned int* spriteData;
+static unsigned int* vertexData;
+static Sprite* sprites[UI_ELEMENTS];
 
 // --- Functions ---
 void uiInit();

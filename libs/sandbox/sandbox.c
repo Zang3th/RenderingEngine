@@ -13,7 +13,7 @@ bool sandboxIsRunning()
 
 void sandboxPerFrame()
 {
-    // --- Prepare
+    // --- Prepare frame
     windowFrametime();
     windowPrepare();    
 

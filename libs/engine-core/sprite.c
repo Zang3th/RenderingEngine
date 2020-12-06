@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-unsigned int* initSpriteData()
+unsigned int* createVertexData()
 {
     //Create and bind vao
     unsigned int* vao = createVertexArray();
@@ -31,9 +31,42 @@ unsigned int* initSpriteData()
     return vao;
 }
 
-void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int* shader, vec2 position, vec2 size, float rotation, vec3 color)
+Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, vec2 position, vec2 size, float rotation, vec3 color)
+{   
+    Sprite sprite; 
+
+    sprite.vertexData = vertexData;
+    sprite.texture = texture;
+    sprite.shader = shader;
+    sprite.position[0] = position[0];
+    sprite.position[1] = position[1];
+    sprite.size[0] = size[0];
+    sprite.size[1] = size[1];
+    sprite.rotation = rotation;
+    sprite.color[0] = color[0];
+    sprite.color[1] = color[1];
+    sprite.color[2] = color[2];
+
+    void* mem = malloc(sizeof(Sprite));
+    memcpy(mem, &sprite, sizeof(sprite));
+
+    return (Sprite*)mem;
+}
+
+void testSprite(Sprite* sprite)
 {
-    bindShader(shader);  
+    log_info("vertex: %d", *sprite->vertexData);
+    log_info("texture: %d", *sprite->texture);
+    log_info("shader: %d", *sprite->shader);
+    log_info("pos: %f, %f", sprite->position[0], sprite->position[1]);
+    log_info("size: %f, %f", sprite->size[0], sprite->size[1]);
+    log_info("rotation: %f, %f", sprite->rotation);
+    log_info("color: %f, %f, %f", sprite->color[0], sprite->color[1], sprite->color[2]);
+}
+
+void renderSprite(Sprite* sprite)
+{
+    bindShader(sprite->shader);  
 
     //Projection matrix
     mat4 projection;
@@ -43,27 +76,32 @@ void renderSprite(unsigned int* spriteData, unsigned int* texture, unsigned int*
     mat4 model;
     glm_mat4_identity(model);
 
-    glm_translate(model, (vec3){position[0], position[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
+    glm_translate(model, (vec3){sprite->position[0], sprite->position[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
 
-    glm_translate(model, (vec3){size[0] * 0.5f, size[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
-    glm_rotate(model, rotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
-    glm_translate(model, (vec3){size[0] * -0.5f, size[1] * -0.5f, 0.0f}); //Move origin back
+    glm_translate(model, (vec3){sprite->size[0] * 0.5f, sprite->size[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
+    glm_rotate(model, sprite->rotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
+    glm_translate(model, (vec3){sprite->size[0] * -0.5f, sprite->size[1] * -0.5f, 0.0f}); //Move origin back
 
-    glm_scale(model, (vec3){size[0], size[1], 1.0f});
+    glm_scale(model, (vec3){sprite->size[0], sprite->size[1], 1.0f});
 
-    setUniformVec3f(shader, "color", color);
-    setUniformMat4f(shader, "model", (float*)model);
-    setUniformMat4f(shader, "projection", (float*)projection);
+    setUniformVec3f(sprite->shader, "color", sprite->color);
+    setUniformMat4f(sprite->shader, "model", (float*)model);
+    setUniformMat4f(sprite->shader, "projection", (float*)projection);
 
-    bindTexture(texture);
+    bindTexture(sprite->texture);
 
-    bindVertexArray(spriteData);
+    bindVertexArray(sprite->vertexData);
 
     //Render quad
     GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
 }
 
-void deleteSpriteData(unsigned int* spriteData)
+void deleteSprite(Sprite* sprite)
 {
-    deleteVertexBuffer(spriteData);
+    free(sprite);
+}
+
+void deleteVertexData(unsigned int* vertexData)
+{
+    deleteVertexBuffer(vertexData);
 }
