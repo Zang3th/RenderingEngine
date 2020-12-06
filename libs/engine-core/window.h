@@ -5,8 +5,7 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include "../../vendor/logging/log.h"
-#include "../engine-core/errorManager.h"
-#include <stdbool.h> 
+#include "errorManager.h"
 
 // --- Variables ---
 static SDL_Window *s_window;
