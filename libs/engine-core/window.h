@@ -6,12 +6,18 @@
 #include <stdbool.h>
 #include "../../vendor/logging/log.h"
 #include "errorManager.h"
+#include <string.h>
 
 // --- Variables ---
 static SDL_Window *s_window;
 static SDL_GLContext *s_context;
 static SDL_Event s_event;   
 static bool s_isRunning;
+static char* s_windowName;
+static char* s_frameRateBuffer;
+static char* s_WindowTitleBuffer;
+static int s_frameCounter;
+static float s_dtAccumulated;
 
 #define WIDTH 1600
 #define HEIGHT 900

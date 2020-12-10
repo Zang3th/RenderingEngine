@@ -4,6 +4,9 @@ float deltaTime = 0.0f;
 long lastFrame = 0;
 bool leftMousePressed = false;
 bool rightMousePressed = false;
+static char* s_windowName = "RenderingEngine - Sandbox";
+static int s_frameCounter = 0;
+static float s_dtAccumulated = 0.0f;
 
 void windowInit()
 {
@@ -18,7 +21,7 @@ void windowInit()
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    s_window = SDL_CreateWindow("RenderingEngine (Sandbox)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
+    s_window = SDL_CreateWindow(s_windowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
     if(s_window == NULL)
         log_error("Window could not be created! SDL_Error: %s", SDL_GetError());
     else
@@ -42,6 +45,8 @@ void windowInit()
 
     s_isRunning = true;
     SDL_GL_SetSwapInterval(1);
+    s_frameRateBuffer = malloc(sizeof(float));
+    s_WindowTitleBuffer = malloc(sizeof(char) * 100);
 }
 
 bool windowIsRunning()
@@ -104,16 +109,36 @@ void windowCleanUp()
     SDL_GL_DeleteContext(s_context);
     SDL_DestroyWindow(s_window);
     SDL_Quit();
+    free(s_frameRateBuffer);
+    free(s_WindowTitleBuffer);
 }   
 
 void windowFrametime()
-{
+{   
     long currentFrame = SDL_GetTicks();
     
     if(currentFrame > lastFrame)
     {
        deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
        lastFrame = currentFrame;
+
+       s_frameCounter++; //Increment frame counter
+       s_dtAccumulated += deltaTime; //Accumulate time to render current frame 
+
+       if(s_frameCounter > 120) //Calculate framerate and draw it in the titlebar
+       {
+           float framerate = 1 / (s_dtAccumulated / s_frameCounter);
+           int ret = snprintf(s_frameRateBuffer, sizeof(s_frameRateBuffer), "%2.3f", framerate);
+
+           strcpy(s_WindowTitleBuffer, s_windowName);
+           strcat(s_WindowTitleBuffer, " (FPS: ");
+           strcat(s_WindowTitleBuffer, s_frameRateBuffer);
+           strcat(s_WindowTitleBuffer, ")");
+           SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
+
+           s_frameCounter = 0;
+           s_dtAccumulated = 0.0f;
+       }    
     }
 }
 
