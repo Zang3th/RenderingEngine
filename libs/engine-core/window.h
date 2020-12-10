@@ -6,7 +6,6 @@
 #include <stdbool.h>
 #include "../../vendor/logging/log.h"
 #include "errorManager.h"
-#include <string.h>
 
 // --- Variables ---
 static SDL_Window *s_window;
