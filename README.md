@@ -23,3 +23,14 @@
     
 #### Using & Compiling
    - Clone the repository, install the dependencies (SDL2, cglm) and execute the Makefile
+
+#### License
+   - This code is provided under a BSD-style license. See the file LICENSE for details
+
+#### Structure of the application  
+   - Just for organisation purposes, not UML conform    
+
+   - ![Application structure](Structure_000.png)
+
+#### Look of the application
+   - ![Sandboxlevel](Sceenshot.png)
