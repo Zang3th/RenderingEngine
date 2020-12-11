@@ -30,7 +30,7 @@
 #### Structure of the application  
    - Just for organisation purposes, not UML conform    
 
-   - ![Application structure](Structure_000.png)
+   ![Application structure](Structure_000.png)
 
 #### Look of the application
-   - ![Sandboxlevel](Screenshot.png)
+   ![Sandboxlevel](Screenshot.png)
