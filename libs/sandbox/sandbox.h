@@ -1,7 +1,10 @@
 #ifndef SANDBOX
 #define SANDBOX
 
+#include "../engine-core/window.h"
 #include "ui.h"
+#include "../engine-core/resourceManager.h"
+#include "../engine-core/renderer.h"
 
 // --- Functions ---
 void sandboxInit();

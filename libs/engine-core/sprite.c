@@ -31,64 +31,44 @@ unsigned int* createVertexData()
     return vao;
 }
 
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* basecolor, bool clickable)
+Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
 {   
-    Sprite sprite; 
-
+    //Create sprite based on given parameters
+    Sprite sprite;
     sprite.vertexData = vertexData;
     sprite.texture = texture;
     sprite.shader = shader;
-    sprite.position[0] = position[0];
-    sprite.position[1] = position[1];
-    sprite.size[0] = size[0];
-    sprite.size[1] = size[1];
-    sprite.rotation = rotation;
-    sprite.basecolor[0] = basecolor[0];
-    sprite.basecolor[1] = basecolor[1];
-    sprite.basecolor[2] = basecolor[2];
+    sprite.basePosition[0] = position[0];
+    sprite.basePosition[1] = position[1];
+    sprite.baseSize[0] = size[0];
+    sprite.baseSize[1] = size[1];
+    sprite.baseRotation = rotation;
+    sprite.baseColor[0] = baseColor[0];
+    sprite.baseColor[1] = baseColor[1];
+    sprite.baseColor[2] = baseColor[2];
+    glm_vec3_copy(sprite.baseColor, sprite.currentColor);
     sprite.isClickable = clickable;
     sprite.gotClicked = false;
 
+    //Create model matrix and apply transformations
+    mat4 model;
+    glm_mat4_identity(model);
+
+    glm_translate(model, (vec3){sprite.basePosition[0], sprite.basePosition[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
+
+    glm_translate(model, (vec3){sprite.baseSize[0] * 0.5f, sprite.baseSize[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
+    glm_rotate(model, sprite.baseRotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
+    glm_translate(model, (vec3){sprite.baseSize[0] * -0.5f, sprite.baseSize[1] * -0.5f, 0.0f}); //Move origin back
+
+    glm_scale(model, (vec3){sprite.baseSize[0], sprite.baseSize[1], 1.0f});
+
+    glm_mat4_copy(model, sprite.model);    
+
+    //Copy sprite onto the heap and return it
     void* mem = malloc(sizeof(Sprite));
     memcpy(mem, &sprite, sizeof(sprite));
 
     return (Sprite*)mem;
-}
-
-void renderSprite(Sprite* sprite, float scale, float* color)
-{
-    bindShader(sprite->shader);  
-
-    //Projection matrix
-    mat4 projection;
-    glm_ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f, projection);
-
-    //Model matrix and transformations 
-    mat4 model;
-    glm_mat4_identity(model);
-
-    glm_translate(model, (vec3){sprite->position[0], sprite->position[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
-
-    glm_translate(model, (vec3){sprite->size[0] * 0.5f, sprite->size[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
-    glm_rotate(model, sprite->rotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
-    glm_translate(model, (vec3){sprite->size[0] * -0.5f, sprite->size[1] * -0.5f, 0.0f}); //Move origin back
-
-    glm_scale(model, (vec3){sprite->size[0] * scale, sprite->size[1] * scale, 1.0f});
-
-    setUniformVec3f(sprite->shader, "color", color);
-    setUniformMat4f(sprite->shader, "model", (float*)model);
-    setUniformMat4f(sprite->shader, "projection", (float*)projection);
-
-    bindTexture(sprite->texture);
-
-    bindVertexArray(sprite->vertexData);
-
-    //Render quad
-    GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
-
-    unbindVertexArray(sprite->vertexData);
-    unbindTexture(sprite->texture);
-    unbindShader(sprite->shader);
 }
 
 void deleteSprite(Sprite* sprite)

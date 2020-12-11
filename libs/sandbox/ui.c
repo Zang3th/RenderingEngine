@@ -2,31 +2,29 @@
 
 void uiInit()
 {
-    //Allocate resources
-    blockTexture = createTexture("res/textures/Block.jpg");
-    blockSolidTexture = createTexture("res/textures/Block_solid.jpg");
-    pickaxeTexture = createTexture("res/textures/Pickaxe.png");
-    bgTexture = createTexture("res/textures/Background.jpg");
-    sbTexture = createTexture("res/textures/Sidebar.png");
-
-    standardShader = createShader("res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");    
-
-    vertexData = createVertexData(); 
+    //Get resources
+    unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
+    unsigned int* solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
+    unsigned int* pickaxeTexture = resourceManagerGetTexture("pickaxeTexture");
+    unsigned int* bgTexture = resourceManagerGetTexture("backgroundTexture");
+    unsigned int* sbTexture = resourceManagerGetTexture("sidebarTexture");
+    unsigned int* standardShader = resourceManagerGetShader("standardShader");
+    unsigned int* spriteData = resourceManagerGetSpriteData();
 
     //Create sprites
-    sprites[0] = createSprite(vertexData, bgTexture, standardShader, (vec2){0.0f, 0.0f}, 
+    sprites[0] = createSprite(spriteData, bgTexture, standardShader, (vec2){0.0f, 0.0f}, 
                              (vec2){WIDTH, HEIGHT}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);       
 
-    sprites[1] = createSprite(vertexData, sbTexture, standardShader, (vec2){1300.0f, 0.0f}, 
+    sprites[1] = createSprite(spriteData, sbTexture, standardShader, (vec2){1300.0f, 0.0f}, 
                              (vec2){300.0f, HEIGHT}, 0.0f, (vec3){0.45f, 0.45f, 0.45f}, false); 
 
-    sprites[2] = createSprite(vertexData, pickaxeTexture, standardShader, (vec2){1333.3f, 33.3f}, 
+    sprites[2] = createSprite(spriteData, pickaxeTexture, standardShader, (vec2){1333.3f, 33.3f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.4f, 0.4f, 0.4f}, true); 
 
-    sprites[3] = createSprite(vertexData, blockTexture, standardShader, (vec2){1333.3f, 166.6f},
+    sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 166.6f},
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.6f, 0.4f}, true); 
 
-    sprites[4] = createSprite(vertexData, blockSolidTexture, standardShader, (vec2){1466.6f, 166.6f}, 
+    sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 166.6f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.3f, 0.1f, 0.1f}, true);                           
 }
 
@@ -40,31 +38,31 @@ void uiRender()
             result = uiGetButtonState(sprites[i]);
 
             if(result == 0) //Standard button state
-                renderSprite(sprites[i], 1.0f, (vec3){1.0f, 1.0f, 1.0f});
+            {
+                glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
+                renderSimpleSprite(sprites[i]);
+            }                
             else if(result == 1) //Hovered button state
-                renderSprite(sprites[i], 1.1f, (vec3){0.98f, 0.7f, 0.0f});
+            {
+                glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprites[i]->currentColor);
+                renderSimpleSprite(sprites[i]);
+            }                
             else if(result == 2) //Clicked button state
-                renderSprite(sprites[i], 1.0f, (vec3){0.25f, 0.98f, 0.0f});
+            {
+                glm_vec3_copy((vec3){0.25f, 0.98f, 0.0f}, sprites[i]->currentColor);
+                renderSimpleSprite(sprites[i]);
+            }                
         }
         else
         {
-            renderSprite(sprites[i], 1.0f, (vec3){1.0f, 1.0f, 1.0f});
-        }           
+            glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
+            renderSimpleSprite(sprites[i]);
+        }     
     } 
 }
 
 void uiCleanUp()
 {
-    //Delete resources
-    deleteTexture(blockTexture);
-    deleteTexture(blockSolidTexture);
-    deleteTexture(pickaxeTexture);
-    deleteTexture(bgTexture);
-    deleteTexture(sbTexture);
-
-    deleteShader(standardShader);
-    deleteVertexData(vertexData);
-
     //Delete sprites
     for(int i = 0; i < UI_ELEMENTS; i++)
         deleteSprite(sprites[i]);
@@ -76,10 +74,10 @@ static bool uiButtonHover(int* x, int* y, Sprite* sprite)
 
     int mouse_x = *x;
     int mouse_y = *y;
-    int sprite_x1 = (int)(sprite->position[0]);
-    int sprite_x2 = (int)(sprite->position[0] + sprite->size[0]);
-    int sprite_y1 = (int)(sprite->position[1]);
-    int sprite_y2 = (int)(sprite->position[1] + sprite->size[1]);
+    int sprite_x1 = (int)(sprite->basePosition[0]);
+    int sprite_x2 = (int)(sprite->basePosition[0] + sprite->baseSize[0]);
+    int sprite_y1 = (int)(sprite->basePosition[1]);
+    int sprite_y2 = (int)(sprite->basePosition[1] + sprite->baseSize[1]);
 
     if(mouse_x >= sprite_x1 && mouse_x <= sprite_x2 && mouse_y >= sprite_y1 && mouse_y <= sprite_y2)
         return true;

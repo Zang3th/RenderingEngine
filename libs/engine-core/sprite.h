@@ -9,24 +9,26 @@
 #include <stdlib.h>
 #include "window.h"
 #include <stdbool.h> 
+#include <string.h>
 
 // --- Variables ---
 typedef struct{
     unsigned int* vertexData;
     unsigned int* texture;
     unsigned int* shader;
-    vec2 position;
-    vec2 size;
-    float rotation;
-    vec3 basecolor;
+    vec2 basePosition;
+    vec2 baseSize;
+    float baseRotation;
+    vec3 baseColor;
+    vec3 currentColor;    
     bool isClickable;
-    bool gotClicked;
+    bool gotClicked;  
+    mat4 model;  
 } Sprite;
 
 // --- Functions ---
 unsigned int* createVertexData();
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* basecolor, bool clickable);
-void renderSprite(Sprite* sprite, float scale, float* color);
+Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* basePosition, float* baseSize, float baseRotation, float* baseColor, bool clickable);
 void deleteSprite(Sprite* sprite);
 void deleteVertexData(unsigned int* vertexData);
 
