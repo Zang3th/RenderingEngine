@@ -5,6 +5,7 @@
 #include "ui.h"
 #include "../engine-core/resourceManager.h"
 #include "../engine-core/renderer.h"
+#include "objectManager.h"
 
 // --- Functions ---
 void sandboxInit();

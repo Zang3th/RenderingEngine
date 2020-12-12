@@ -47,6 +47,10 @@ void windowInit()
     SDL_GL_SetSwapInterval(1);
     s_frameRateBuffer = malloc(sizeof(float));
     s_WindowTitleBuffer = malloc(sizeof(char) * 100);
+
+    //Enable blending to render transparent textures
+    GLCall(glEnable(GL_BLEND));
+	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 bool windowIsRunning()
@@ -145,4 +149,9 @@ void windowFrametime()
 void windowGetMousePos(int* x, int* y)
 {
     SDL_GetMouseState(x, y);
+}
+
+void windowSetMousePos(int x, int y)
+{
+    SDL_WarpMouseInWindow(s_window, x, y);
 }

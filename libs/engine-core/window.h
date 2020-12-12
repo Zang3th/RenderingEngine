@@ -35,6 +35,7 @@ void windowCleanUp();
 void windowPollEvents();
 void windowFrametime();
 void windowGetMousePos(int* x, int* y);
+void windowSetMousePos(int x, int y);
 static void handleMouseClick(SDL_MouseButtonEvent* MBE);
 
 #endif

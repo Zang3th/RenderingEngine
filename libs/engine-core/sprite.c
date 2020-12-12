@@ -71,6 +71,23 @@ Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned i
     return (Sprite*)mem;
 }
 
+void translateSprite(Sprite* sprite, float* position)
+{
+    //Create model matrix and apply transformations
+    mat4 model;
+    glm_mat4_identity(model);
+
+    glm_translate(model, (vec3){position[0], position[1], 1.0f}); //First translate (transformations are: scale happens first, then rotation, and then final translation happens; reversed order)
+
+    glm_translate(model, (vec3){sprite->baseSize[0] * 0.5f, sprite->baseSize[1] * 0.5f, 0.0f}); //Move origin of rotation to center of quad
+    glm_rotate(model, sprite->baseRotation, (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
+    glm_translate(model, (vec3){sprite->baseSize[0] * -0.5f, sprite->baseSize[1] * -0.5f, 0.0f}); //Move origin back
+
+    glm_scale(model, (vec3){sprite->baseSize[0], sprite->baseSize[1], 1.0f});
+
+    glm_mat4_copy(model, sprite->model);  
+}
+
 void deleteSprite(Sprite* sprite)
 {
     free(sprite);

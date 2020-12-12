@@ -10,11 +10,13 @@
 #define UI_ELEMENTS 5
 
 static Sprite* sprites[UI_ELEMENTS];
+static Sprite* highlighter;
 static bool elementActive;
 
 // --- Functions ---
 void uiInit();
-void uiRender();
+void uiRenderElements();
+void uiRenderHighlighter();
 void uiCleanUp();
 
 static bool uiButtonHover(int* x, int* y, Sprite* sprite);

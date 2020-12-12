@@ -10,11 +10,13 @@ void sandboxInit()
     resourceManagerLoadTexture("pickaxeTexture", "res/textures/Pickaxe.png");
     resourceManagerLoadTexture("backgroundTexture", "res/textures/Background.jpg");
     resourceManagerLoadTexture("sidebarTexture", "res/textures/Sidebar.png");        
+    resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
     resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
     resourceManagerLoadSpriteData();
 
-    uiInit();     
+    uiInit();         
     rendererInit(); 
+    //objectManagerInit();
 }
 
 bool sandboxIsRunning()
@@ -24,20 +26,25 @@ bool sandboxIsRunning()
 
 void sandboxPerFrame()
 {
+    // --- Poll events
+    windowPollEvents();
+
     // --- Prepare frame
     windowFrametime();
     windowPrepare();    
 
     // --- Render
-    uiRender();
+    uiRenderElements();
+    uiRenderHighlighter();
+    //objectManagerRenderObjects();
 
     // --- End frame
-    windowSwapBuffer();
-    windowPollEvents();   
+    windowSwapBuffer();       
 }
 
 void sandboxCleanUp()
 {
+    //objectManagerCleanUp();
     uiCleanUp();
     resourceManagerCleanUp();     
     windowCleanUp();       

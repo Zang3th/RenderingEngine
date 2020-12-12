@@ -2,6 +2,7 @@
 #define RENDERER
 
 #include "sprite.h"
+#include "errorManager.h"
 
 // --- Variables ---
 static mat4 projection;

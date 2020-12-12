@@ -29,6 +29,7 @@ typedef struct{
 // --- Functions ---
 unsigned int* createVertexData();
 Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* basePosition, float* baseSize, float baseRotation, float* baseColor, bool clickable);
+void translateSprite(Sprite* sprite, float* position);
 void deleteSprite(Sprite* sprite);
 void deleteVertexData(unsigned int* vertexData);
 

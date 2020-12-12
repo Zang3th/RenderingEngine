@@ -32,5 +32,5 @@
 
    ![Application structure](Structure_000.png)
 
-#### Look of the application
-   ![Sandboxlevel](Screenshot.png)
+#### Current look of the application
+   ![Sandboxlevel](Screenshot_001.png)
