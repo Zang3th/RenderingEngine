@@ -12,6 +12,7 @@
 static Sprite* sprites[UI_ELEMENTS];
 static Sprite* highlighter;
 static bool elementActive;
+extern bool placementMode;
 
 // --- Functions ---
 void uiInit();

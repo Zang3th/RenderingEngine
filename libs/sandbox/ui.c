@@ -1,5 +1,7 @@
 #include "ui.h"
 
+bool placementMode = false;
+
 void uiInit()
 {
     //Get resources
@@ -70,6 +72,7 @@ void uiRenderHighlighter()
     //Get mouse position
     int mouse_x, mouse_y;
     windowGetMousePos(&mouse_x, &mouse_y);
+    placementMode = false;
     
     //Check if mouse is outside of the sidebar and an element is active/chosen
     if(!uiButtonHover(&mouse_x, &mouse_y, sprites[1]) && elementActive)
@@ -93,6 +96,7 @@ void uiRenderHighlighter()
         //Translate highlighter to mouse position and render it
         translateSprite(highlighter, (vec2){(float)new_mouse_x - 50.0f, (float)new_mouse_y - 50.0f});
         renderSimpleSprite(highlighter);
+        placementMode = true;
     }
 }
 
@@ -101,6 +105,8 @@ void uiCleanUp()
     //Delete sprites
     for(int i = 0; i < UI_ELEMENTS; i++)
         deleteSprite(sprites[i]);
+
+    deleteSprite(highlighter); 
 }
 
 static bool uiButtonHover(int* x, int* y, Sprite* sprite)

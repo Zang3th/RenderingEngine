@@ -16,7 +16,7 @@ void sandboxInit()
 
     uiInit();         
     rendererInit(); 
-    //objectManagerInit();
+    objectManagerInit();
 }
 
 bool sandboxIsRunning()
@@ -34,9 +34,9 @@ void sandboxPerFrame()
     windowPrepare();    
 
     // --- Render
-    uiRenderElements();
+    uiRenderElements();    
+    objectManagerRenderObjects();
     uiRenderHighlighter();
-    //objectManagerRenderObjects();
 
     // --- End frame
     windowSwapBuffer();       
@@ -44,7 +44,7 @@ void sandboxPerFrame()
 
 void sandboxCleanUp()
 {
-    //objectManagerCleanUp();
+    objectManagerCleanUp();
     uiCleanUp();
     resourceManagerCleanUp();     
     windowCleanUp();       
