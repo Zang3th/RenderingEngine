@@ -46,6 +46,7 @@ void objectManagerDeleteAllObjects()
 void objectManagerCleanUp()
 {
     deleteSprite(blockObject);
+    deleteSprite(solidBlockObject);
 }
 
 static void addObjectToRenderqueue()
