@@ -7,7 +7,7 @@ void uiInit()
     //Get resources
     unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
     unsigned int* solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
-    unsigned int* pickaxeTexture = resourceManagerGetTexture("pickaxeTexture");
+    unsigned int* trashcanTexture = resourceManagerGetTexture("trashcanTexture");
     unsigned int* bgTexture = resourceManagerGetTexture("backgroundTexture");
     unsigned int* sbTexture = resourceManagerGetTexture("sidebarTexture");
     unsigned int* highlightTexture = resourceManagerGetTexture("highlightTexture");
@@ -21,13 +21,13 @@ void uiInit()
     sprites[1] = createSprite(spriteData, sbTexture, standardShader, (vec2){1300.0f, 0.0f}, 
                              (vec2){300.0f, HEIGHT}, 0.0f, (vec3){0.45f, 0.45f, 0.45f}, false); 
 
-    sprites[2] = createSprite(spriteData, pickaxeTexture, standardShader, (vec2){1333.3f, 33.3f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.6f, 0.6f, 0.6f}, true); 
+    sprites[2] = createSprite(spriteData, trashcanTexture, standardShader, (vec2){1466.6f, HEIGHT - 133.3f}, 
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 
 
-    sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 166.6f},
+    sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 33.3f},
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.6f, 0.4f}, true); 
 
-    sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 166.6f}, 
+    sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 33.3f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true);           
 
     highlighter = createSprite(spriteData, highlightTexture, standardShader, (vec2){500.0f, 500.0f}, 
@@ -55,8 +55,20 @@ void uiRenderElements()
             }                
             else if(result == 2) //Clicked button state
             {
-                glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprites[i]->currentColor);
-                renderSimpleSprite(sprites[i]);
+                if(i != 2)
+                {
+                    glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprites[i]->currentColor);
+                    renderSimpleSprite(sprites[i]); 
+                } 
+                else //Delete button pressed
+                {
+                    glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
+                    renderSimpleSprite(sprites[i]);
+                    placementMode = false;
+                    elementActive = false;
+                    sprites[2]->gotClicked = false;
+                    objectManagerDeleteAllObjects();
+                }                                              
             }                
         }
         else
@@ -73,7 +85,7 @@ void uiRenderHighlighter()
     int mouse_x, mouse_y;
     windowGetMousePos(&mouse_x, &mouse_y);
     placementMode = false;
-    
+
     //Check if mouse is outside of the sidebar and an element is active/chosen
     if(!uiButtonHover(&mouse_x, &mouse_y, sprites[1]) && elementActive)
     {  
@@ -98,6 +110,16 @@ void uiRenderHighlighter()
         renderSimpleSprite(highlighter);
         placementMode = true;
     }
+}
+
+int uiGetBlockmode()
+{
+    if(sprites[3]->gotClicked == true)
+        return 1;
+    else if(sprites[4]->gotClicked == true)
+        return 2;
+
+    return -1;            
 }
 
 void uiCleanUp()

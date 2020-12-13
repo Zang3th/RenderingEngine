@@ -7,7 +7,7 @@ void sandboxInit()
     //Load resources
     resourceManagerLoadTexture("blockTexture", "res/textures/Block.jpg");
     resourceManagerLoadTexture("solidBlockTexture", "res/textures/Block_solid.jpg");
-    resourceManagerLoadTexture("pickaxeTexture", "res/textures/Pickaxe.png");
+    resourceManagerLoadTexture("trashcanTexture", "res/textures/Trashcan.png");
     resourceManagerLoadTexture("backgroundTexture", "res/textures/Background.jpg");
     resourceManagerLoadTexture("sidebarTexture", "res/textures/Sidebar.png");        
     resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        

@@ -5,6 +5,7 @@
 #include "../engine-core/sprite.h"
 #include "../engine-core/resourceManager.h"
 #include "../engine-core/renderer.h"
+#include "../sandbox/objectManager.h"
 
 // --- Variables ---
 #define UI_ELEMENTS 5
@@ -18,6 +19,7 @@ extern bool placementMode;
 void uiInit();
 void uiRenderElements();
 void uiRenderHighlighter();
+int uiGetBlockmode();
 void uiCleanUp();
 
 static bool uiButtonHover(int* x, int* y, Sprite* sprite);
