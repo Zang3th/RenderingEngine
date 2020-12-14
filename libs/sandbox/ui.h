@@ -24,5 +24,7 @@ void uiCleanUp();
 
 static bool uiButtonHover(int* x, int* y, Sprite* sprite);
 static int uiGetButtonState(Sprite* sprite);
+static void uiChangeButtonState(Sprite* sprite, int result, int count);
+static void uiDeleteButtonPressed();
 
 #endif

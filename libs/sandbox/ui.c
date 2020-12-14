@@ -40,42 +40,23 @@ void uiRenderElements()
     {
         if(sprites[i]->isClickable)
         {
-            int result;
-            result = uiGetButtonState(sprites[i]);
+            //Reset color
+            glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor); 
 
-            if(result == 0) //Standard button state
+            //Check for action
+            int result;
+            result = uiGetButtonState(sprites[i]);     
+
+            //Branch if button got hovered or clicked
+            if(result != 0) 
             {
-                glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
-                renderSimpleSprite(sprites[i]);
-            }                
-            else if(result == 1) //Hovered button state
-            {
-                glm_vec3_copy((vec3){0.0f, 0.78f, 0.95f}, sprites[i]->currentColor);
-                renderSimpleSprite(sprites[i]);
-            }                
-            else if(result == 2) //Clicked button state
-            {
-                if(i != 2)
-                {
-                    glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprites[i]->currentColor);
-                    renderSimpleSprite(sprites[i]); 
-                } 
-                else //Delete button pressed
-                {
-                    glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
-                    renderSimpleSprite(sprites[i]);
-                    placementMode = false;
-                    elementActive = false;
-                    sprites[2]->gotClicked = false;
-                    objectManagerDeleteAllObjects();
-                }                                              
-            }                
+                uiChangeButtonState(sprites[i], result, i);
+            }          
+
+            renderSimpleSprite(sprites[i]);
         }
         else
-        {
-            glm_vec3_copy(sprites[i]->baseColor, sprites[i]->currentColor);
             renderSimpleSprite(sprites[i]);
-        }     
     } 
 }
 
@@ -114,11 +95,15 @@ void uiRenderHighlighter()
 
 int uiGetBlockmode()
 {
+    //Check for block placement mode
     if(sprites[3]->gotClicked == true)
         return 1;
+
+    //Check for solid block placement mode    
     else if(sprites[4]->gotClicked == true)
         return 2;
 
+    //Else nothing should be placed
     return -1;            
 }
 
@@ -188,4 +173,32 @@ static int uiGetButtonState(Sprite* sprite)
 
         return 0;
     }
+}
+
+static void uiChangeButtonState(Sprite* sprite, int result, int count)
+{
+    if(result == 1) //Hovered button state
+    {
+        glm_vec3_copy((vec3){0.0f, 0.78f, 0.95f}, sprite->currentColor);
+    }                
+    else if(result == 2) //Clicked button state
+    {
+        if(count != 2)
+        {
+            glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprite->currentColor);
+        } 
+        else //Delete button pressed
+        {
+            glm_vec3_copy(sprite->baseColor, sprite->currentColor);
+            uiDeleteButtonPressed();
+        }                                              
+    }
+}
+
+static void uiDeleteButtonPressed()
+{
+    placementMode = false;
+    elementActive = false;
+    sprites[2]->gotClicked = false;
+    objectManagerDeleteAllObjects();
 }

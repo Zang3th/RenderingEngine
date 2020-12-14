@@ -35,8 +35,11 @@ void sandboxPerFrame()
 
     // --- Render
     uiRenderElements();    
+
+    objectManagerCheckForPlacement();
     objectManagerRenderObjects();
-    uiRenderHighlighter();
+    
+    uiRenderHighlighter(); //Render last to be on top of everything else
 
     // --- End frame
     windowSwapBuffer();       

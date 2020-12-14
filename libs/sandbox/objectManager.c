@@ -18,8 +18,6 @@ void objectManagerInit()
 
 void objectManagerRenderObjects()
 {
-    addObjectToRenderqueue();
-
     for(int i = 0; i < objectCount; i++)
     {        
         float x = objects[i].position[0];
@@ -43,13 +41,7 @@ void objectManagerDeleteAllObjects()
     objectCount = 0;
 }
 
-void objectManagerCleanUp()
-{
-    deleteSprite(blockObject);
-    deleteSprite(solidBlockObject);
-}
-
-static void addObjectToRenderqueue()
+void objectManagerCheckForPlacement()
 {
     if(objectCount < OBJECT_COUNT_MAX)
     {
@@ -60,7 +52,9 @@ static void addObjectToRenderqueue()
             int x, y;
             windowGetMousePos(&x, &y);
              
+            //Get current active mode from the UI 
             int mode = uiGetBlockmode();
+
             if(mode == 1) //Blockmode
             {
                 if(x != last_x || y != last_y)
@@ -87,4 +81,10 @@ static void addObjectToRenderqueue()
             }            
         }
     }    
+}
+
+void objectManagerCleanUp()
+{
+    deleteSprite(blockObject);
+    deleteSprite(solidBlockObject);
 }

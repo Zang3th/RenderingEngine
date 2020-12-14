@@ -22,8 +22,7 @@ static int last_x = 0, last_y = 0; //Keep track of the last added position, to a
 void objectManagerInit();
 void objectManagerRenderObjects();
 void objectManagerDeleteAllObjects();
+void objectManagerCheckForPlacement();
 void objectManagerCleanUp();
-
-static void addObjectToRenderqueue();
 
 #endif
