@@ -6,11 +6,11 @@
       - It really should be 100% C-Code -> github detects some C++ files for whatever reason
 
 #### Planned functionalities   
-   - 2D Sprite-Renderer
-   - GUI
-   - Graph- and pointrendering
+   - 2D Sprite-Renderer (X)
+   - GUI (X)
    - Sandbox mode
-      - Box picking and placing
+      - Box picking and placing (X)
+      - Instanced rendering
       - Physics
       - Liquids      
 
@@ -33,4 +33,4 @@
    ![Application structure](Structure_000.png)
 
 #### Current look of the application
-   ![Sandboxlevel](Screenshot_002.png)
+   ![Sandboxlevel](Screenshot_003.png)

@@ -10,6 +10,8 @@ void uiInit()
     unsigned int* trashcanTexture = resourceManagerGetTexture("trashcanTexture");
     unsigned int* bgTexture = resourceManagerGetTexture("backgroundTexture");
     unsigned int* sbTexture = resourceManagerGetTexture("sidebarTexture");
+    unsigned int* bucketTexture = resourceManagerGetTexture("bucketTexture");
+    unsigned int* stickmanTexture = resourceManagerGetTexture("stickmanTexture");
     unsigned int* highlightTexture = resourceManagerGetTexture("highlightTexture");
     unsigned int* standardShader = resourceManagerGetShader("standardShader");
     unsigned int* spriteData = resourceManagerGetSpriteData();
@@ -19,16 +21,22 @@ void uiInit()
                              (vec2){WIDTH, HEIGHT}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);       
 
     sprites[1] = createSprite(spriteData, sbTexture, standardShader, (vec2){1300.0f, 0.0f}, 
-                             (vec2){300.0f, HEIGHT}, 0.0f, (vec3){0.45f, 0.45f, 0.45f}, false); 
+                             (vec2){300.0f, HEIGHT}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false); 
 
     sprites[2] = createSprite(spriteData, trashcanTexture, standardShader, (vec2){1466.6f, HEIGHT - 133.3f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 
 
     sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 33.3f},
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.6f, 0.4f}, true); 
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 
 
     sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 33.3f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true);           
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, true);    
+
+    sprites[5] = createSprite(spriteData, bucketTexture, standardShader, (vec2){1323.3f, 156.6f},
+                             (vec2){120.0f, 120.0f}, 0.0f, (vec3){0.85f, 0.85f, 0.85f}, true); 
+
+    sprites[6] = createSprite(spriteData, stickmanTexture, standardShader, (vec2){1476.6f, 156.6f}, 
+                             (vec2){80.0f, 120.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true);         
 
     highlighter = createSprite(spriteData, highlightTexture, standardShader, (vec2){500.0f, 500.0f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.98f, 0.7f, 0.0f}, false);                                          
@@ -36,6 +44,9 @@ void uiInit()
 
 void uiRenderElements()
 {   
+    //Deactivate highlight box for certain elements
+    activeElement = NULL;
+
     for(int i = 0; i < UI_ELEMENTS; i++)
     {
         if(sprites[i]->isClickable)
@@ -58,6 +69,12 @@ void uiRenderElements()
         else
             renderSimpleSprite(sprites[i]);
     } 
+
+    if(activeElement != NULL)
+    {
+        translateSprite(highlighter, (vec2){activeElement->basePosition[0], activeElement->basePosition[1]});
+        renderSimpleSprite(highlighter);
+    }
 }
 
 void uiRenderHighlighter()
@@ -176,21 +193,25 @@ static int uiGetButtonState(Sprite* sprite)
 }
 
 static void uiChangeButtonState(Sprite* sprite, int result, int count)
-{
+{    
     if(result == 1) //Hovered button state
     {
         glm_vec3_copy((vec3){0.0f, 0.78f, 0.95f}, sprite->currentColor);
     }                
     else if(result == 2) //Clicked button state
     {
-        if(count != 2)
-        {
-            glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprite->currentColor);
-        } 
-        else //Delete button pressed
+        if(count == 2) //Delete button pressed
         {
             glm_vec3_copy(sprite->baseColor, sprite->currentColor);
             uiDeleteButtonPressed();
+        }
+        else if(count == 3 || count == 4) //Elements with highlight box pressed
+        {
+            activeElement = sprite;
+        } 
+        else //Other elements pressed
+        {                
+            glm_vec3_copy((vec3){0.98f, 0.7f, 0.0f}, sprite->currentColor);
         }                                              
     }
 }

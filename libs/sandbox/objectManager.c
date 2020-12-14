@@ -10,10 +10,10 @@ void objectManagerInit()
 
     //Create sprite
     blockObject = createSprite(spriteData, blockTexture, standardShader, (vec2){0.0f, 0.0f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.6f, 0.4f}, false); 
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false); 
 
     solidBlockObject = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){0.0f, 0.0f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);                          
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false);                          
 }
 
 void objectManagerRenderObjects()
@@ -23,11 +23,14 @@ void objectManagerRenderObjects()
         float x = objects[i].position[0];
         float y = objects[i].position[1];
 
+        //Block
         if(objects[i].type == 1)
         {
             translateSprite(blockObject, (vec2){x, y});
             renderSimpleSprite(blockObject);
         }
+
+        //Solid block
         else if(objects[i].type == 2)
         {
             translateSprite(solidBlockObject, (vec2){x, y});

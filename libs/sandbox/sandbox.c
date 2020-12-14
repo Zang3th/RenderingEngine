@@ -5,11 +5,13 @@ void sandboxInit()
     windowInit();
 
     //Load resources
-    resourceManagerLoadTexture("blockTexture", "res/textures/Block.jpg");
+    resourceManagerLoadTexture("blockTexture", "res/textures/Crate.jpg");
     resourceManagerLoadTexture("solidBlockTexture", "res/textures/Block_solid.jpg");
     resourceManagerLoadTexture("trashcanTexture", "res/textures/Trashcan.png");
     resourceManagerLoadTexture("backgroundTexture", "res/textures/Background.jpg");
-    resourceManagerLoadTexture("sidebarTexture", "res/textures/Sidebar.png");        
+    resourceManagerLoadTexture("sidebarTexture", "res/textures/Sidebar.png"); 
+    resourceManagerLoadTexture("bucketTexture", "res/textures/Bucket.png");
+    resourceManagerLoadTexture("stickmanTexture", "res/textures/Stickman.png");       
     resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
     resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
     resourceManagerLoadSpriteData();
@@ -38,7 +40,7 @@ void sandboxPerFrame()
 
     objectManagerCheckForPlacement();
     objectManagerRenderObjects();
-    
+
     uiRenderHighlighter(); //Render last to be on top of everything else
 
     // --- End frame

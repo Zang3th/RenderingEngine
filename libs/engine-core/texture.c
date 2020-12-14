@@ -4,7 +4,6 @@ unsigned int* createTexture(const char* path)
 {
     int width, height, BPP; 
     unsigned int* rendererID = (unsigned int*)malloc(sizeof(unsigned int));
-    stbi_set_flip_vertically_on_load(1);
     unsigned char* localBuffer = stbi_load(path, &width, &height, &BPP, 0);
 
     if(localBuffer)
@@ -26,6 +25,11 @@ unsigned int* createTexture(const char* path)
         bindTexture(rendererID);
         GLCall(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, localBuffer));
         GLCall(glGenerateMipmap(GL_TEXTURE_2D));
+
+        GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+	    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
+		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 
         log_info("Successfully load texture at %s", path);
         stbi_image_free(localBuffer);

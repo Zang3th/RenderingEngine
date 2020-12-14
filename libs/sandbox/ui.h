@@ -8,10 +8,11 @@
 #include "../sandbox/objectManager.h"
 
 // --- Variables ---
-#define UI_ELEMENTS 5
+#define UI_ELEMENTS 7
 
 static Sprite* sprites[UI_ELEMENTS];
-static Sprite* highlighter;
+static Sprite* highlighter = NULL;
+static Sprite* activeElement = NULL;
 static bool elementActive;
 extern bool placementMode;
 
