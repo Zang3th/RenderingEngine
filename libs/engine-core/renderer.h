@@ -6,6 +6,7 @@
 
 // --- Variables ---
 static mat4 projection;
+extern int drawCalls;
 
 // --- Functions ---
 void rendererInit();

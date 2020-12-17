@@ -32,16 +32,20 @@ void sandboxPerFrame()
     windowPollEvents();
 
     // --- Prepare frame
-    windowFrametime();
+    windowCalcFrametime();
     windowPrepare();    
 
     // --- Render
+    drawCalls = 0; //Reset drawCall counter for current frame
     uiRenderElements();    
 
     objectManagerCheckForPlacement();
     objectManagerRenderObjects();
 
     uiRenderHighlighter(); //Render last to be on top of everything else
+
+    // --- After render
+    windowRenderTitle(drawCalls);
 
     // --- End frame
     windowSwapBuffer();       

@@ -47,6 +47,7 @@ void windowInit()
     SDL_GL_SetSwapInterval(1);
     s_frameRateBuffer = malloc(sizeof(float));
     s_WindowTitleBuffer = malloc(sizeof(char) * 100);
+    s_drawCallBuffer = malloc(sizeof(int));
 
     //Enable blending to render transparent textures
     GLCall(glEnable(GL_BLEND));
@@ -83,13 +84,13 @@ void windowPollEvents()
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
-                handleMouseClick(&s_event.button);                    
+                windowHandleMouseClick(&s_event.button);                    
                 break;       
         }
     }
 }
 
-void handleMouseClick(SDL_MouseButtonEvent* MBE)
+static void windowHandleMouseClick(SDL_MouseButtonEvent* MBE)
 {
   if(MBE->button == SDL_BUTTON_LEFT)  
     leftMousePressed = true;
@@ -115,9 +116,10 @@ void windowCleanUp()
     SDL_Quit();
     free(s_frameRateBuffer);
     free(s_WindowTitleBuffer);
+    free(s_drawCallBuffer);
 }   
 
-void windowFrametime()
+void windowCalcFrametime()
 {   
     long currentFrame = SDL_GetTicks();
     
@@ -131,14 +133,9 @@ void windowFrametime()
 
        if(s_frameCounter > 120) //Calculate framerate and draw it in the titlebar
        {
+           //Put framerate in the framerate buffer
            float framerate = 1 / (s_dtAccumulated / s_frameCounter);
            int ret = snprintf(s_frameRateBuffer, sizeof(s_frameRateBuffer), "%2.3f", framerate);
-
-           strcpy(s_WindowTitleBuffer, s_windowName);
-           strcat(s_WindowTitleBuffer, " (FPS: ");
-           strcat(s_WindowTitleBuffer, s_frameRateBuffer);
-           strcat(s_WindowTitleBuffer, ")");
-           SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
 
            s_frameCounter = 0;
            s_dtAccumulated = 0.0f;
@@ -154,4 +151,27 @@ void windowGetMousePos(int* x, int* y)
 void windowSetMousePos(int x, int y)
 {
     SDL_WarpMouseInWindow(s_window, x, y);
+}
+
+void windowRenderTitle(int drawcalls)
+{
+    strcpy(s_WindowTitleBuffer, s_windowName);
+    strcat(s_WindowTitleBuffer, " (FPS: ");
+    strcat(s_WindowTitleBuffer, s_frameRateBuffer);
+    strcat(s_WindowTitleBuffer, ")");
+
+    windowPrepareDrawCallBuffer(drawcalls);
+
+    SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
+}
+
+static void windowPrepareDrawCallBuffer(int drawcalls)
+{
+    strcat(s_WindowTitleBuffer, " (Drawcalls: ");
+
+    //Put drawcalls in the drawcall buffer
+    int ret = snprintf(s_drawCallBuffer, sizeof(s_drawCallBuffer), "%d", drawcalls);
+
+    strcat(s_WindowTitleBuffer, s_drawCallBuffer);
+    strcat(s_WindowTitleBuffer, ")");
 }

@@ -17,6 +17,7 @@ static char* s_frameRateBuffer;
 static char* s_WindowTitleBuffer;
 static int s_frameCounter;
 static float s_dtAccumulated;
+static char* s_drawCallBuffer;
 
 #define WIDTH 1600
 #define HEIGHT 900
@@ -33,9 +34,11 @@ void windowPrepare();
 void windowSwapBuffer();
 void windowCleanUp();
 void windowPollEvents();
-void windowFrametime();
+void windowCalcFrametime();
 void windowGetMousePos(int* x, int* y);
 void windowSetMousePos(int x, int y);
-static void handleMouseClick(SDL_MouseButtonEvent* MBE);
+void windowRenderTitle(int drawcalls);
+static void windowHandleMouseClick(SDL_MouseButtonEvent* MBE);
+static void windowPrepareDrawCallBuffer(int drawcalls);
 
 #endif
