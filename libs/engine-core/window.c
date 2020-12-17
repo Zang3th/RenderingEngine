@@ -156,13 +156,20 @@ void windowSetMousePos(int x, int y)
 void windowRenderTitle(int drawcalls)
 {
     strcpy(s_WindowTitleBuffer, s_windowName);
+    
+    //Update window title buffer
+    windowPrepareframeRateBuffer();
+    windowPrepareDrawCallBuffer(drawcalls);
+
+    //Put buffer in action
+    SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
+}
+
+static void windowPrepareframeRateBuffer()
+{
     strcat(s_WindowTitleBuffer, " (FPS: ");
     strcat(s_WindowTitleBuffer, s_frameRateBuffer);
     strcat(s_WindowTitleBuffer, ")");
-
-    windowPrepareDrawCallBuffer(drawcalls);
-
-    SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
 }
 
 static void windowPrepareDrawCallBuffer(int drawcalls)

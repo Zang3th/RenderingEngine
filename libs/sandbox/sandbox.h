@@ -7,6 +7,9 @@
 #include "../engine-core/renderer.h"
 #include "objectManager.h"
 
+extern void objectInstancerInit();
+extern void objectInstancerRender();
+
 // --- Functions ---
 void sandboxInit();
 bool sandboxIsRunning();

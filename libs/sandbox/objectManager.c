@@ -13,7 +13,7 @@ void objectManagerInit()
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false); 
 
     solidBlockObject = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){0.0f, 0.0f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false);                          
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false);   
 }
 
 void objectManagerRenderObjects()
@@ -36,7 +36,7 @@ void objectManagerRenderObjects()
             translateSprite(solidBlockObject, (vec2){x, y});
             renderSimpleSprite(solidBlockObject);
         }
-    }
+    }    
 }
 
 void objectManagerDeleteAllObjects()

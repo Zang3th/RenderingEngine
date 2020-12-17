@@ -39,6 +39,7 @@ void windowGetMousePos(int* x, int* y);
 void windowSetMousePos(int x, int y);
 void windowRenderTitle(int drawcalls);
 static void windowHandleMouseClick(SDL_MouseButtonEvent* MBE);
+static void windowPrepareframeRateBuffer();
 static void windowPrepareDrawCallBuffer(int drawcalls);
 
 #endif

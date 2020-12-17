@@ -14,11 +14,14 @@ void sandboxInit()
     resourceManagerLoadTexture("stickmanTexture", "res/textures/Stickman.png");       
     resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
     resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
+    resourceManagerLoadShader("instancedShader", "res/shader/instanced_vs.glsl", "res/shader/instanced_fs.glsl");
     resourceManagerLoadSpriteData();
 
     uiInit();         
     rendererInit(); 
     objectManagerInit();
+
+    objectInstancerInit();
 }
 
 bool sandboxIsRunning()
@@ -41,6 +44,8 @@ void sandboxPerFrame()
 
     objectManagerCheckForPlacement();
     objectManagerRenderObjects();
+
+    objectInstancerRender();
 
     uiRenderHighlighter(); //Render last to be on top of everything else
 
