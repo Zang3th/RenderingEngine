@@ -19,9 +19,7 @@ void sandboxInit()
 
     uiInit();         
     rendererInit(); 
-    objectManagerInit();
-
-    objectInstancerInit();
+    objectManagerInit();    
 }
 
 bool sandboxIsRunning()
@@ -43,9 +41,7 @@ void sandboxPerFrame()
     uiRenderElements();    
 
     objectManagerCheckForPlacement();
-    objectManagerRenderObjects();
-
-    objectInstancerRender();
+    objectManagerRenderObjects();    
 
     uiRenderHighlighter(); //Render last to be on top of everything else
 

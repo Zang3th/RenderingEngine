@@ -27,3 +27,26 @@ void renderSimpleSprite(Sprite* sprite)
         unbindTexture(sprite->texture);
         unbindShader(sprite->shader);
 }
+
+void renderInstancedSprite(ObjInstance* instance)
+{
+    if(instance->instanceAmount > 0)
+    {
+        bindShader(instance->shader);       
+
+        setUniformVec3f(instance->shader, "color", (float*)instance->color);
+        setUniformMat4f(instance->shader, "projection", (float*)projection);
+
+        bindTexture(instance->texture);
+
+        bindVertexArray(instance->vao);
+
+        //Render quad
+        GLCall(glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instance->instanceAmount));
+        drawCalls++;
+
+        unbindVertexArray(instance->vao);
+        unbindTexture(instance->texture);
+        unbindShader(instance->shader);
+    }    
+}
