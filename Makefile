@@ -3,9 +3,10 @@ INCLUDE_PATH = libs/
 LINKER_LOCAL = -DLOG_USE_COLOR
 LINKER_GLOBAL = -lSDL2 -lGL -lm -ldl
 CC = cc
+CFLAGS = -Wall -Wno-unused-variable
 
 engine: libraries vendor
-	$(CC) app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -o engine $(LINKER_GLOBAL)
+	$(CC) $(CFLAGS) app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -o engine $(LINKER_GLOBAL)
 
 libraries:
 	mkdir libraries/

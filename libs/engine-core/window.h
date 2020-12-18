@@ -30,16 +30,16 @@ extern bool rightMousePressed;
 // --- Functions ---
 void windowInit();
 bool windowIsRunning();
+void windowPollEvents();
+void windowHandleMouseClick(SDL_MouseButtonEvent* MBE);
 void windowPrepare();
 void windowSwapBuffer();
 void windowCleanUp();
-void windowPollEvents();
 void windowCalcFrametime();
 void windowGetMousePos(int* x, int* y);
 void windowSetMousePos(int x, int y);
 void windowRenderTitle(int drawcalls);
-static void windowHandleMouseClick(SDL_MouseButtonEvent* MBE);
-static void windowPrepareframeRateBuffer();
-static void windowPrepareDrawCallBuffer(int drawcalls);
+void windowPrepareframeRateBuffer();
+void windowPrepareDrawCallBuffer(int drawcalls);
 
 #endif

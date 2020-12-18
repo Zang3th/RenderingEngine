@@ -1,12 +1,21 @@
 #include "window.h"
 
-float deltaTime = 0.0f;
-long lastFrame = 0;
-bool leftMousePressed = false;
-bool rightMousePressed = false;
+//Init static variables
+static SDL_Window *s_window = NULL;
+static SDL_GLContext *s_context = NULL;
+static bool s_isRunning = false;
 static char* s_windowName = "RenderingEngine - Sandbox";
+static char* s_frameRateBuffer = NULL;
+static char* s_WindowTitleBuffer = NULL;
 static int s_frameCounter = 0;
 static float s_dtAccumulated = 0.0f;
+static char* s_drawCallBuffer = NULL;
+
+//Init extern variables
+long lastFrame = 0;
+float deltaTime = 0.0f;
+bool leftMousePressed = false;
+bool rightMousePressed = false;
 
 void windowInit()
 {
@@ -90,7 +99,7 @@ void windowPollEvents()
     }
 }
 
-static void windowHandleMouseClick(SDL_MouseButtonEvent* MBE)
+void windowHandleMouseClick(SDL_MouseButtonEvent* MBE)
 {
   if(MBE->button == SDL_BUTTON_LEFT)  
     leftMousePressed = true;
@@ -111,12 +120,13 @@ void windowSwapBuffer()
 
 void windowCleanUp()
 {
-    SDL_GL_DeleteContext(s_context);
-    SDL_DestroyWindow(s_window);
-    SDL_Quit();
     free(s_frameRateBuffer);
     free(s_WindowTitleBuffer);
     free(s_drawCallBuffer);
+    
+    SDL_GL_DeleteContext(s_context);
+    SDL_DestroyWindow(s_window);
+    SDL_Quit();    
 }   
 
 void windowCalcFrametime()
@@ -165,14 +175,14 @@ void windowRenderTitle(int drawcalls)
     SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
 }
 
-static void windowPrepareframeRateBuffer()
+void windowPrepareframeRateBuffer()
 {
     strcat(s_WindowTitleBuffer, " (FPS: ");
     strcat(s_WindowTitleBuffer, s_frameRateBuffer);
     strcat(s_WindowTitleBuffer, ")");
 }
 
-static void windowPrepareDrawCallBuffer(int drawcalls)
+void windowPrepareDrawCallBuffer(int drawcalls)
 {
     strcat(s_WindowTitleBuffer, " (Drawcalls: ");
 

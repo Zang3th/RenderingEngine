@@ -1,6 +1,6 @@
 #include "shader.h"
 
-static char* parseShader(const char* filepath)
+char* parseShader(const char* filepath)
 {
     FILE* fp = fopen(filepath, "r");
     if(!fp)
@@ -24,7 +24,7 @@ static char* parseShader(const char* filepath)
     return string;
 }
 
-static unsigned int compileShader(unsigned int shaderType, const char* source)
+unsigned int compileShader(unsigned int shaderType, const char* source)
 {
     GLCall(unsigned int id = glCreateShader(shaderType));
     GLCall(glShaderSource(id, 1, &source, NULL));
@@ -51,7 +51,7 @@ static unsigned int compileShader(unsigned int shaderType, const char* source)
     return id;
 }
 
-static unsigned int buildShader(unsigned int vsID, unsigned int fsID)
+unsigned int buildShader(unsigned int vsID, unsigned int fsID)
 {
     GLCall(unsigned int programID = glCreateProgram());
     GLCall(glAttachShader(programID, vsID));

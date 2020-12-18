@@ -22,10 +22,9 @@ void uiRenderElements();
 void uiRenderHighlighter();
 int uiGetBlockmode();
 void uiCleanUp();
-
-static bool uiButtonHover(int* x, int* y, Sprite* sprite);
-static int uiGetButtonState(Sprite* sprite);
-static void uiChangeButtonState(Sprite* sprite, int result, int count);
-static void uiDeleteButtonPressed();
+bool uiButtonHover(int* x, int* y, Sprite* sprite);
+int uiGetButtonState(Sprite* sprite);
+void uiChangeButtonState(Sprite* sprite, int result, int count);
+void uiDeleteButtonPressed();
 
 #endif
