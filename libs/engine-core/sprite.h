@@ -24,13 +24,13 @@ typedef struct{
     bool isClickable;
     bool gotClicked;  
     mat4 model;  
-} Sprite;
+} sprite_t;
 
 // --- Functions ---
 unsigned int* createVertexData();
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* basePosition, float* baseSize, float baseRotation, float* baseColor, bool clickable);
-void translateSprite(Sprite* sprite, float* position);
-void deleteSprite(Sprite* sprite);
+sprite_t* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* basePosition, float* baseSize, float baseRotation, float* baseColor, bool clickable);
+void translateSprite(sprite_t* sprite, float* position);
+void deleteSprite(sprite_t* sprite);
 void deleteVertexData(unsigned int* vertexData);
 
 #endif

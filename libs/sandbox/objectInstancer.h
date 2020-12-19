@@ -16,13 +16,13 @@ typedef struct {
     unsigned int* texture;
     unsigned int* shader;
     vec3 color;
-} ObjInstance;
+} instance_t;
 
 static unsigned int instanceID = 0;
 
 // --- Functions ---
-ObjInstance* objectInstancerCreateInstance(unsigned int* texture, float* color);
-void objectInstancerAddInstance(ObjInstance* instance, float* position);
-void objectInstancerDeleteInstance(ObjInstance* instance);
+instance_t* objectInstancerCreateInstance(unsigned int* texture, float* color);
+void objectInstancerAddInstance(instance_t* instance, float* position);
+void objectInstancerDeleteInstance(instance_t* instance);
 
 #endif

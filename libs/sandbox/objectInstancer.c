@@ -1,6 +1,6 @@
 #include "objectInstancer.h"
 
-ObjInstance* objectInstancerCreateInstance(unsigned int* texture, float* color)
+instance_t* objectInstancerCreateInstance(unsigned int* texture, float* color)
 {
     //Create and bind vao
     unsigned int* vao = createVertexArray();
@@ -50,7 +50,7 @@ ObjInstance* objectInstancerCreateInstance(unsigned int* texture, float* color)
     deleteVertexBuffer(vbo1);
 
     //Create struct and fill it with data
-    ObjInstance instance;
+    instance_t instance;
     instance.instanceID = instanceID;
     instance.instanceAmount = 0;
     instance.vao = vao;
@@ -63,15 +63,15 @@ ObjInstance* objectInstancerCreateInstance(unsigned int* texture, float* color)
     instance.color[2] = color[2];
 
     //Copy sprite onto the heap and return it
-    void* mem = malloc(sizeof(ObjInstance));
-    memcpy(mem, &instance, sizeof(ObjInstance));
+    void* mem = malloc(sizeof(instance_t));
+    memcpy(mem, &instance, sizeof(instance_t));
 
     instanceID++;        
 
-    return (ObjInstance*)mem;    
+    return (instance_t*)mem;    
 }
 
-void objectInstancerAddInstance(ObjInstance* instance, float* position)
+void objectInstancerAddInstance(instance_t* instance, float* position)
 {
     if(instance->instanceAmount < MAX_INSTANCES)
     {
@@ -93,7 +93,7 @@ void objectInstancerAddInstance(ObjInstance* instance, float* position)
     }
 }
 
-void objectInstancerDeleteInstance(ObjInstance* instance)
+void objectInstancerDeleteInstance(instance_t* instance)
 {
     deleteVertexBuffer(instance->vboM);
     deleteVertexArray(instance->vao);

@@ -31,10 +31,10 @@ unsigned int* createVertexData()
     return vao;
 }
 
-Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
+sprite_t* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
 {   
     //Create sprite based on given parameters
-    Sprite sprite;
+    sprite_t sprite;
     sprite.vertexData = vertexData;
     sprite.texture = texture;
     sprite.shader = shader;
@@ -65,13 +65,13 @@ Sprite* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned i
     glm_mat4_copy(model, sprite.model);    
 
     //Copy sprite onto the heap and return it
-    void* mem = malloc(sizeof(Sprite));
+    void* mem = malloc(sizeof(sprite_t));
     memcpy(mem, &sprite, sizeof(sprite));
 
-    return (Sprite*)mem;
+    return (sprite_t*)mem;
 }
 
-void translateSprite(Sprite* sprite, float* position)
+void translateSprite(sprite_t* sprite, float* position)
 {
     //Create model matrix and apply transformations
     mat4 model;
@@ -88,7 +88,7 @@ void translateSprite(Sprite* sprite, float* position)
     glm_mat4_copy(model, sprite->model);  
 }
 
-void deleteSprite(Sprite* sprite)
+void deleteSprite(sprite_t* sprite)
 {
     free(sprite);
 }

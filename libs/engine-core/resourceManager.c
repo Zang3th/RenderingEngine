@@ -4,7 +4,7 @@ void resourceManagerLoadTexture(char* name, char* filepath)
 {
     if(texCount < MAX_TEXTURES)
     {
-        texStruct temp = {
+        TextureMap temp = {
             name,
             createTexture(filepath)
         };
@@ -22,7 +22,7 @@ void resourceManagerLoadShader(char* name, char* vs_filepath, char* fs_filepath)
 {
     if(shaderCount < MAX_SHADER)
     {
-        shaderStruct temp = {
+        ShaderMap temp = {
             name,
             createShader(vs_filepath, fs_filepath)
         };

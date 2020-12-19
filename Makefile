@@ -1,7 +1,7 @@
 LIBS = $(wildcard libs/*) $(wildcard vendor/*)
 INCLUDE_PATH = libs/
 LINKER_LOCAL = -DLOG_USE_COLOR
-LINKER_GLOBAL = -lSDL2 -lGL -lm -ldl
+LINKER_GLOBAL = -lSDL2 -lGL -lm -ldl -lfreetype
 CC = cc
 CFLAGS = -Wall -Wno-unused-variable
 

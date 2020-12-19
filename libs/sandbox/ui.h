@@ -10,9 +10,9 @@
 // --- Variables ---
 #define UI_ELEMENTS 7
 
-static Sprite* sprites[UI_ELEMENTS];
-static Sprite* highlighter = NULL;
-static Sprite* activeElement = NULL;
+static sprite_t* sprites[UI_ELEMENTS];
+static sprite_t* highlighter = NULL;
+static sprite_t* activeElement = NULL;
 static bool elementActive;
 extern bool placementMode;
 
@@ -22,9 +22,9 @@ void uiRenderElements();
 void uiRenderHighlighter();
 int uiGetBlockmode();
 void uiCleanUp();
-bool uiButtonHover(int* x, int* y, Sprite* sprite);
-int uiGetButtonState(Sprite* sprite);
-void uiChangeButtonState(Sprite* sprite, int result, int count);
+bool uiButtonHover(int* x, int* y, sprite_t* sprite);
+int uiGetButtonState(sprite_t* sprite);
+void uiChangeButtonState(sprite_t* sprite, int result, int count);
 void uiDeleteButtonPressed();
 
 #endif

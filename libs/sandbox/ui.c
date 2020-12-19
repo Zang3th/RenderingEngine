@@ -133,7 +133,7 @@ void uiCleanUp()
     deleteSprite(highlighter); 
 }
 
-bool uiButtonHover(int* x, int* y, Sprite* sprite)
+bool uiButtonHover(int* x, int* y, sprite_t* sprite)
 {
     //Called every frame to check if mouse cursor is inside one of the clickable buttons
 
@@ -150,7 +150,7 @@ bool uiButtonHover(int* x, int* y, Sprite* sprite)
     return false;        
 }
 
-int uiGetButtonState(Sprite* sprite)
+int uiGetButtonState(sprite_t* sprite)
 {
     //return 0 for standard rendering
     //return 1 for hover rendering
@@ -192,7 +192,7 @@ int uiGetButtonState(Sprite* sprite)
     }
 }
 
-void uiChangeButtonState(Sprite* sprite, int result, int count)
+void uiChangeButtonState(sprite_t* sprite, int result, int count)
 {    
     if(result == 1) //Hovered button state
     {

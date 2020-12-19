@@ -2,10 +2,11 @@
 #define SANDBOX
 
 #include "../engine-core/window.h"
-#include "ui.h"
-#include "../engine-core/resourceManager.h"
+#include "../engine-core/textRenderer.h"
 #include "../engine-core/renderer.h"
+#include "ui.h"
 #include "objectManager.h"
+#include "../engine-core/resourceManager.h"
 
 // --- Functions ---
 void sandboxInit();

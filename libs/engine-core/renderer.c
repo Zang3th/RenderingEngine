@@ -7,7 +7,7 @@ void rendererInit()
     glm_ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f, projection);
 }
 
-void renderSimpleSprite(Sprite* sprite)
+void renderSimpleSprite(sprite_t* sprite)
 {        
         bindShader(sprite->shader);         
 
@@ -28,7 +28,7 @@ void renderSimpleSprite(Sprite* sprite)
         unbindShader(sprite->shader);
 }
 
-void renderInstancedSprite(ObjInstance* instance)
+void renderInstancedSprite(instance_t* instance)
 {
     if(instance->instanceAmount > 0)
     {

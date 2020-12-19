@@ -2,7 +2,10 @@
 
 void sandboxInit()
 {
+    //Init modules
     windowInit();
+    textRendererInit(); 
+    rendererInit();   
 
     //Load resources
     resourceManagerLoadTexture("blockTexture", "res/textures/Crate.jpg");
@@ -15,11 +18,11 @@ void sandboxInit()
     resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
     resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
     resourceManagerLoadShader("instancedShader", "res/shader/instanced_vs.glsl", "res/shader/instanced_fs.glsl");
-    resourceManagerLoadSpriteData();
+    resourceManagerLoadSpriteData();   
 
-    uiInit();         
-    rendererInit(); 
-    objectManagerInit();    
+    //Init modules that depend on resources
+    uiInit();  
+    objectManagerInit(); 
 }
 
 bool sandboxIsRunning()
@@ -29,27 +32,30 @@ bool sandboxIsRunning()
 
 void sandboxPerFrame()
 {
-    // --- Poll events
-    windowPollEvents();
+    // --- Pre render
+        // -- Poll events
+        windowPollEvents();
 
-    // --- Prepare frame
-    windowCalcFrametime();
-    windowPrepare();    
+        // -- Prepare frame
+        windowCalcFrametime();
+        windowPrepare();    
 
-    // --- Render
-    drawCalls = 0; //Reset drawCall counter for current frame
-    uiRenderElements();    
+    // --- Do render
+        // -- Reset drawCall counter for current frame
+        drawCalls = 0; 
+        uiRenderElements();    
 
-    objectManagerCheckForPlacement();
-    objectManagerRenderObjects();    
+        objectManagerCheckForPlacement();
+        objectManagerRenderObjects();    
 
-    uiRenderHighlighter(); //Render last to be on top of everything else
+        // -- Render highlighter last to be on top of everything else
+        uiRenderHighlighter(); 
 
     // --- After render
-    windowRenderTitle(drawCalls);
+        windowRenderTitle(drawCalls);
 
-    // --- End frame
-    windowSwapBuffer();       
+        // -- End frame
+        windowSwapBuffer();       
 }
 
 void sandboxCleanUp()

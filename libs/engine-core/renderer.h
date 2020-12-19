@@ -11,7 +11,7 @@ extern int drawCalls;
 
 // --- Functions ---
 void rendererInit();
-void renderSimpleSprite(Sprite* sprite);
-void renderInstancedSprite(ObjInstance* instance);
+void renderSimpleSprite(sprite_t* sprite);
+void renderInstancedSprite(instance_t* instance);
 
 #endif

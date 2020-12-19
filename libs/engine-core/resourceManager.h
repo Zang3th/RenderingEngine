@@ -13,15 +13,15 @@
 typedef struct {
     char* texName;
     unsigned int* texture;
-} texStruct;
+} TextureMap;
 
 typedef struct {
     char* shaderName;
     unsigned int* shader;
-} shaderStruct;
+} ShaderMap;
 
-static texStruct texBuffer[MAX_TEXTURES];
-static shaderStruct shaderBuffer[MAX_SHADER];
+static TextureMap texBuffer[MAX_TEXTURES];
+static ShaderMap shaderBuffer[MAX_SHADER];
 static unsigned int texCount = 0, shaderCount = 0;
 static unsigned int* vertexData;
 
