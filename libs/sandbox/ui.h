@@ -5,7 +5,8 @@
 #include "../engine-core/sprite.h"
 #include "../engine-core/resourceManager.h"
 #include "../engine-core/renderer.h"
-#include "../sandbox/objectManager.h"
+#include "objectManager.h"
+#include "../engine-core/textRenderer.h"
 
 // --- Variables ---
 #define UI_ELEMENTS 7
@@ -14,11 +15,13 @@ static sprite_t* sprites[UI_ELEMENTS];
 static sprite_t* highlighter = NULL;
 static sprite_t* activeElement = NULL;
 static bool elementActive;
+
 extern bool placementMode;
 
 // --- Functions ---
 void uiInit();
 void uiRenderElements();
+void uiRenderText();
 void uiRenderHighlighter();
 int uiGetBlockmode();
 void uiCleanUp();

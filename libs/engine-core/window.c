@@ -5,13 +5,16 @@ static SDL_Window *s_window = NULL;
 static SDL_GLContext *s_context = NULL;
 static bool s_isRunning = false;
 static char* s_windowName = "RenderingEngine - Sandbox";
-static char* s_frameRateBuffer = NULL;
 static char* s_WindowTitleBuffer = NULL;
 static int s_frameCounter = 0;
-static float s_dtAccumulated = 0.0f;
 static char* s_drawCallBuffer = NULL;
+static float s_dtAccumulated = 0.0f;
 
 //Init extern variables
+unsigned int WIDTH = 1600;
+unsigned int HEIGHT = 900;
+float dtAccumulated_avg = 0.0f;
+float framerate_avg = 0.0f;
 long lastFrame = 0;
 float deltaTime = 0.0f;
 bool leftMousePressed = false;
@@ -50,11 +53,11 @@ void windowInit()
     if(!gladLoadGL()) 
         log_error("Couldn't load OpenGL via glad!");
     else   
-        log_info("OpenGL loaded via glad!");
+        log_info("OpenGL %d.%d loaded via glad!", GLVersion.major, GLVersion.minor);
 
     s_isRunning = true;
     SDL_GL_SetSwapInterval(1);
-    s_frameRateBuffer = malloc(sizeof(float));
+
     s_WindowTitleBuffer = malloc(sizeof(char) * 100);
     s_drawCallBuffer = malloc(sizeof(int));
 
@@ -120,7 +123,6 @@ void windowSwapBuffer()
 
 void windowCleanUp()
 {
-    free(s_frameRateBuffer);
     free(s_WindowTitleBuffer);
     free(s_drawCallBuffer);
     
@@ -144,8 +146,8 @@ void windowCalcFrametime()
        if(s_frameCounter > 120) //Calculate framerate and draw it in the titlebar
        {
            //Put framerate in the framerate buffer
-           float framerate = 1 / (s_dtAccumulated / s_frameCounter);
-           int ret = snprintf(s_frameRateBuffer, sizeof(s_frameRateBuffer), "%2.3f", framerate);
+           framerate_avg = 1 / (s_dtAccumulated / s_frameCounter);
+           dtAccumulated_avg = s_dtAccumulated / s_frameCounter;           
 
            s_frameCounter = 0;
            s_dtAccumulated = 0.0f;
@@ -163,23 +165,15 @@ void windowSetMousePos(int x, int y)
     SDL_WarpMouseInWindow(s_window, x, y);
 }
 
-void windowRenderTitle(int drawcalls)
+void windowUpdateTitle(int drawcalls)
 {
     strcpy(s_WindowTitleBuffer, s_windowName);
     
     //Update window title buffer
-    windowPrepareframeRateBuffer();
     windowPrepareDrawCallBuffer(drawcalls);
 
     //Put buffer in action
     SDL_SetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
-}
-
-void windowPrepareframeRateBuffer()
-{
-    strcat(s_WindowTitleBuffer, " (FPS: ");
-    strcat(s_WindowTitleBuffer, s_frameRateBuffer);
-    strcat(s_WindowTitleBuffer, ")");
 }
 
 void windowPrepareDrawCallBuffer(int drawcalls)

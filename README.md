@@ -1,14 +1,19 @@
 # RenderingEngine in C with OpenGL
 
 #### Objectives:
-   - Simple OpenGL-Wrapper functions
+   - Simple OpenGL-Wrapper functions with example implementations on how to integrate them
+      - Located in the engine-core
+      - "Sandbox" is such an example application using the engine-core  
    - Written entirely in C
       - It really should be 100% C-Code -> sometimes github detects C++ files for whatever reason
 
-#### Planned functionalities   
+#### Planned functionalities
+   - Basic OpenGL-Wrapping (VAO, VBO, IBO, Shader, Texture, Errorhandling)   
+   - Windowcreation and monitoring (X)
    - 2D Sprite-Renderer (X)
-   - GUI (X)
-   - Sandbox mode
+   - Text rendering (X)
+   - Sandbox level
+      - GUI (X)
       - Box picking and placing (X)
       - Instanced rendering (X)
       - Physics
@@ -33,7 +38,7 @@
 #### Structure of the application  
    - Just for organisation purposes, not UML conform    
 
-   ![Application structure](Structure_000.png)
+   ![Application structure](Structure_001.png)
 
 #### Current look of the application
-   ![Sandboxlevel](Screenshot_003.png)
+   ![Sandboxlevel](Screenshot_004.png)

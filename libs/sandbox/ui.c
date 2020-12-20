@@ -26,16 +26,16 @@ void uiInit()
     sprites[2] = createSprite(spriteData, trashcanTexture, standardShader, (vec2){1466.6f, HEIGHT - 133.3f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 
 
-    sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 33.3f},
+    sprites[3] = createSprite(spriteData, blockTexture, standardShader, (vec2){1333.3f, 66.6f},
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 
 
-    sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 33.3f}, 
+    sprites[4] = createSprite(spriteData, solidBlockTexture, standardShader, (vec2){1466.6f, 66.6f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, true);    
 
-    sprites[5] = createSprite(spriteData, bucketTexture, standardShader, (vec2){1323.3f, 156.6f},
+    sprites[5] = createSprite(spriteData, bucketTexture, standardShader, (vec2){1323.3f, 233.3f},
                              (vec2){120.0f, 120.0f}, 0.0f, (vec3){0.85f, 0.85f, 0.85f}, true); 
 
-    sprites[6] = createSprite(spriteData, stickmanTexture, standardShader, (vec2){1476.6f, 156.6f}, 
+    sprites[6] = createSprite(spriteData, stickmanTexture, standardShader, (vec2){1476.6f, 233.3f}, 
                              (vec2){80.0f, 120.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true);         
 
     highlighter = createSprite(spriteData, highlightTexture, standardShader, (vec2){500.0f, 500.0f}, 
@@ -75,6 +75,17 @@ void uiRenderElements()
         translateSprite(highlighter, (vec2){activeElement->basePosition[0], activeElement->basePosition[1]});
         renderSimpleSprite(highlighter);
     }
+
+    uiRenderText();
+}
+
+void uiRenderText()
+{
+    textRendererDisplay("Box", 1357.5f, 850.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textRendererDisplay("Block", 1485.0f, 850.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textRendererDisplay("Water", 1342.5f, 675.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textRendererDisplay("Player", 1480.0f, 675.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textRendererDisplay("Erase all", 1460.0f, 140.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
 }
 
 void uiRenderHighlighter()

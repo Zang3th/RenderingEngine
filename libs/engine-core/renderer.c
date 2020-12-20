@@ -1,6 +1,6 @@
 #include "renderer.h"
 
-int drawCalls = 0;
+unsigned int drawcalls = 0;
 
 void rendererInit()
 {
@@ -21,11 +21,11 @@ void renderSimpleSprite(sprite_t* sprite)
 
         //Render quad
         GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
-        drawCalls++;
+        drawcalls++;
 
-        unbindVertexArray(sprite->vertexData);
-        unbindTexture(sprite->texture);
-        unbindShader(sprite->shader);
+        unbindVertexArray();
+        unbindTexture();
+        unbindShader();
 }
 
 void renderInstancedSprite(instance_t* instance)
@@ -43,10 +43,10 @@ void renderInstancedSprite(instance_t* instance)
 
         //Render quad
         GLCall(glDrawArraysInstanced(GL_TRIANGLES, 0, 6, instance->instanceAmount));
-        drawCalls++;
+        drawcalls++;
 
-        unbindVertexArray(instance->vao);
-        unbindTexture(instance->texture);
-        unbindShader(instance->shader);
+        unbindVertexArray();
+        unbindTexture();
+        unbindShader();
     }    
 }

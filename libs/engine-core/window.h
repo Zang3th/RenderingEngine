@@ -13,15 +13,15 @@ static SDL_GLContext *s_context;
 static SDL_Event s_event;   
 static bool s_isRunning;
 static char* s_windowName;
-static char* s_frameRateBuffer;
 static char* s_WindowTitleBuffer;
 static int s_frameCounter;
-static float s_dtAccumulated;
 static char* s_drawCallBuffer;
+static float s_dtAccumulated;
 
-#define WIDTH 1600
-#define HEIGHT 900
-
+extern unsigned int WIDTH;
+extern unsigned int HEIGHT;
+extern float dtAccumulated_avg;
+extern float framerate_avg;
 extern long lastFrame;
 extern float deltaTime;
 extern bool leftMousePressed;
@@ -38,8 +38,7 @@ void windowCleanUp();
 void windowCalcFrametime();
 void windowGetMousePos(int* x, int* y);
 void windowSetMousePos(int x, int y);
-void windowRenderTitle(int drawcalls);
-void windowPrepareframeRateBuffer();
+void windowUpdateTitle(int drawcalls);
 void windowPrepareDrawCallBuffer(int drawcalls);
 
 #endif
