@@ -138,7 +138,7 @@ void textRendererDisplay(const char* text, float x, float y, float scale, vec3 c
         if(!charTexture)
         {
             log_error("Text couldn't be displayed!");
-            log_error("Character %c was not in our character set", text[i]);
+            log_error("Character %c was not in our character set", c);
             break;
         }
 

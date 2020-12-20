@@ -35,10 +35,10 @@
 #### License
    - This code is provided under a BSD-style license. See the file LICENSE for details
 
-#### Structure of the application  
+#### Structure 
    - Just for organisation purposes, not UML conform    
 
    ![Application structure](Structure_001.png)
 
-#### Current look of the application
+#### Current look of the sandbox level
    ![Sandboxlevel](Screenshot_004.png)
