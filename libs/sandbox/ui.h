@@ -21,7 +21,7 @@ extern bool placementMode;
 // --- Functions ---
 void uiInit();
 void uiRenderElements();
-void uiRenderText();
+void uiAddText();
 void uiRenderHighlighter();
 int uiGetBlockmode();
 void uiCleanUp();

@@ -57,6 +57,12 @@ void bindTexture(const unsigned int* textureID)
     GLCall(glBindTexture(GL_TEXTURE_2D, *textureID));
 }
 
+void bindTextureToSlot(const unsigned int* textureID, unsigned int slot)
+{
+    GLCall(glActiveTexture(GL_TEXTURE0 + slot));
+    GLCall(glBindTexture(GL_TEXTURE_2D, *textureID));
+}
+
 void unbindTexture()
 {
     GLCall(glBindTexture(GL_TEXTURE_2D, 0));

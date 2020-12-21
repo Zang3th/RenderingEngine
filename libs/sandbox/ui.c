@@ -39,7 +39,7 @@ void uiInit()
                              (vec2){80.0f, 120.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true);         
 
     highlighter = createSprite(spriteData, highlightTexture, standardShader, (vec2){500.0f, 500.0f}, 
-                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.98f, 0.7f, 0.0f}, false);                                          
+                             (vec2){100.0f, 100.0f}, 0.0f, (vec3){0.98f, 0.7f, 0.0f}, false);                                                                
 }
 
 void uiRenderElements()
@@ -75,17 +75,15 @@ void uiRenderElements()
         translateSprite(highlighter, (vec2){activeElement->basePosition[0], activeElement->basePosition[1]});
         renderSimpleSprite(highlighter);
     }
-
-    uiRenderText();
 }
 
-void uiRenderText()
-{
-    textRendererDisplay("Box", 1357.5f, 850.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textRendererDisplay("Block", 1485.0f, 850.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textRendererDisplay("Water", 1342.5f, 675.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textRendererDisplay("Player", 1480.0f, 675.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textRendererDisplay("Erase all", 1460.0f, 140.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+void uiAddText()
+{   
+    textBatchRendererAddText("Box", 1357.5f, 850.0f, 0.7f);
+    textBatchRendererAddText("Block", 1485.0f, 850.0f, 0.7f);
+    textBatchRendererAddText("Water", 1342.5f, 675.0f, 0.7f);
+    textBatchRendererAddText("Player", 1480.0f, 675.0f, 0.7f);
+    textBatchRendererAddText("Erase all", 1460.0f, 140.0f, 0.7f);
 }
 
 void uiRenderHighlighter()
