@@ -12,6 +12,7 @@
    - Windowcreation and monitoring (X)
    - 2D Sprite-Renderer (X)
    - Text rendering (X)
+      - Batch rendering system (X)
    - Sandbox level
       - GUI (X)
       - Box picking and placing (X)
@@ -41,4 +42,4 @@
    ![Application structure](Structure_001.png)
 
 #### Current look of the sandbox level
-   ![Sandboxlevel](Screenshot_004.png)
+   ![Sandboxlevel](Screenshot_005.png)

@@ -152,3 +152,9 @@ void setUniformVec3f(const unsigned int* shaderID, const char* name, float* vect
     GLCall(int location = glGetUniformLocation(*shaderID, name));
     GLCall(glUniform3fv(location, 1, (float*)vector));
 }
+
+void setUniform1iv(const unsigned int* shaderID, const char* name, int* values, unsigned int size)
+{
+    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(glUniform1iv(location, size, values));
+}

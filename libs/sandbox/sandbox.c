@@ -17,21 +17,22 @@ void sandboxInit()
     resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
     resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
     resourceManagerLoadShader("instancedShader", "res/shader/instanced_vs.glsl", "res/shader/instanced_fs.glsl");
-    resourceManagerLoadShader("textShader", "res/shader/text_vs.glsl", "res/shader/text_fs.glsl");
+    resourceManagerLoadShader("batchTextShader", "res/shader/batchText_vs.glsl", "res/shader/batchText_fs.glsl");
+    resourceManagerLoadShader("simpleTextShader", "res/shader/simpleText_vs.glsl", "res/shader/simpleText_fs.glsl");
     resourceManagerLoadSpriteData();   
 
     //Init modules that depend on resources
     uiInit();  
     objectManagerInit();      
 
-    // --- Text batch rendering system ONLY ALLOWS 32 characters!
-        //Init
-        textBatchRendererInit(resourceManagerGetShader("textShader"));
+    // --- Init the whole text rendering system (batch and simple text renderer)
+        //Batch text rendering system ONLY ALLOWS 32 characters!
+        textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
 
         //Add text
         uiAddText();        
 
-        //After every text got added -> create one big buffer out of it to render it in 1 drawcall
+        //After all text got added -> create one big buffer out of it, to render it in 1 drawcall
         textBatchRendererLoadTextIntoBuffer();
 
     //Allocate memory for monitoring buffer
@@ -63,8 +64,8 @@ void sandboxPerFrame()
         objectManagerRenderObjects();    
 
         uiRenderHighlighter(); 
-        sandBoxRenderText();    
 
+        sandBoxRenderText();  
         textBatchRendererDisplay();    
 
     // --- After render
@@ -78,8 +79,8 @@ void sandBoxRenderText()
 {
     sandBoxUpdateMonitoring();
 
-    //textRendererDisplay(&dtAccAvgBuffer[0], 15.0f, HEIGHT - 40.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    //textRendererDisplay(&fpsAvgBuffer[0], 15.0f, HEIGHT - 80.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&dtAccAvgBuffer[0], 15.0f, HEIGHT - 40.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&fpsAvgBuffer[0], 15.0f, HEIGHT - 80.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
 }
 
 void sandBoxUpdateMonitoring()
@@ -98,7 +99,7 @@ void sandBoxUpdateMonitoring()
 
 void sandboxCleanUp()
 {
-    textBatchRendererCleanUp();
+    textRenderingSystemsCleanUp();
     objectManagerCleanUp();
     uiCleanUp();
     resourceManagerCleanUp();     

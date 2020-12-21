@@ -1,26 +1,31 @@
 #include "textRenderer.h"
 
-void textBatchRendererInit(unsigned int* shader)
+void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader)
 {
-    //Save shader for late use
-    textShader = shader;
+    //Save shaders for later use
+    batchTextShader = batchShader;
+    simpleTextShader = simpleShader;
 
     //Get character set and create textures out of it
     if(textCollectorInit())
         log_error("Something went wrong while collecting the character set");
 
+    //Get character array from the text collector
+    textCollectorGetCharacterMap(charArray);
+
     //Create projection matrix
     glm_ortho(0.0f, (float)WIDTH, 0.0f, (float)HEIGHT, -1.0f, 1.0f, projection);
 
-    //Create vao and vbo
+    //Create vao's and vbo's
     textBatchRendererCreateBuffer();
+    textSimpleRendererCreateBuffer();
 
     //Create uniform texture array for use in the fragment shader
-    bindShader(textShader); 
+    bindShader(batchTextShader); 
     int samplers[32] = {0, 1, 2, 3, 4, 5, 6 , 7, 8, 9, 10, 11,
                         12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
                         22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
-    glUniform1iv(glGetUniformLocation(*textShader, "textArray"), 32, samplers);
+    setUniform1iv(batchTextShader, "textArray", samplers, MAX_GLYPH_AMOUNT);
 }
 
 void textBatchRendererAddText(const char* text, float x, float y, float scale)
@@ -38,10 +43,6 @@ void textBatchRendererAddText(const char* text, float x, float y, float scale)
 
 void textBatchRendererCreateVertices(const char* text, float x, float y, float scale)
 {
-    //Get character array from the text collector
-    CharacterMap charArray[CHARACTER_SET_SIZE];
-    textCollectorGetCharacterMap(charArray);
-
     //Iterate over given text characters
     for(unsigned int i = 0; i < strlen(text); i++)
     {
@@ -52,7 +53,6 @@ void textBatchRendererCreateVertices(const char* text, float x, float y, float s
         //Get corresponding/mapped character texture
         for(unsigned int j = 0; j < CHARACTER_SET_SIZE; j++)
         {   
-            //log_info("%c", characters[j].character);
             if(charArray[j].character == c)
             {
                 charTexture = &charArray[j].characterTexture;
@@ -100,18 +100,18 @@ void textBatchRendererCreateVertices(const char* text, float x, float y, float s
 
 void textBatchRendererCreateBuffer()
 {
-    textVAO = createVertexArray();
-    bindVertexArray(textVAO);
-    textVBO = createDynamicVertexBuffer(NULL, sizeof(float) * 6 * 5 * MAX_GLYPH_AMOUNT);
+    batchTextVAO = createVertexArray();
+    bindVertexArray(batchTextVAO);
+    batchTextVBO = createDynamicVertexBuffer(NULL, sizeof(float) * 6 * 5 * MAX_GLYPH_AMOUNT);
     defineVertexAttributes(0, 4, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
     defineVertexAttributes(1, 1, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (const void*)16);
-    unbindVertexBuffer(textVBO);
-    unbindVertexArray(textVAO);
+    unbindVertexBuffer(batchTextVBO);
+    unbindVertexArray(batchTextVAO);
 }
 
 void textBatchRendererLoadTextIntoBuffer()
 {
-    bindVertexBuffer(textVBO);
+    bindVertexBuffer(batchTextVBO);
     updateDynamicVertexBuffer(&verticeBuffer[0], sizeof(float) * 6 * 5 * MAX_GLYPH_AMOUNT);
     unbindVertexBuffer();
     float usageInPercent = ((float)glyphInstanceCount / (float)MAX_GLYPH_AMOUNT) * 100.0f;
@@ -120,11 +120,11 @@ void textBatchRendererLoadTextIntoBuffer()
 
 void textBatchRendererDisplay()
 {
-    bindShader(textShader);
-    setUniformVec3f(textShader, "textColor", (float*)(vec3){1.0f, 1.0f, 1.0f});
-    setUniformMat4f(textShader, "projection", (float*)projection);
+    bindShader(batchTextShader);
+    setUniformVec3f(batchTextShader, "textColor", (float*)(vec3){0.8f, 0.8f, 0.8f});
+    setUniformMat4f(batchTextShader, "projection", (float*)projection);
     
-    bindVertexArray(textVAO);
+    bindVertexArray(batchTextVAO);
 
     for(int i = 0; i < MAX_GLYPH_AMOUNT; i++)
         bindTextureToSlot(&textureIDs[i], i);
@@ -137,8 +137,87 @@ void textBatchRendererDisplay()
     unbindShader();
 }
 
-void textBatchRendererCleanUp()
+void textRenderingSystemsCleanUp()
 {
-    deleteVertexArray(textVAO);
-    deleteVertexBuffer(textVBO);
+    deleteVertexArray(batchTextVAO);
+    deleteVertexBuffer(batchTextVBO);
+    deleteVertexArray(simpleTextVAO);
+    deleteVertexBuffer(simpleTextVBO);
+}
+
+void textSimpleRendererCreateBuffer()
+{
+    simpleTextVAO = createVertexArray();
+    bindVertexArray(simpleTextVAO);
+    simpleTextVBO = createDynamicVertexBuffer(NULL, sizeof(float) * 6 * 4);
+    defineVertexAttributes(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+    unbindVertexBuffer(simpleTextVBO);
+    unbindVertexArray(simpleTextVAO);
+}
+
+void textSimpleRendererDisplay(const char* text, float x, float y, float scale, vec3 color)
+{
+    //Set render state
+    bindShader(simpleTextShader);
+    setUniformVec3f(simpleTextShader, "textColor", (float*)color);
+    setUniformMat4f(simpleTextShader, "projection", (float*)projection);
+    bindVertexArray(simpleTextVAO);
+
+    //Iterate over given text characters
+    for(unsigned int i = 0; i < strlen(text); i++)
+    {
+        //Retrieve character       
+        char c = text[i]; 
+        character_t* charTexture = NULL;
+
+        //Get corresponding/mapped character texture
+        for(unsigned int j = 0; j < CHARACTER_SET_SIZE; j++)
+        {   
+            if(charArray[j].character == c)
+            {
+                charTexture = &charArray[j].characterTexture;
+                break;
+            }                
+        }
+
+        if(!charTexture)
+        {
+            log_error("Text couldn't be displayed!");
+            log_error("Character %c was not in our character set", text[i]);
+            break;
+        }
+
+        //Calculate values
+        float xpos = x + charTexture->bearing.x * scale;
+        float ypos = y - (charTexture->size.y - charTexture->bearing.y) * scale;
+        float width = charTexture->size.x * scale;
+        float height = charTexture->size.y * scale;
+
+        //Update VBO for character
+        float vertices[6][4] = {
+            { xpos,         ypos + height,  0.0f, 0.0f },            
+            { xpos,         ypos,           0.0f, 1.0f },
+            { xpos + width, ypos,           1.0f, 1.0f },
+
+            { xpos,         ypos + height,  0.0f, 0.0f },
+            { xpos + width, ypos,           1.0f, 1.0f },
+            { xpos + width, ypos + height,  1.0f, 0.0f }           
+        };
+
+        bindTexture(&charTexture->textureID);
+        bindVertexBuffer(simpleTextVBO);
+        updateDynamicVertexBuffer(vertices, sizeof(vertices));
+        unbindVertexBuffer();
+
+        //Render glpyh
+        GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
+        drawcalls++;
+
+        //Now advance cursor to render next glyph with an offset
+        x += (charTexture->advance >> 6) * scale;
+    }
+
+    unbindVertexArray();
+    unbindTexture();
+    unbindShader();
 }

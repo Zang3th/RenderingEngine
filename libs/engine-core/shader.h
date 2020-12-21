@@ -21,5 +21,6 @@ void setUniform1f(const unsigned int* shaderID, const char* name, float value);
 void setUniform4f(const unsigned int* shaderID, const char* name, float v0, float v1, float v2, float v3);
 void setUniformMat4f(const unsigned int* shaderID, const char* name, float* matrix);
 void setUniformVec3f(const unsigned int* shaderID, const char* name, float* vector);
+void setUniform1iv(const unsigned int* shaderID, const char* name, int* values, unsigned int size);
 
 #endif
