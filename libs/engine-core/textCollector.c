@@ -89,8 +89,8 @@ int textCollectorRetrieveAsciiSet(FT_Face face)
 
         memcpy(&charMap_temp.characterTexture, &char_temp, sizeof(character_t));
 
-        //Store mapped character in array
-        memcpy(&characters[character_count], &charMap_temp, sizeof(CharacterMap));
+        //Store character texture in array
+        memcpy(&charactersMapped[character_count], &charMap_temp, sizeof(CharacterMap));
 
         //Increment character counter
         character_count++;
@@ -99,7 +99,21 @@ int textCollectorRetrieveAsciiSet(FT_Face face)
     return 0;
 }
 
-void textCollectorGetCharacterMap(CharacterMap* array)
+CharacterMap* textCollectorGetCharacterTexture(char character)
 {
-    memcpy(&array[0], &characters[0], sizeof(CharacterMap) * CHARACTER_SET_SIZE);
+    //Iterate over mapped character set
+    for(int i = 0; i < CHARACTER_SET_SIZE; i++)
+    {
+        //Return mapped character entry
+        if(charactersMapped[i].character == character)
+        {
+            return &charactersMapped[i];
+            break;
+        }            
+    }
+
+    log_error("Character couldn't be displayed!");
+    log_error("Character %c was not in our character set", character);
+    
+    return NULL;
 }

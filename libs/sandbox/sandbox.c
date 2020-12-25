@@ -33,7 +33,7 @@ void sandboxInit()
         uiAddText();        
 
         //After all text got added -> create one big buffer out of it, to render it in 1 drawcall
-        textBatchRendererLoadTextIntoBuffer();
+        textBatchRendererUploadToGPU();
 
     //Allocate memory for monitoring buffer
     dtAccAvgBuffer = malloc(sizeof(char) * 20);

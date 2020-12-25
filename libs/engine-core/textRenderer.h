@@ -8,42 +8,48 @@
 #include "vertexBuffer.h"
 #include "texture.h"
 
-// --- Variables ---
-#define MAX_GLYPH_AMOUNT 32
+#define MAX_GLYPH_AMOUNT 100
+#define MAX_TEXTURE_AMOUNT 32
 
-    //General
-    static mat4 projection;
-    static CharacterMap charArray[CHARACTER_SET_SIZE];
+// ----- General text rendering system -----
+static mat4 projection;
 
-    extern unsigned int WIDTH;
-    extern unsigned int HEIGHT;
-    extern unsigned int drawcalls;
+extern unsigned int WIDTH;
+extern unsigned int HEIGHT;
+extern unsigned int drawcalls;
 
-    //Batch
-    static unsigned int* batchTextShader = NULL;
-    static unsigned int* batchTextVAO = NULL, *batchTextVBO = NULL;
-    static float verticeBuffer[6 * 5 * MAX_GLYPH_AMOUNT];
-    static unsigned int glyphInstanceCount = 0;
-    static unsigned int textureIDs[MAX_GLYPH_AMOUNT];
+void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader);
+void textRenderingSystemsCleanUp();
 
-    //Simple
-    static unsigned int* simpleTextShader = NULL;
-    static unsigned int* simpleTextVAO = NULL, *simpleTextVBO = NULL;
+//Texture caching
+typedef struct{
+    CharacterMap* characterMap;
+    unsigned int textureSlot;
+} textureBinding_t;
 
-// --- Functions ---
-    //General
-    void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader);
-    void textRenderingSystemsCleanUp();
+static textureBinding_t textureCache[MAX_TEXTURE_AMOUNT];
+static unsigned int cachedTextures = 0;
 
-    //Batch
-    void textBatchRendererAddText(const char* text, float x, float y, float scale);
-    void textBatchRendererCreateVertices(const char* text, float x, float y, float scale);
-    void textBatchRendererCreateBuffer();
-    void textBatchRendererLoadTextIntoBuffer();
-    void textBatchRendererDisplay();    
+// ----- Batch text rendering system ----- 
+static unsigned int* batchTextShader = NULL;
+static unsigned int* batchTextVAO = NULL, *batchTextVBO = NULL;
+static float verticeBuffer[6 * 5 * MAX_GLYPH_AMOUNT];
+static unsigned int glyphCount = 0;
 
-    //Simple
-    void textSimpleRendererCreateBuffer();
-    void textSimpleRendererDisplay(const char* text, float x, float y, float scale, vec3 color);
+void textBatchRendererCreateBuffer();
+void textBatchRendererAddText(const char* string, float x, float y, float scale);
+textureBinding_t* textBatchRendererCharacterAlreadyCached(char character);
+textureBinding_t* textBatchRendererCreateNewCacheEntry(char character);
+void textBatchRendererStoreVertices(textureBinding_t* textureCacheEntry, float x, float y, float scale);    
+void textBatchRendererUploadToGPU();
+void textBatchRendererPrintUsage();
+void textBatchRendererDisplay();     
+
+// ----- Simple text rendering system ----- 
+static unsigned int* simpleTextShader = NULL;
+static unsigned int* simpleTextVAO = NULL, *simpleTextVBO = NULL;
+
+void textSimpleRendererCreateBuffer();
+void textSimpleRendererDisplay(const char* text, float x, float y, float scale, vec3 color);
 
 #endif

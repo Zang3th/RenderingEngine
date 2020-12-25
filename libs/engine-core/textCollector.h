@@ -26,11 +26,11 @@ typedef struct{
     character_t characterTexture;
 } CharacterMap;
 
-static CharacterMap characters[CHARACTER_SET_SIZE];
+static CharacterMap charactersMapped[CHARACTER_SET_SIZE];
 
 // --- Functions ---
 int textCollectorInit();
 int textCollectorRetrieveAsciiSet(FT_Face face);
-void textCollectorGetCharacterMap(CharacterMap* array);
+CharacterMap* textCollectorGetCharacterTexture(char character);
 
 #endif
