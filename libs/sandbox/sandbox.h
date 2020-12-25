@@ -16,8 +16,9 @@ static char* fpsAvgBuffer;
 void sandboxInit();
 bool sandboxIsRunning();
 void sandboxPerFrame();
-void sandBoxRenderText();
-void sandBoxUpdateMonitoring();
+void sandboxRenderText();
+void sandboxUpdateMonitoring();
+void sandboxAddStaticText();
 void sandboxCleanUp();
 
 #endif

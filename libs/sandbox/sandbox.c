@@ -23,21 +23,22 @@ void sandboxInit()
 
     //Init modules that depend on resources
     uiInit();  
-    objectManagerInit();      
+    objectManagerInit();   
+
+    //Allocate memory for monitoring buffer
+    dtAccAvgBuffer = malloc(sizeof(float));
+    fpsAvgBuffer = malloc(sizeof(float));
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 characters!
         textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
 
         //Add text
-        uiAddText();        
+        uiAddText();
+        sandboxAddStaticText();        
 
-        //After all text got added -> create one big buffer out of it, to render it in 1 drawcall
-        textBatchRendererUploadToGPU();
-
-    //Allocate memory for monitoring buffer
-    dtAccAvgBuffer = malloc(sizeof(char) * 20);
-    fpsAvgBuffer = malloc(sizeof(float) * 20);
+        //After all text got added -> create one big buffer out of it, to render everything in 1 drawcall
+        textBatchRendererUploadToGPU();    
 }
 
 bool sandboxIsRunning()
@@ -65,8 +66,9 @@ void sandboxPerFrame()
 
         uiRenderHighlighter(); 
 
-        sandBoxRenderText();  
-        textBatchRendererDisplay();    
+        //sandboxRenderText();  
+        textBatchRendererDisplay(); 
+        sandboxRenderText();   
 
     // --- After render
         windowUpdateTitle(drawcalls);
@@ -75,26 +77,24 @@ void sandboxPerFrame()
         windowSwapBuffer();       
 }
 
-void sandBoxRenderText()
+void sandboxRenderText()
 {
-    sandBoxUpdateMonitoring();
+    sandboxUpdateMonitoring();
 
-    textSimpleRendererDisplay(&dtAccAvgBuffer[0], 15.0f, HEIGHT - 40.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textSimpleRendererDisplay(&fpsAvgBuffer[0], 15.0f, HEIGHT - 80.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&dtAccAvgBuffer[0], 170.0f, HEIGHT - 40.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&fpsAvgBuffer[0], 75.0f, HEIGHT - 80.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
 }
 
-void sandBoxUpdateMonitoring()
+void sandboxUpdateMonitoring()
 {
-    char tempBuffer[10];
-    
-    strcpy(&dtAccAvgBuffer[0], "Frametime: ");
-    snprintf(tempBuffer, sizeof(tempBuffer), "%3.3f", dtAccumulated_avg * 1000);
-    strcat(dtAccAvgBuffer, tempBuffer);
-    strcat(dtAccAvgBuffer, " ms");
-    
-    strcpy(&fpsAvgBuffer[0], "FPS: ");
-    snprintf(tempBuffer, sizeof(tempBuffer), "%2.3f", framerate_avg);
-    strcat(fpsAvgBuffer, tempBuffer);    
+    snprintf(&dtAccAvgBuffer[0], sizeof(dtAccAvgBuffer), "%2.2f", dtAccumulated_avg * 1000);
+    snprintf(&fpsAvgBuffer[0], sizeof(fpsAvgBuffer), "%2.2f", framerate_avg);
+}
+
+void sandboxAddStaticText()
+{        
+    textBatchRendererAddText("Frametime:      ms", 15.0f, HEIGHT - 40.0f, 0.7f);
+    textBatchRendererAddText("FPS:" , 15.0f, HEIGHT - 80.0f, 0.7f);
 }
 
 void sandboxCleanUp()

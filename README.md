@@ -3,7 +3,7 @@
 #### Objectives:
    - Simple OpenGL-Wrapper functions with example implementations on how to integrate them
       - Located in the engine-core
-      - "Sandbox" is such an example application using the engine-core  
+      - Sandbox is such an example application using the engine-core  
    - Written entirely in C
       - It really should be 100% C-Code -> sometimes github detects C++ files for whatever reason
 
@@ -16,7 +16,7 @@
    - Sandbox level
       - GUI (X)
       - Box picking and placing (X)
-      - Instanced rendering (X)
+         - Instanced rendering (X)
       - Physics
       - Liquids   
       - AI   
@@ -42,4 +42,4 @@
    ![Application structure](Structure_001.png)
 
 #### Current look of the sandbox level
-   ![Sandboxlevel](Screenshot_005.png)
+   ![Sandboxlevel](Screenshot_006.png)

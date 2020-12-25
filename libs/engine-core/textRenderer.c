@@ -47,7 +47,7 @@ void textBatchRendererAddText(const char* string, float x, float y, float scale)
                     textureCacheEntry = textBatchRendererCreateNewCacheEntry(currentCharacter); //Create new cache entry
                 else
                 {
-                    log_warn("Batchrenderingsystem: Maximum amount of glyph textures cached. Please use the already cached glyphs!");
+                    log_warn("Batchrendering: Maximum amount of glyph textures cached. Please use the already cached glyphs!");
                     break;      
                 }
             }
@@ -163,8 +163,8 @@ void textBatchRendererPrintUsage()
     float texUsageInPercent = ((float)cachedTextures / (float)MAX_TEXTURE_AMOUNT) * 100.0f;
     float charUsageInPercent = ((float)glyphCount / (float)MAX_GLYPH_AMOUNT) * 100.0f;
 
-    log_info("Batchrenderingsystem: %d characters out of max. possible %d printed (%2.2f %%)", glyphCount, MAX_GLYPH_AMOUNT, charUsageInPercent);
-    log_info("Batchrenderingsystem: %d out of %d glyph texture slots used (%2.2f %%)", cachedTextures, MAX_TEXTURE_AMOUNT, texUsageInPercent);   
+    log_info("Batchrendering: %d characters printed. %d are max. possible (%2.2f %%)", glyphCount, MAX_GLYPH_AMOUNT, charUsageInPercent);
+    log_info("Batchrendering: %d out of %d glyph texture slots used (%2.2f %%)", cachedTextures, MAX_TEXTURE_AMOUNT, texUsageInPercent);   
 }
 
 void textBatchRendererDisplay()
