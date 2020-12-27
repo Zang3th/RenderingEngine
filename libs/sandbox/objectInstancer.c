@@ -90,7 +90,42 @@ void objectInstancerAddInstance(instance_t* instance, float* position)
         unbindVertexBuffer();
 
         instance->instanceAmount++;
+
+        //Add object instance to physics simulation
+        physicsEngineAddBox(position[0], position[1]);
     }
+}
+
+void objectInstancerSetWorldtransform(instance_t* instance)
+{
+    //Get world transform
+    float newPosition[2];
+    float newRotation[1];    
+    physicsEngineGetWorldtransform(newPosition, newRotation);
+
+    //Create model matrix
+    mat4 modelToChange;
+    glm_mat4_identity(modelToChange);
+
+    //Translate
+    glm_translate(modelToChange, (vec3){newPosition[0], newPosition[1], 1.0f});
+
+    //Rotate
+    float size = 100;
+    glm_translate(modelToChange, (vec3){size * 0.5f, size * 0.5f, 0.0f}); //Move origin of rotation to center of quad
+    glm_rotate(modelToChange, newRotation[0], (vec3){0.0f, 0.0f, 1.0f}); //Then rotate
+    glm_translate(modelToChange, (vec3){size * -0.5f, size * -0.5f, 0.0f}); //Move origin back   
+
+    //Scale
+    glm_scale(modelToChange, (vec3){100.0f, 100.0f, 1.0f});
+
+    //Copy model matrix into model buffer
+    memcpy(&instance->modelBuffer[0], &modelToChange, sizeof(mat4));
+        
+    //Send model buffer to the gpu
+    bindVertexBuffer(instance->vboM);
+    updateDynamicVertexBuffer(&instance->modelBuffer[0], MAX_INSTANCES * 16 * sizeof(float));
+    unbindVertexBuffer();
 }
 
 void objectInstancerDeleteInstance(instance_t* instance)

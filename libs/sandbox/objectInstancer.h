@@ -3,6 +3,7 @@
 
 #include "../engine-core/resourceManager.h"
 #include <cglm/cglm.h>
+#include "../engine-core/physicsEngine.h"
 
 // --- Variables ---
 #define MAX_INSTANCES 100
@@ -23,6 +24,7 @@ static unsigned int instanceID = 0;
 // --- Functions ---
 instance_t* objectInstancerCreateInstance(unsigned int* texture, float* color);
 void objectInstancerAddInstance(instance_t* instance, float* position);
+void objectInstancerSetWorldtransform(instance_t* instance);
 void objectInstancerDeleteInstance(instance_t* instance);
 
 #endif

@@ -32,6 +32,9 @@ void renderInstancedSprite(instance_t* instance)
 {
     if(instance->instanceAmount > 0)
     {
+        //Set world transform for all instances
+        objectInstancerSetWorldtransform(instance);
+
         bindShader(instance->shader);       
 
         setUniformVec3f(instance->shader, "color", (float*)instance->color);

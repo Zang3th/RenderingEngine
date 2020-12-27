@@ -5,6 +5,7 @@ void sandboxInit()
     //Init modules
     windowInit();     
     rendererInit();   
+    physicsEngineInit();
 
     //Load resources
     resourceManagerLoadTexture("blockTexture", "res/textures/Crate.jpg");
@@ -56,6 +57,9 @@ void sandboxPerFrame()
         windowCalcFrametime();
         windowPrepare();    
 
+        // -- Update physics
+        phyicsEnginePerFrame(deltaTime);
+
     // --- Do render
         // -- Reset drawCall counter for current frame
         drawcalls = 0; 
@@ -66,7 +70,6 @@ void sandboxPerFrame()
 
         uiRenderHighlighter(); 
 
-        //sandboxRenderText();  
         textBatchRendererDisplay(); 
         sandboxRenderText();   
 
@@ -102,7 +105,8 @@ void sandboxCleanUp()
     textRenderingSystemsCleanUp();
     objectManagerCleanUp();
     uiCleanUp();
-    resourceManagerCleanUp();     
+    resourceManagerCleanUp();   
+    physicsEngineCleanUp();  
     windowCleanUp();     
 
     free(dtAccAvgBuffer);

@@ -17,7 +17,7 @@
       - GUI (X)
       - Box picking and placing (X)
          - Instanced rendering (X)
-      - Physics
+      - Physics (X)
       - Liquids   
       - AI   
 
@@ -26,11 +26,12 @@
    - [log.c](https://github.com/rxi/log.c)
    - [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
    - [cglm](https://github.com/recp/cglm)
-   - [glad](https://github.com/Dav1dde/glad)
-   - [freetype](https://freetype.org/index.html)
+   - [Glad](https://github.com/Dav1dde/glad)
+   - [FreeType](https://freetype.org/index.html)
+   - [Chipmunk2D](https://github.com/slembcke/Chipmunk2D)
     
 #### Using & Compiling
-   - Clone the repository, install the dependencies (SDL2, cglm, freetype) and execute the Makefile
+   - Clone the repository, install the dependencies (SDL2, cglm, FreeType, Chipmunk2D) and execute the Makefile
    - There will be a guide on how to build the whole engine when it's a bit more matured
 
 #### License

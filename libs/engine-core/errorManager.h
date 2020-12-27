@@ -1,5 +1,5 @@
-#ifndef ERROR_MANAGER
-#define ERROR_MANAGER
+#ifndef ERRORMANAGER
+#define ERRORMANAGER
 
 #include "../../vendor/loading/glad.h"
 #include <stdio.h>

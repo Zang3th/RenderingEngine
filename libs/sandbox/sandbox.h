@@ -3,6 +3,7 @@
 
 #include "../engine-core/window.h"
 #include "../engine-core/renderer.h"
+#include "../engine-core/physicsEngine.h"
 #include "../engine-core/resourceManager.h"
 #include "ui.h"
 #include "objectManager.h"
