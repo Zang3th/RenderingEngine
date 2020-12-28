@@ -18,7 +18,7 @@ libraries:
 	done
 
 debug: libraries vendor
-	$(CC) app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -g -o engine $(LINKER_GLOBAL)
+	$(CC) $(CFLAGS) app/engine.c $(wildcard libraries/*) -I$(INCLUDE_PATH) -g -o engine $(LINKER_GLOBAL)
 
 clean:
 	rm -rf libraries/ engine

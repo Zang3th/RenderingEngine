@@ -7,8 +7,8 @@ void objectManagerInit()
     unsigned int* solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
 
     //Create base instance
-    blockInstance = objectInstancerCreateInstance(blockTexture, (vec3){1.0f, 1.0f, 1.0f});
-    solidBlockInstance = objectInstancerCreateInstance(solidBlockTexture, (vec3){0.7f, 0.7f, 0.7f});
+    blockInstance = objectInstancerCreateInstance(blockTexture, (vec3){1.0f, 1.0f, 1.0f}, 100.0f, 1.0f);
+    solidBlockInstance = objectInstancerCreateInstance(solidBlockTexture, (vec3){0.7f, 0.7f, 0.7f}, 100.0f, 50.0f);
 }
 
 void objectManagerRenderObjects()
@@ -21,6 +21,8 @@ void objectManagerDeleteAllObjects()
 {
     blockInstance->instanceAmount = 0;
     solidBlockInstance->instanceAmount = 0;
+    objectInstancerDeletePhysicsInstance(blockInstance);
+    objectInstancerDeletePhysicsInstance(solidBlockInstance);
 }
 
 void objectManagerCheckForPlacement()

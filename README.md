@@ -26,7 +26,7 @@
    - [log.c](https://github.com/rxi/log.c)
    - [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
    - [cglm](https://github.com/recp/cglm)
-   - [Glad](https://github.com/Dav1dde/glad)
+   - [glad](https://github.com/Dav1dde/glad)
    - [FreeType](https://freetype.org/index.html)
    - [Chipmunk2D](https://github.com/slembcke/Chipmunk2D)
     
