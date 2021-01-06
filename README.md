@@ -19,19 +19,19 @@
    - Camerasystem (Third-person)
    - Audiomanager for sounds and backgroundmusic        
 
-#### Example applications   
-   ##### Sandbox App
-      - GUI (X)
-      - Box picking and placing (X)
-         - Instanced rendering (X)
-      - 2D Physics (X)
-      - Liquids   
-      - AI
-   ##### WrathGL App            
-      - 3D Mesh creation (planes, tiles) 
-      - Player
-      - Animation
-      - Bots
+   #### Example applications   
+      ##### Sandbox App
+         - GUI (X)
+         - Box picking and placing (X)
+            - Instanced rendering (X)
+         - 2D Physics (X)
+         - Liquids   
+         - AI
+      ##### WrathGL App            
+         - 3D Mesh creation (planes, tiles) 
+         - Player
+         - Animation
+         - Bots
 
 ### Credits
    - [SDL2](https://www.libsdl.org/index.php)
@@ -46,7 +46,7 @@
    - Clone the repository, install the dependencies (SDL2, cglm, FreeType, Chipmunk2D) and execture one of the shell scripts or the Makefile itself
    - There will be a guide on how to build the whole engine when it's a bit more matured
 
-#### License
+### License
    - This code is provided under a BSD-style license. See the file LICENSE for details
 
 ### Structure of an example application
