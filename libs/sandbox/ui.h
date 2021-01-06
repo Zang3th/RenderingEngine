@@ -1,12 +1,12 @@
 #ifndef UI
 #define UI
 
-#include "../engine-core/window.h"
-#include "../engine-core/sprite.h"
-#include "../engine-core/resourceManager.h"
-#include "../engine-core/renderer.h"
+#include "../engine-core/2D/window2D.h"
+#include "../engine-core/general/sprite.h"
+#include "../engine-core/general/resourceManager.h"
+#include "../engine-core/2D/renderer2D.h"
 #include "objectManager.h"
-#include "../engine-core/textRenderer.h"
+#include "../engine-core/general/textRenderer.h"
 
 // --- Variables ---
 #define UI_ELEMENTS 7

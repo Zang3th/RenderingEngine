@@ -1,4 +1,4 @@
-#include "window.h"
+#include "window2D.h"
 
 //Init static variables
 static SDL_Window *s_window = NULL;

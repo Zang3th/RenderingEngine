@@ -2,5 +2,5 @@
 
 clear
 make clean
-make
-./engine
+make sandboxDemo
+./sandboxDemo

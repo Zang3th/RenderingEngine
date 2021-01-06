@@ -8,18 +8,18 @@ void sandboxInit()
     physicsEngineInit();
 
     //Load resources
-    resourceManagerLoadTexture("blockTexture", "res/textures/Crate.jpg");
-    resourceManagerLoadTexture("solidBlockTexture", "res/textures/Block_solid.jpg");
-    resourceManagerLoadTexture("trashcanTexture", "res/textures/Trashcan.png");
-    resourceManagerLoadTexture("backgroundTexture", "res/textures/Background.jpg");
-    resourceManagerLoadTexture("sidebarTexture", "res/textures/Sidebar.png"); 
-    resourceManagerLoadTexture("bucketTexture", "res/textures/Bucket.png");
-    resourceManagerLoadTexture("stickmanTexture", "res/textures/Stickman.png");       
-    resourceManagerLoadTexture("highlightTexture", "res/textures/Highlighter.png");        
-    resourceManagerLoadShader("standardShader", "res/shader/standard_vs.glsl", "res/shader/standard_fs.glsl");
-    resourceManagerLoadShader("instancedShader", "res/shader/instanced_vs.glsl", "res/shader/instanced_fs.glsl");
-    resourceManagerLoadShader("batchTextShader", "res/shader/batchText_vs.glsl", "res/shader/batchText_fs.glsl");
-    resourceManagerLoadShader("simpleTextShader", "res/shader/simpleText_vs.glsl", "res/shader/simpleText_fs.glsl");
+    resourceManagerLoadTexture("blockTexture", "res/textures/sandbox/Crate.jpg");
+    resourceManagerLoadTexture("solidBlockTexture", "res/textures/sandbox/Block_solid.jpg");
+    resourceManagerLoadTexture("trashcanTexture", "res/textures/sandbox/Trashcan.png");
+    resourceManagerLoadTexture("backgroundTexture", "res/textures/sandbox/Background.jpg");
+    resourceManagerLoadTexture("sidebarTexture", "res/textures/sandbox/Sidebar.png"); 
+    resourceManagerLoadTexture("bucketTexture", "res/textures/sandbox/Bucket.png");
+    resourceManagerLoadTexture("stickmanTexture", "res/textures/sandbox/Stickman.png");       
+    resourceManagerLoadTexture("highlightTexture", "res/textures/sandbox/Highlighter.png");        
+    resourceManagerLoadShader("standardShader", "res/shader/sandbox/standard_vs.glsl", "res/shader/sandbox/standard_fs.glsl");
+    resourceManagerLoadShader("instancedShader", "res/shader/sandbox/instanced_vs.glsl", "res/shader/sandbox/instanced_fs.glsl");
+    resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
+    resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
     resourceManagerLoadSpriteData();   
 
     //Init modules that depend on resources
@@ -31,14 +31,14 @@ void sandboxInit()
     fpsAvgBuffer = malloc(sizeof(float));
 
     // --- Init the whole text rendering system (batch and simple text renderer)
-        //Batch text rendering system ONLY ALLOWS 32 characters!
+        //Batch text rendering system ONLY ALLOWS 32 different characters!
         textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
 
         //Add text
         uiAddText();
         sandboxAddStaticText();        
 
-        //After all text got added -> create one big buffer out of it, to render everything in 1 drawcall
+        //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
         textBatchRendererUploadToGPU();    
 }
 

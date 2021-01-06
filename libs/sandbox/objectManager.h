@@ -2,8 +2,8 @@
 #define OBJECTMANAGER
 
 #include "ui.h"
-#include "../engine-core/window.h"
-#include "../engine-core/renderer.h"
+#include "../engine-core/2D/window2D.h"
+#include "../engine-core/2D/renderer2D.h"
 #include "objectInstancer.h"
 
 // --- Variables ---

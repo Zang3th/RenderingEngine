@@ -7,7 +7,7 @@ void GLClearError()
 
 bool GLLogCall(const char* function, const char* file, int line)
 {
-    while (error = glGetError())
+    while ((error = glGetError()))
     {
         printf("\n");
         log_error("OpenGL Error | Errorcode: %d in %s at line %d\n", error, function, line);

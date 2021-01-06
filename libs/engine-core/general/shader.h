@@ -1,10 +1,10 @@
 #ifndef SHADER
 #define SHADER
 
-#include "../../vendor/loading/glad.h"
+#include "../../../vendor/loading/glad.h"
 #include <stdlib.h>
 #include "errorManager.h"
-#include "../../vendor/logging/log.h"
+#include "../../../vendor/logging/log.h"
 #include <cglm/cglm.h>
 
 // --- Functions ---

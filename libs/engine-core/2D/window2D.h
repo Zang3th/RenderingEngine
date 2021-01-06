@@ -1,11 +1,11 @@
-#ifndef WINDOW
-#define WINDOW
+#ifndef WINDOW2D
+#define WINDOW2D
 
-#include "../../vendor/loading/glad.h"
+#include "../../../vendor/loading/glad.h"
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include "../../vendor/logging/log.h"
-#include "errorManager.h"
+#include "../../../vendor/logging/log.h"
+#include "../general/errorManager.h"
 
 // --- Variables ---
 static SDL_Window *s_window;

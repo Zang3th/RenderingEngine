@@ -1,13 +1,13 @@
 #ifndef SANDBOX
 #define SANDBOX
 
-#include "../engine-core/window.h"
-#include "../engine-core/renderer.h"
-#include "../engine-core/physicsEngine.h"
-#include "../engine-core/resourceManager.h"
+#include "../engine-core/2D/window2D.h"
+#include "../engine-core/2D/renderer2D.h"
+#include "../engine-core/2D/physicsEngine2D.h"
+#include "../engine-core/general/resourceManager.h"
 #include "ui.h"
 #include "objectManager.h"
-#include "../engine-core/textRenderer.h"
+#include "../engine-core/general/textRenderer.h"
 
 // --- Variables ---
 static char* dtAccAvgBuffer;

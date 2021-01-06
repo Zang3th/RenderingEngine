@@ -1,9 +1,9 @@
 #ifndef OBJECTINSTANCER
 #define OBJECTINSTANCER
 
-#include "../engine-core/resourceManager.h"
+#include "../engine-core/general/resourceManager.h"
 #include <cglm/cglm.h>
-#include "../engine-core/physicsEngine.h"
+#include "../engine-core/2D/physicsEngine2D.h"
 
 // --- Variables ---
 #define MAX_INSTANCES 100

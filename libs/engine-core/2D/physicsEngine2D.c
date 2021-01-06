@@ -1,4 +1,4 @@
-#include "physicsEngine.h"
+#include "physicsEngine2D.h"
 
 void physicsEngineInit()
 {
@@ -57,7 +57,7 @@ void physicsEngineInit()
     }
 }   
 
-unsigned int physicsEngineAddBox(unsigned int id, float x, float y, float width, float height, float mass)
+void physicsEngineAddBox(unsigned int id, float x, float y, float width, float height, float mass)
 {
     //Initialize the box properties
     cpFloat moment = cpMomentForBox(mass, width, height);

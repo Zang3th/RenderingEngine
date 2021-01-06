@@ -1,9 +1,9 @@
 #ifndef ERRORMANAGER
 #define ERRORMANAGER
 
-#include "../../vendor/loading/glad.h"
+#include "../../../vendor/loading/glad.h"
 #include <stdio.h>
-#include "../../vendor/logging/log.h"
+#include "../../../vendor/logging/log.h"
 #include <signal.h>
 
 // --- Macros ---

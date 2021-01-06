@@ -1,9 +1,9 @@
-#ifndef PHYSICSENGINE
-#define PHYSICSENGINE
+#ifndef PHYSICSENGINE2D
+#define PHYSICSENGINE2D
 
 #include <chipmunk/chipmunk.h>
 #include <cglm/cglm.h>
-#include "../../vendor/logging/log.h"
+#include "../../../vendor/logging/log.h"
 #include <stdbool.h>
 
 // --- Variables ---
@@ -27,7 +27,7 @@ static unsigned int physicsObjCounter = 0;
 // --- Functions ---
 void physicsEngineInit();
 void phyicsEnginePerFrame(float dt);
-unsigned int physicsEngineAddBox(unsigned int id, float x, float y, float width, float height, float mass);
+void physicsEngineAddBox(unsigned int id, float x, float y, float width, float height, float mass);
 void physicsEngineGetWorldtransform(unsigned int id, float* position, float* rotation);
 void physicsEngineDeleteObject(unsigned int id);
 void physicsEngineDeleteScene();

@@ -3,7 +3,7 @@
 
 #include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
-#include "../../vendor/logging/log.h"
+#include "../../../vendor/logging/log.h"
 #include "errorManager.h"
 
 // --- Variables ---

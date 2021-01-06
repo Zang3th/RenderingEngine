@@ -1,7 +1,7 @@
 #ifndef VERTEXARRAY
 #define VERTEXARRAY
 
-#include "../../vendor/loading/glad.h"
+#include "../../../vendor/loading/glad.h"
 #include "errorManager.h"
 #include <stdlib.h>
 

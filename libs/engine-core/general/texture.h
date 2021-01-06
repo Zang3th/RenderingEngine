@@ -1,9 +1,9 @@
 #ifndef TEXTURE
 #define TEXTURE
 
-#include "../../vendor/image/stb_image.h"
+#include "../../../vendor/image/stb_image.h"
 #include "errorManager.h"
-#include "../../vendor/logging/log.h"
+#include "../../../vendor/logging/log.h"
 
 // --- Functions ---
 unsigned int* createTexture(const char* path);
