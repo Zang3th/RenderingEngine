@@ -19,19 +19,19 @@
    - Camerasystem (Third-person)
    - Audiomanager for sounds and backgroundmusic        
 
-   #### Example applications   
-      ##### Sandbox App
-         - GUI (X)
-         - Box picking and placing (X)
-            - Instanced rendering (X)
-         - 2D Physics (X)
-         - Liquids   
-         - AI
-      ##### WrathGL App            
-         - 3D Mesh creation (planes, tiles) 
-         - Player
-         - Animation
-         - Bots
+### Example applications   
+   #### Sandbox App
+      - GUI (X)
+      - Box picking and placing (X)
+         - Instanced rendering (X)
+      - 2D Physics (X)
+      - Liquids   
+      - AI
+   #### WrathGL App            
+      - 3D Mesh creation (planes, tiles) 
+      - Player
+      - Animation
+      - Bots
 
 ### Credits
    - [SDL2](https://www.libsdl.org/index.php)
