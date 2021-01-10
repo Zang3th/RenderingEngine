@@ -1,7 +1,12 @@
-#include <stdio.h>
+#include "wrathGL/wrathGL.h"
 
 int main()
 {
-    printf("Hello World!\n");
+    wrathGLInit();
+
+    while(wrathGLIsRunning())
+        wrathGLPerFrame();
+
+    wrathGLCleanUp();
     return 0;
 }

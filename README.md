@@ -41,7 +41,8 @@
    - [glad](https://github.com/Dav1dde/glad)
    - [FreeType](https://freetype.org/index.html)
    - [Chipmunk2D](https://github.com/slembcke/Chipmunk2D)
-    
+   - [GLFW] (https://github.com/glfw/glfw) 
+
 ### Using & Compiling
    - Clone the repository, install the dependencies (SDL2, cglm, FreeType, Chipmunk2D) and execture one of the shell scripts or the Makefile itself
    - There will be a guide on how to build the whole engine when it's a bit more matured
