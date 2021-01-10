@@ -44,8 +44,14 @@
    - [GLFW](https://github.com/glfw/glfw) 
 
 ### Using & Compiling
-   - Clone the repository, install the dependencies (SDL2, cglm, FreeType, Chipmunk2D, GLFW) and execture one of the shell scripts or the Makefile itself
-   - There will be a guide on how to build the whole engine when it's a bit more matured
+   - Currently only for linux
+   - There will be a guide on how to build the engine or a script that does everything for you, when it's a bit more matured
+   - For now:   
+      - Clone the repository
+      - Install the dependencies (SDL2, cglm, FreeType, Chipmunk2D, GLFW) 
+         - Take a look at the credits to find the repositories
+      - Execute one of the shell scripts or the Makefile itself to build the demo applications
+      - Run the demo applications  
 
 ### License
    - This code is provided under a BSD-style license. See the file LICENSE for details
