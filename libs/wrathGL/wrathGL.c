@@ -2,6 +2,9 @@
 
 void wrathGLInit()
 {
+    //Create camera
+    camera = cameraCreate((vec3){0.0f, 0.0f, 0.0f}, 0.0f, 90.0f);
+
     //Init modules
     windowInit();   
 }
@@ -27,5 +30,6 @@ void wrathGLPerFrame()
 
 void wrathGLCleanUp()
 {
+    cameraDestroy(camera);
     windowCleanUp(); 
 }
