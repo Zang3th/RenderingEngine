@@ -12,8 +12,8 @@
 static cpSpace* space;
 static cpShape* groundShape, *leftWallShape, *rightWallShape, *ceilingShape;
 
-extern unsigned int HEIGHT;
-extern unsigned int WIDTH;
+const extern unsigned int HEIGHT;
+const extern unsigned int WIDTH;
 
 typedef struct{
     cpShape* boxShape;

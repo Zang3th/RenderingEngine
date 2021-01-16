@@ -7,6 +7,7 @@
 #include "../general/shader.h"
 #include "../general/texture.h"
 #include "../general/vertexArray.h"
+#include "../2D/window2D.h"
 
 // --- Variables ---
 static mat4 projection;

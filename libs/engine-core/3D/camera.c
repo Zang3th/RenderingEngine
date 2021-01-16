@@ -11,13 +11,13 @@ camera_t* cameraCreate(vec3 position, float yaw, float pitch)
     vec3 front = {0.0f, 0.0f, -1.0f};
     memcpy(&(cam->front[0]), &front, sizeof(float) * 3);
 
-    //Clear up and right vectors
-    memset(&(cam->up[0]), 0, sizeof(float) * 3);
+    //Clear right vector
     memset(&(cam->right[0]), 0, sizeof(float) * 3);
 
-    //Set world up vector
-    vec3 worldUp = {0.0f, 1.0f, 0.0f};
-    memcpy(&(cam->worldUp[0]), &worldUp, sizeof(float) * 3);
+    //Set up and world up vectors
+    vec3 up = {0.0f, 1.0f, 0.0f};
+    memcpy(&(cam->up[0]), &up, sizeof(float) * 3);
+    memcpy(&(cam->worldUp[0]), &up, sizeof(float) * 3);
 
     //Set the rest
     cam->yaw = yaw;
@@ -96,8 +96,8 @@ void cameraProcessMouse(camera_t* camera, float xOffset, float yOffset)
 void cameraGetViewMatrix(camera_t* camera, mat4 viewMatrix)
 {
     vec3 center;
-    glm_vec3_add(camera->position, camera->front, center);
-    glm_lookat(camera->position, center, camera->up, viewMatrix);
+    glm_vec3_add(camera->position, camera->front, center);    
+    glm_lookat(camera->position, center, camera->up, viewMatrix);    
 }
 
 void cameraDestroy(camera_t* camera)

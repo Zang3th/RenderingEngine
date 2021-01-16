@@ -8,18 +8,12 @@
 #include "ui.h"
 #include "objectManager.h"
 #include "../engine-core/general/textRenderer.h"
-
-// --- Variables ---
-static char* dtAccAvgBuffer;
-static char* fpsAvgBuffer;
+#include "../engine-core/general/monitoring.h"
 
 // --- Functions ---
 void sandboxInit();
 bool sandboxIsRunning();
 void sandboxPerFrame();
-void sandboxRenderText();
-void sandboxUpdateMonitoring();
-void sandboxAddStaticText();
 void sandboxCleanUp();
 
 #endif

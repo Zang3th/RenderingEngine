@@ -7,7 +7,6 @@
 #include "texture.h"
 #include <cglm/cglm.h>
 #include <stdlib.h>
-#include "../2D/window2D.h"
 #include <stdbool.h> 
 #include <string.h>
 

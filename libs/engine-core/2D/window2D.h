@@ -14,14 +14,10 @@ static SDL_Event s_event;
 static bool s_isRunning;
 static char* s_windowName;
 static char* s_WindowTitleBuffer;
-static int s_frameCounter;
 static char* s_drawCallBuffer;
-static float s_dtAccumulated;
 
-extern unsigned int WIDTH;
-extern unsigned int HEIGHT;
-extern float dtAccumulated_avg;
-extern float framerate_avg;
+const extern unsigned int WIDTH;
+const extern unsigned int HEIGHT;
 extern long lastFrame;
 extern float deltaTime;
 extern bool leftMousePressed;

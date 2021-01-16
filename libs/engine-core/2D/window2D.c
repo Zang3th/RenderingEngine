@@ -6,15 +6,11 @@ static SDL_GLContext *s_context = NULL;
 static bool s_isRunning = false;
 static char* s_windowName = "RenderingEngine - Sandbox";
 static char* s_WindowTitleBuffer = NULL;
-static int s_frameCounter = 0;
 static char* s_drawCallBuffer = NULL;
-static float s_dtAccumulated = 0.0f;
 
 //Init extern variables
-unsigned int WIDTH = 1600;
-unsigned int HEIGHT = 900;
-float dtAccumulated_avg = 0.0f;
-float framerate_avg = 0.0f;
+const unsigned int WIDTH = 1600;
+const unsigned int HEIGHT = 900;
 long lastFrame = 0;
 float deltaTime = 0.0f;
 bool leftMousePressed = false;
@@ -134,25 +130,8 @@ void windowCleanUp()
 void windowCalcFrametime()
 {   
     long currentFrame = SDL_GetTicks();
-    
-    if(currentFrame > lastFrame)
-    {
-       deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
-       lastFrame = currentFrame;
-
-       s_frameCounter++; //Increment frame counter
-       s_dtAccumulated += deltaTime; //Accumulate time to render current frame 
-
-       if(s_frameCounter > 120) //Calculate framerate and draw it in the titlebar
-       {
-           //Put framerate in the framerate buffer
-           framerate_avg = 1 / (s_dtAccumulated / s_frameCounter);
-           dtAccumulated_avg = s_dtAccumulated / s_frameCounter;           
-
-           s_frameCounter = 0;
-           s_dtAccumulated = 0.0f;
-       }    
-    }
+    deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
+    lastFrame = currentFrame;
 }
 
 void windowGetMousePos(int* x, int* y)

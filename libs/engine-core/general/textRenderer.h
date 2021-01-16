@@ -14,8 +14,8 @@
 // ----- General text rendering system -----
 static mat4 projection;
 
-extern unsigned int WIDTH;
-extern unsigned int HEIGHT;
+const extern unsigned int WIDTH;
+const extern unsigned int HEIGHT;
 extern unsigned int drawcalls;
 
 void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader);
