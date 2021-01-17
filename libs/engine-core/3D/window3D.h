@@ -13,7 +13,7 @@ static GLFWwindow* window;
 static bool isRunning;
 static char* windowName;
 static char* windowTitleBuffer;
-static char* drawcallBuffer;
+static char* drawCallBuffer;
 static float lastX;
 static float lastY;
 static bool windowInFocus;
@@ -25,7 +25,7 @@ extern float lastFrame;
 extern camera_t* camera;
 
 // --- Functions ---
-void windowInit();
+void windowInit(char* title);
 bool windowIsRunning();
 void windowPollEvents();
 void windowProcessEvents();

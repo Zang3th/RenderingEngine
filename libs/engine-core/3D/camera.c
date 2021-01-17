@@ -88,6 +88,12 @@ void cameraProcessMouse(camera_t* camera, float xOffset, float yOffset)
 
     if(camera->pitch < -89.0f)
         camera->pitch = -89.0f;      
+    
+    if(camera->yaw > 359.0f)
+        camera->yaw = camera->yaw - 360.0f;
+
+    if(camera->yaw < -359.0f)
+        camera->yaw = camera->yaw + 360.0f;
 
     //Update Front, Right and Up Vectors using the updated Euler angles
 	cameraUpdate(camera);       

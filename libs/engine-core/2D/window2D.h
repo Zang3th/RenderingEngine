@@ -24,7 +24,7 @@ extern bool leftMousePressed;
 extern bool rightMousePressed;
 
 // --- Functions ---
-void windowInit();
+void windowInit(char* title);
 bool windowIsRunning();
 void windowPollEvents();
 void windowHandleMouseClick(SDL_MouseButtonEvent* MBE);

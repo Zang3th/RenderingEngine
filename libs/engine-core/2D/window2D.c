@@ -4,7 +4,6 @@
 static SDL_Window *window = NULL;
 static SDL_GLContext *context = NULL;
 static bool isRunning = false;
-static char* windowName = "RenderingEngine - Sandbox";
 static char* windowTitleBuffer = NULL;
 static char* drawcallBuffer = NULL;
 
@@ -16,8 +15,10 @@ float deltaTime = 0.0f;
 bool leftMousePressed = false;
 bool rightMousePressed = false;
 
-void windowInit()
+void windowInit(char* title)
 {
+    windowName = title;
+
     if(SDL_Init(SDL_INIT_VIDEO) < 0)
         log_error("SDL could not be initialized! SDL_Error: %s", SDL_GetError());
     else

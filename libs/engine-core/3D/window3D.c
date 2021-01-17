@@ -3,7 +3,6 @@
 //Init static variables
 static GLFWwindow* window = NULL;
 static bool isRunning = false;
-static char* windowName = "RenderingEngine - WrathGL";
 static char* windowTitleBuffer = NULL;
 static char* drawcallBuffer = NULL;
 static float lastX = 0.0f;
@@ -49,8 +48,10 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 	}
 }
 
-void windowInit()
+void windowInit(char* title)
 {
+    windowName = title;
+
     if(!glfwInit())
         log_error("GLFW could not be initialized! GLFW_Error: %d", glfwGetError(NULL));
     else

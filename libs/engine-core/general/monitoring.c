@@ -16,8 +16,8 @@ void monitoringInit()
 
 void monitoringAddText()
 {
-    textBatchRendererAddText("Frametime:      ms", 15.0f, HEIGHT - 40.0f, 0.7f);
-    textBatchRendererAddText("FPS:" , 15.0f, HEIGHT - 80.0f, 0.7f);
+    textBatchRendererAddText("Frametime:      ms", 7.5f, HEIGHT - 25.0f, 0.5f);
+    textBatchRendererAddText("FPS:" , 7.5f, HEIGHT - 50.0f, 0.5f);
 }
 
 void monitoringRenderText(float dt)
@@ -40,8 +40,8 @@ void monitoringRenderText(float dt)
     snprintf(&fpsAvgBuffer[0], sizeof(fpsAvgBuffer), "%2.2f", framerate_avg);
 
     //Render updated buffers
-    textSimpleRendererDisplay(&dtAccAvgBuffer[0], 170.0f, HEIGHT - 40.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
-    textSimpleRendererDisplay(&fpsAvgBuffer[0], 75.0f, HEIGHT - 80.0f, 0.7f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&dtAccAvgBuffer[0], 120.0f, HEIGHT - 25.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});
+    textSimpleRendererDisplay(&fpsAvgBuffer[0], 50.0f, HEIGHT - 50.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});
 }
 
 void monitoringCleanUp()

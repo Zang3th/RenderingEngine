@@ -3,7 +3,7 @@
 void wrathGLInit()
 {
     //Init modules
-    windowInit();   
+    windowInit("RenderingEngine - WrathGL");   
     rendererInit();
 
     //Load resources
@@ -32,6 +32,7 @@ void wrathGLInit()
 
         //Add static text
         monitoringAddText();
+        wrathGLAddText();
 
         //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
         textBatchRendererUploadToGPU(); 
@@ -40,6 +41,41 @@ void wrathGLInit()
 bool wrathGLIsRunning()
 {
     return windowIsRunning();
+}
+
+void wrathGLAddText()
+{
+    textBatchRendererAddText("Position:", 7.5f, HEIGHT - 75.0f, 0.5f);
+    textBatchRendererAddText("X:", 20.0f, HEIGHT - 100.0f, 0.5f);
+    textBatchRendererAddText("Y:", 20.0f, HEIGHT - 125.0f, 0.5f);
+    textBatchRendererAddText("Z:", 20.0f, HEIGHT - 150.0f, 0.5f);
+    textBatchRendererAddText("Rotation:" , 7.5f, HEIGHT - 175.0f, 0.5f);
+    textBatchRendererAddText("Yaw:" , 20.0f, HEIGHT - 200.0f, 0.5f);
+    textBatchRendererAddText("Pitch:" , 20.0f, HEIGHT - 225.0f, 0.5f);
+}
+
+void wrathGLRenderText()
+{   
+    //Create buffers
+    char xBuffer[6];
+    char yBuffer[6];
+    char zBuffer[6];
+    char yawBuffer[6];
+    char pitchBuffer[5];
+
+    //Update buffers
+    snprintf(&xBuffer[0], sizeof(xBuffer), "%4.f", camera->position[0]);   //X
+    snprintf(&yBuffer[0], sizeof(yBuffer), "%4.f", camera->position[1]);   //Y
+    snprintf(&zBuffer[0], sizeof(zBuffer), "%4.f", camera->position[2]);   //Z
+    snprintf(&yawBuffer[0], sizeof(yawBuffer), "%3.f", camera->yaw);       //Yaw
+    snprintf(&pitchBuffer[0], sizeof(pitchBuffer), "%2.f", camera->pitch); //Pitch
+
+    //Render buffers
+    textSimpleRendererDisplay(&xBuffer[0], 40.0f, HEIGHT - 100.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //X
+    textSimpleRendererDisplay(&yBuffer[0], 40.0f, HEIGHT - 125.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //Y
+    textSimpleRendererDisplay(&zBuffer[0], 40.0f, HEIGHT - 150.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //Z
+    textSimpleRendererDisplay(&yawBuffer[0], 70.0f, HEIGHT - 200.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});   //Yaw
+    textSimpleRendererDisplay(&pitchBuffer[0], 75.0f, HEIGHT - 225.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Pitch
 }
 
 void wrathGLPerFrame()
@@ -58,6 +94,7 @@ void wrathGLPerFrame()
         GLCall(glDisable(GL_DEPTH_TEST));
         textBatchRendererDisplay(); 
         monitoringRenderText(deltaTime);
+        wrathGLRenderText();
         GLCall(glEnable(GL_DEPTH_TEST));
 
     // --- After render

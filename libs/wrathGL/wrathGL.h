@@ -14,6 +14,8 @@ static sprite_t* testSprite = NULL;
 // --- Functions ---
 void wrathGLInit();
 bool wrathGLIsRunning();
+void wrathGLAddText();
+void wrathGLRenderText();
 void wrathGLPerFrame();
 void wrathGLCleanUp();
 

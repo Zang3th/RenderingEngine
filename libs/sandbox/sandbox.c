@@ -3,7 +3,7 @@
 void sandboxInit()
 {
     //Init modules
-    windowInit();     
+    windowInit("RenderingEngine - Sandbox");     
     rendererInit();   
     physicsEngineInit();
 
