@@ -1,11 +1,14 @@
 #include "window3D.h"
 
 //Init static variables
-static GLFWwindow* s_window = NULL;
-static bool s_isRunning = false;
-static char* s_windowName = "RenderingEngine - WrathGL";
-static char* s_WindowTitleBuffer = NULL;
-static char* s_drawCallBuffer = NULL;
+static GLFWwindow* window = NULL;
+static bool isRunning = false;
+static char* windowName = "RenderingEngine - WrathGL";
+static char* windowTitleBuffer = NULL;
+static char* drawcallBuffer = NULL;
+static float lastX = 0.0f;
+static float lastY = 0.0f;
+static bool windowInFocus = false;
 
 //Init extern variables
 const unsigned int WIDTH = 1600;
@@ -13,6 +16,38 @@ const unsigned int HEIGHT = 900;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 camera_t* camera = NULL;
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if(windowInFocus)
+    {
+        float xOffset = xpos - lastX;
+        float yOffset = lastY - ypos; //Reversed since y-coordinates go from bottom to top
+        lastX = xpos;
+        lastY = ypos;
+        cameraProcessMouse(camera, xOffset, yOffset);
+    }   
+    else
+    {
+        lastX = xpos;
+        lastY = ypos;
+    } 
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		windowInFocus = true;
+	}
+
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		windowInFocus = false;
+	}
+}
 
 void windowInit()
 {
@@ -26,40 +61,42 @@ void windowInit()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);    
 
-    s_window = glfwCreateWindow(WIDTH, HEIGHT, s_windowName, NULL, NULL);
+    window = glfwCreateWindow(WIDTH, HEIGHT, windowName, NULL, NULL);
 
-    if(!s_window)
+    if(!window)
         log_error("Window could not be created! GLFW_Error: %d", glfwGetError(NULL));
     else
         log_info("GLFW Window created!");      
 
-    glfwMakeContextCurrent(s_window);   
+    glfwMakeContextCurrent(window);   
     glfwSwapInterval(1);   
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    
 
     if(!gladLoadGL()) 
         log_error("Couldn't load OpenGL via glad!");
     else   
         log_info("OpenGL %d.%d loaded via glad!", GLVersion.major, GLVersion.minor);
-    
+
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+
     GLCall(glViewport(0, 0, WIDTH, HEIGHT));  
     GLCall(glEnable(GL_DEPTH_TEST));
-	GLCall(glEnable(GL_MULTISAMPLE));
-
-    //Enable blending to render transparent textures
-    GLCall(glEnable(GL_BLEND));
+	GLCall(glEnable(GL_MULTISAMPLE));    
+    GLCall(glEnable(GL_BLEND)); //Enable blending to render transparent textures
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-    camera = cameraCreate((vec3){0.0f, 0.0f, 0.0f}, 0.0f, 90.0f);
+    camera = cameraCreate((vec3){315.0f, 220.0f, -700.0f}, 90.0f, 0.0f); //Create camera
 
-    s_WindowTitleBuffer = malloc(sizeof(char) * 100);
-    s_drawCallBuffer = malloc(sizeof(int));
+    windowTitleBuffer = malloc(sizeof(char) * 100);
+    drawcallBuffer = malloc(sizeof(int));
 
-    s_isRunning = true;
+    isRunning = true; //Start application
 }
 
 bool windowIsRunning()
 {
-    return s_isRunning;
+    return isRunning;
 }
 
 void windowPollEvents()
@@ -69,18 +106,36 @@ void windowPollEvents()
 
 void windowProcessEvents()
 {
-    if(glfwWindowShouldClose(s_window))
+    if(glfwWindowShouldClose(window))
     {
-        s_isRunning = false; 
+        isRunning = false; 
         log_info("Quitting!");
     }
 
-    if(glfwGetKey(s_window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
-        glfwSetWindowShouldClose(s_window, true);
-        s_isRunning = false; 
+        glfwSetWindowShouldClose(window, true);
+        isRunning = false; 
         log_info("Quitting!");
     }	      
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, FORWARD, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, BACKWARD, deltaTime);
+
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, RIGHT, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, LEFT, deltaTime);	
+
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, UP, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+		cameraProcessKeyboard(camera, DOWN, deltaTime);
 }
 
 void windowPrepare()
@@ -91,13 +146,13 @@ void windowPrepare()
 
 void windowSwapBuffer()
 {
-    glfwSwapBuffers(s_window);
+    glfwSwapBuffers(window);
 }
 
 void windowCleanUp()
 {
-    free(s_WindowTitleBuffer);
-    free(s_drawCallBuffer);
+    free(windowTitleBuffer);
+    free(drawcallBuffer);
 
     glfwTerminate();
     cameraDestroy(camera);
@@ -112,22 +167,22 @@ void windowCalcFrametime()
 
 void windowUpdateTitle(int drawcalls)
 {
-    strcpy(s_WindowTitleBuffer, s_windowName);
+    strcpy(windowTitleBuffer, windowName);
     
     //Update window title buffer
-    windowPrepareDrawCallBuffer(drawcalls);
+    windowPrepareDrawcallBuffer(drawcalls);
 
     //Put buffer in action
-    glfwSetWindowTitle(s_window, &s_WindowTitleBuffer[0]);
+    glfwSetWindowTitle(window, &windowTitleBuffer[0]);
 }
 
-void windowPrepareDrawCallBuffer(int drawcalls)
+void windowPrepareDrawcallBuffer(int drawcalls)
 {
-    strcat(s_WindowTitleBuffer, " (Drawcalls: ");
+    strcat(windowTitleBuffer, " (Drawcalls: ");
 
     //Put drawcalls in the drawcall buffer
-    int ret = snprintf(s_drawCallBuffer, sizeof(s_drawCallBuffer), "%d", drawcalls);
+    int ret = snprintf(drawcallBuffer, sizeof(drawcallBuffer), "%d", drawcalls);
 
-    strcat(s_WindowTitleBuffer, s_drawCallBuffer);
-    strcat(s_WindowTitleBuffer, ")");
+    strcat(windowTitleBuffer, drawcallBuffer);
+    strcat(windowTitleBuffer, ")");
 }

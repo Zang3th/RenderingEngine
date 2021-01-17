@@ -7,23 +7,23 @@ camera_t* cameraCreate(vec3 position, float yaw, float pitch)
     //Set position vector
     memcpy(&(cam->position[0]), &(position[0]), sizeof(float) * 3);
 
-    //Set front vector
-    vec3 front = {0.0f, 0.0f, -1.0f};
-    memcpy(&(cam->front[0]), &front, sizeof(float) * 3);
-
-    //Clear right vector
+    //Clear front, right and up vectors
     memset(&(cam->right[0]), 0, sizeof(float) * 3);
+    memset(&(cam->front[0]), 0, sizeof(float) * 3);
+    memset(&(cam->up[0]), 0, sizeof(float) * 3);
 
-    //Set up and world up vectors
-    vec3 up = {0.0f, 1.0f, 0.0f};
-    memcpy(&(cam->up[0]), &up, sizeof(float) * 3);
-    memcpy(&(cam->worldUp[0]), &up, sizeof(float) * 3);
+    //Set world up vector
+    vec3 worldUp = {0.0f, 1.0f, 0.0f};
+    memcpy(&(cam->worldUp[0]), &worldUp, sizeof(float) * 3);
 
-    //Set the rest
+    //Set the other parameters
     cam->yaw = yaw;
     cam->pitch = pitch;
-    cam->movementSpeed = 15.0f;
+    cam->movementSpeed = 30.0f;
     cam->mouseSensitivity = 0.1f;
+
+    //Update front, right and up vectors using the updated euler angles
+    cameraUpdate(cam);
 
     return cam;
 }
@@ -34,16 +34,16 @@ void cameraUpdate(camera_t* camera)
     vec3 newFront;
     newFront[0] = cos(glm_rad(camera->yaw)) * cos(glm_rad(camera->pitch)); //x
     newFront[1] = sin(glm_rad(camera->pitch));                             //y
-    newFront[2] = sin(glm_rad(camera->yaw)) * sin(glm_rad(camera->pitch)); //z
+    newFront[2] = sin(glm_rad(camera->yaw)) * cos(glm_rad(camera->pitch)); //z
     glm_normalize(newFront);
-    memcpy(&(camera->front[0]), &newFront[0], sizeof(float) * 3);
+    memcpy(&(camera->front[0]), &newFront[0], sizeof(float) * 3);       
 
     //Re-calculate the right vector
     vec3 newRight;
     glm_cross(camera->front, camera->worldUp, newRight);
     glm_normalize(newRight);
     memcpy(&(camera->right[0]), &newRight[0], sizeof(float) * 3);
-
+    
     //Re-calculate the up vector
     vec3 newUp;
     glm_cross(camera->right, camera->front, newUp);
@@ -70,7 +70,7 @@ void cameraProcessKeyboard(camera_t* camera, enum CAMERA_MOVEMENT direction, flo
     if(direction == UP)
         glm_vec3_muladds(camera->up, velocity, camera->position);
 
-    if(direction == UP)
+    if(direction == DOWN)
         utility_vec3_mulsubs(camera->up, velocity, camera->position);
 }
 
@@ -87,7 +87,7 @@ void cameraProcessMouse(camera_t* camera, float xOffset, float yOffset)
         camera->pitch = 89.0f;
 
     if(camera->pitch < -89.0f)
-        camera->pitch = -89.0f;  
+        camera->pitch = -89.0f;      
 
     //Update Front, Right and Up Vectors using the updated Euler angles
 	cameraUpdate(camera);       

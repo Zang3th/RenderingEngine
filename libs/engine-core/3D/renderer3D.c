@@ -7,7 +7,7 @@ unsigned int drawcalls = 0;
 
 void rendererInit()
 {
-    glm_ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f, projection);
+    glm_perspective(glm_rad(45.0f), (float)WIDTH / (float)HEIGHT, 0.1, 1000.0f, projection); 
 }
 
 void renderSimpleSprite(sprite_t* sprite)

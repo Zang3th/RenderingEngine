@@ -9,11 +9,14 @@
 #include "../general/errorManager.h"
 
 // --- Variables ---
-static GLFWwindow* s_window;
-static bool s_isRunning;
-static char* s_windowName;
-static char* s_WindowTitleBuffer;
-static char* s_drawCallBuffer;
+static GLFWwindow* window;
+static bool isRunning;
+static char* windowName;
+static char* windowTitleBuffer;
+static char* drawcallBuffer;
+static float lastX;
+static float lastY;
+static bool windowInFocus;
 
 const extern unsigned int WIDTH;
 const extern unsigned int HEIGHT;
@@ -31,6 +34,6 @@ void windowSwapBuffer();
 void windowCleanUp();
 void windowCalcFrametime();
 void windowUpdateTitle(int drawcalls);
-void windowPrepareDrawCallBuffer(int drawcalls);
+void windowPrepareDrawcallBuffer(int drawcalls);
 
 #endif

@@ -11,8 +11,8 @@ enum CAMERA_MOVEMENT
 {
     FORWARD,
     BACKWARD,
-    LEFT,
     RIGHT,
+    LEFT,
     UP,
     DOWN
 };
