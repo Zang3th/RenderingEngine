@@ -1,12 +1,5 @@
 #include "window2D.h"
 
-//Init static variables
-static SDL_Window *window = NULL;
-static SDL_GLContext *context = NULL;
-static bool isRunning = false;
-static char* windowTitleBuffer = NULL;
-static char* drawcallBuffer = NULL;
-
 //Init extern variables
 const unsigned int WIDTH = 1600;
 const unsigned int HEIGHT = 900;

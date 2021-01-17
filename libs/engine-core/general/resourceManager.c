@@ -1,8 +1,5 @@
 #include "resourceManager.h"
 
-static unsigned int texCount = 0, shaderCount = 0;
-static unsigned int* vertexData = NULL;
-
 void resourceManagerLoadTexture(char* name, char* filepath)
 {
     if(texCount < MAX_TEXTURES)

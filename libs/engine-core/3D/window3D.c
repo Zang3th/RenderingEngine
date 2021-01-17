@@ -1,14 +1,5 @@
 #include "window3D.h"
 
-//Init static variables
-static GLFWwindow* window = NULL;
-static bool isRunning = false;
-static char* windowTitleBuffer = NULL;
-static char* drawcallBuffer = NULL;
-static float lastX = 0.0f;
-static float lastY = 0.0f;
-static bool windowInFocus = false;
-
 //Init extern variables
 const unsigned int WIDTH = 1600;
 const unsigned int HEIGHT = 900;

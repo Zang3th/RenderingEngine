@@ -5,12 +5,12 @@
 #include "textRenderer.h"
 
 // --- Variables ---
-static float dtAccumulated_avg;
-static float framerate_avg;
-static int frameCounter;
-static float dtAccumulated;
-static char* dtAccAvgBuffer;
-static char* fpsAvgBuffer;
+static float dtAccumulated_avg = 0.0f;
+static float framerate_avg = 0.0f;
+static int frameCounter = 0;
+static float dtAccumulated = 0.0f;
+static char* dtAccAvgBuffer = NULL;
+static char* fpsAvgBuffer = NULL;
 
 const extern unsigned int HEIGHT;
 const extern unsigned int WIDTH;

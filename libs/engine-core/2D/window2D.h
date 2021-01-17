@@ -8,13 +8,13 @@
 #include "../general/errorManager.h"
 
 // --- Variables ---
-static SDL_Window *window;
-static SDL_GLContext *context;
+static SDL_Window *window = NULL;
+static SDL_GLContext *context = NULL;
 static SDL_Event event;   
-static bool isRunning;
-static char* windowName;
-static char* windowTitleBuffer;
-static char* drawcallBuffer;
+static bool isRunning = false;
+static char* windowName = NULL;
+static char* windowTitleBuffer = NULL;
+static char* drawcallBuffer = NULL;
 
 const extern unsigned int WIDTH;
 const extern unsigned int HEIGHT;

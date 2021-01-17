@@ -22,8 +22,8 @@ typedef struct {
 
 static TextureMap texBuffer[MAX_TEXTURES];
 static ShaderMap shaderBuffer[MAX_SHADER];
-static unsigned int texCount, shaderCount;
-static unsigned int* vertexData;
+static unsigned int texCount = 0, shaderCount = 0;
+static unsigned int* vertexData = NULL;
 
 // --- Functions ---
 void resourceManagerLoadTexture(char* name, char* filepath);

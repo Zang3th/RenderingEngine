@@ -1,7 +1,4 @@
 #include "renderer3D.h"
-#include <cglm/io.h>
-
-#define CGLM_DEFINE_PRINTS
 
 unsigned int drawcalls = 0;
 

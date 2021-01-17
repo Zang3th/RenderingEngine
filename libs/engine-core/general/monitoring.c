@@ -1,13 +1,5 @@
 #include "monitoring.h"
 
-//Init static variables
-static float dtAccumulated_avg = 0.0f;
-static float framerate_avg = 0.0f;
-static int frameCounter = 0;
-static float dtAccumulated = 0.0f;
-static char* dtAccAvgBuffer = NULL;
-static char* fpsAvgBuffer = NULL;
-
 void monitoringInit()
 {
     dtAccAvgBuffer = malloc(sizeof(float));
