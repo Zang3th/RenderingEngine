@@ -18,12 +18,15 @@ void wrathGLInit()
     unsigned int* objectShader = resourceManagerGetShader("objectShader");
     unsigned int* spriteData = resourceManagerGetSpriteData();
 
-    //Create Sprite
+    //Create sprite
     testSprite = createSprite
     (
         spriteData, blockTexture, objectShader, (vec2){0.0f, 0.0f},
         (vec2){500.0f, 500.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false
     );
+
+    //Create plane
+    mesh_t* mesh = meshCreatorPlane(2, 1);
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -99,7 +102,6 @@ void wrathGLPerFrame()
 
     // --- After render
         windowUpdateTitle(drawcalls);
-
         windowSwapBuffer(); 
 }
 

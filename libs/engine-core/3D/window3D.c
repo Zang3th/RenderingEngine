@@ -81,7 +81,7 @@ void windowInit(char* title)
     camera = cameraCreate((vec3){315.0f, 220.0f, -700.0f}, 90.0f, 0.0f); //Create camera
 
     windowTitleBuffer = malloc(sizeof(char) * 100);
-    drawcallBuffer = malloc(sizeof(int));
+    drawcallBuffer = malloc(sizeof(char) * 3);
 
     isRunning = true; //Start application
 }

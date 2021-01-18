@@ -7,6 +7,8 @@
 #include "../engine-core/3D/renderer3D.h"
 #include "../engine-core/general/textRenderer.h"
 #include "../engine-core/general/monitoring.h"
+#include "../engine-core/general/mesh.h"
+#include "../engine-core/general/meshCreator.h"
 
 // --- Variables
 static sprite_t* testSprite = NULL;

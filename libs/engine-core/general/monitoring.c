@@ -2,8 +2,8 @@
 
 void monitoringInit()
 {
-    dtAccAvgBuffer = malloc(sizeof(float));
-    fpsAvgBuffer = malloc(sizeof(float));
+    dtAccAvgBuffer = malloc(sizeof(char) * 5);
+    fpsAvgBuffer = malloc(sizeof(char) * 5);
 }
 
 void monitoringAddText()

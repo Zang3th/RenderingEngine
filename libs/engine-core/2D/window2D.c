@@ -49,7 +49,7 @@ void windowInit(char* title)
     SDL_GL_SetSwapInterval(1);
 
     windowTitleBuffer = malloc(sizeof(char) * 100);
-    drawcallBuffer = malloc(sizeof(int));
+    drawcallBuffer = malloc(sizeof(char) * 3);
 
     //Enable blending to render transparent textures
     GLCall(glEnable(GL_BLEND));
