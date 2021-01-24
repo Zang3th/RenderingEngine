@@ -2,15 +2,19 @@
 #define MESH
 
 #include <stdlib.h>
+#include "../../../vendor/logging/log.h"
 
 typedef struct{
     float* vertices;
     float* texCoords;
+    unsigned int* indices;
     unsigned int verticeCount;
     unsigned int texCoordsCount;
+    unsigned int indiceCount;
 } mesh_t;
 
-mesh_t* meshCreate(unsigned int vertices, unsigned int texCoords);
-void meshDestroy(mesh_t* mesh);
+mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
+void debugMesh(mesh_t* mesh);
+void deleteMesh(mesh_t* mesh);
 
 #endif

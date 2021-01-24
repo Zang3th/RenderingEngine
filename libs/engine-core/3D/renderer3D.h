@@ -9,6 +9,7 @@
 #include "../general/vertexArray.h"
 #include "../3D/window3D.h"
 #include "camera.h"
+#include "../general/model.h"
 
 // --- Variables ---
 static mat4 projection;
@@ -17,5 +18,6 @@ extern unsigned int drawcalls;
 // --- Functions ---
 void rendererInit();
 void renderSimpleSprite(sprite_t* sprite);
+void renderSimpleModel(model_t* model);
 
 #endif

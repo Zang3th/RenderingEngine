@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-unsigned int* createVertexData()
+unsigned int* createSpriteVAO()
 {
     //Create and bind vao
     unsigned int* vao = createVertexArray();
@@ -31,11 +31,11 @@ unsigned int* createVertexData()
     return vao;
 }
 
-sprite_t* createSprite(unsigned int* vertexData, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
+sprite_t* createSprite(unsigned int* vao, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
 {   
     //Create sprite based on given parameters
     sprite_t sprite;
-    sprite.vertexData = vertexData;
+    sprite.vao = vao;
     sprite.texture = texture;
     sprite.shader = shader;
     sprite.basePosition[0] = position[0];
@@ -91,9 +91,4 @@ void translateSprite(sprite_t* sprite, float* position)
 void deleteSprite(sprite_t* sprite)
 {
     free(sprite);
-}
-
-void deleteVertexData(unsigned int* vertexData)
-{
-    deleteVertexBuffer(vertexData);
 }

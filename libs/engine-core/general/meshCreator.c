@@ -2,27 +2,21 @@
 
 mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
 {
-    //Amount of vertices and texture coordinates
-    unsigned int vAmount, tAmount;    
-    
-    //Calculate needed amount
-    if(size == 1)
-    {
-        vAmount = 4 * 3;
-        tAmount = 4 * 2;
-    }        
-    else
-    {
-        vAmount = (size + 1) * (size + 1) * 3;
-        tAmount = (size + 1) * (size + 1) * 2;
-    }        
+    //Amount of vertices, texture coordinates and indices
+    unsigned int vAmount, tAmount, iAmount; 
+    unsigned int squareAmount = size * size;
+
+    vAmount = squareAmount * 4;
+    tAmount = squareAmount * 4;
+    iAmount = squareAmount * 6;
 
     //Create mesh
-    mesh_t* mesh = meshCreate(vAmount, tAmount);
+    mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);    
 
     //Array indices
     unsigned int vIndex = 0;
     unsigned int tIndex = 0;
+    unsigned int iIndex = 0;
 
     //Create vertices and texture coordinates
 	for (int j = 0; j <= size; ++j)
@@ -42,19 +36,68 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
             mesh->texCoords[tIndex] = xPos;
             mesh->texCoords[tIndex + 1] = zPos;
 
-            /* log_info("x: %f, y: %f, z: %f", 
-            mesh->vertices[vIndex], 
-            mesh->vertices[vIndex + 1], 
-            mesh->vertices[vIndex + 2]);
+            if ((j != size) && (i != size))
+			{
+                unsigned int row1 = j * (size + 1);
+                unsigned int row2 = (j + 1) * (size + 1);
 
-            log_info("tex1: %f, tex2: %f", 
-            mesh->vertices[tIndex], 
-            mesh->vertices[tIndex + 1]); */
+                //Triangle 1
+                mesh->indices[iIndex] = row1 + i;
+                mesh->indices[iIndex + 1] = row1 + i + 1;
+                mesh->indices[iIndex + 2] = row2 + i + 1;
+
+                //Triangle 2
+                mesh->indices[iIndex + 3] = row1 + i;
+                mesh->indices[iIndex + 4] = row2 + i + 1;
+                mesh->indices[iIndex + 5] = row2 + i;      
+       
+            }
 
             vIndex += 3;
             tIndex += 2;
+            iIndex += 6; 
 		}
-	}
+	}    
+
+    return mesh;
+}
+
+mesh_t* meshCreatorOneTile()
+{
+    //Amount of vertices, texture coordinates and indices
+    unsigned int vAmount = 4, tAmount = 4, iAmount = 6;
+
+    //Create mesh
+    mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);
+
+    //Create data
+    float vertices[] =
+    {
+        //Position  
+        0.0f, 0.0f, 0.0f,
+        20.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 20.0f,
+        20.0f, 0.0f, 20.0f
+    };
+
+    float texCoords[] = 
+    {
+        0.0f, 0.0f,
+        1.0f, 0.0f,
+        0.0f, 1.0f,
+        1.0f, 1.0f,
+    };
+
+    unsigned int indices[] = 
+    {
+        0, 1, 2,
+        1, 2, 3
+    };
+
+    //Set data
+    memcpy(&(mesh->vertices[0]), vertices, sizeof(vertices));
+    memcpy(&(mesh->texCoords[0]), texCoords, sizeof(texCoords));
+    memcpy(&(mesh->indices[0]), indices, sizeof(indices));
 
     return mesh;
 }

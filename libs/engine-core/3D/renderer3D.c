@@ -21,11 +21,36 @@ void renderSimpleSprite(sprite_t* sprite)
         setUniformMat4f(sprite->shader, "projection", (float*)projection);        
 
         bindTexture(sprite->texture);
-
-        bindVertexArray(sprite->vertexData);
+        bindVertexArray(sprite->vao);
 
         //Render quad
         GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
+        drawcalls++;
+
+        unbindVertexArray();
+        unbindTexture();
+        unbindShader();
+}
+
+void renderSimpleModel(model_t* model)
+{
+        bindShader(model->shader);         
+
+        //Get view matrix
+        mat4 viewMatrix;
+        cameraGetViewMatrix(camera, viewMatrix);
+
+        setUniformMat4f(model->shader, "view", (float*)viewMatrix);    
+        setUniformVec3f(model->shader, "color", (float*)model->color);
+        setUniformMat4f(model->shader, "model", (float*)model->model);
+        setUniformMat4f(model->shader, "projection", (float*)projection);        
+
+        bindTexture(model->texture);
+        bindVertexArray(model->vao);
+
+        //Render quad
+        GLCall(glDrawElements(GL_TRIANGLES, model->verticesToRender, GL_UNSIGNED_INT, NULL));
+
         drawcalls++;
 
         unbindVertexArray();

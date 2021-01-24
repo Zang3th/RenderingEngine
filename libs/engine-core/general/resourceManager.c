@@ -38,7 +38,7 @@ void resourceManagerLoadShader(char* name, char* vs_filepath, char* fs_filepath)
 
 void resourceManagerLoadSpriteData()
 {
-    vertexData = createVertexData();
+    vao = createSpriteVAO();
 }
 
 unsigned int* resourceManagerGetTexture(char* name)
@@ -71,7 +71,7 @@ unsigned int* resourceManagerGetShader(char* name)
 
 unsigned int* resourceManagerGetSpriteData()
 {
-    return vertexData;
+    return vao;
 }
 
 void resourceManagerCleanUp()
@@ -89,6 +89,6 @@ void resourceManagerCleanUp()
     }
 
     //Delete vertexdata
-    if(vertexData != NULL)
-        deleteVertexData(vertexData);
+    if(vao != NULL)
+        deleteVertexArray(vao);
 }

@@ -16,8 +16,7 @@ void renderSimpleSprite(sprite_t* sprite)
         setUniformMat4f(sprite->shader, "projection", (float*)projection);
 
         bindTexture(sprite->texture);
-
-        bindVertexArray(sprite->vertexData);
+        bindVertexArray(sprite->vao);
 
         //Render quad
         GLCall(glDrawArrays(GL_TRIANGLES, 0, 6));
@@ -41,7 +40,6 @@ void renderInstancedSprite(instance_t* instance)
         setUniformMat4f(instance->shader, "projection", (float*)projection);
 
         bindTexture(instance->texture);
-
         bindVertexArray(instance->vao);
 
         //Render quad

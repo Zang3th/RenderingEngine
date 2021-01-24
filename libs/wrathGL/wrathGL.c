@@ -9,6 +9,7 @@ void wrathGLInit()
     //Load resources
     resourceManagerLoadTexture("blockTexture", "res/textures/sandbox/Block.jpg");       
     resourceManagerLoadShader("objectShader", "res/shader/wrathGL/object_vs.glsl", "res/shader/wrathGL/object_fs.glsl");
+    resourceManagerLoadShader("modelShader", "res/shader/wrathGL/model_vs.glsl", "res/shader/wrathGL/model_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
     resourceManagerLoadSpriteData();
@@ -16,17 +17,22 @@ void wrathGLInit()
     //Get resources
     unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
     unsigned int* objectShader = resourceManagerGetShader("objectShader");
+    unsigned int* modelShader = resourceManagerGetShader("modelShader");
     unsigned int* spriteData = resourceManagerGetSpriteData();
 
     //Create sprite
     testSprite = createSprite
     (
         spriteData, blockTexture, objectShader, (vec2){0.0f, 0.0f},
-        (vec2){500.0f, 500.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false
+        (vec2){5.0f, 5.0f}, 0.0f, (vec3){0.0f, 1.0f, 1.0f}, false
     );
 
     //Create plane
-    mesh_t* mesh = meshCreatorPlane(2, 1);
+    mesh_t* mesh2 = meshCreatorPlane(1, 20);
+    debugMesh(mesh2);
+    //mesh_t* mesh = meshCreatorOneTile();
+    //debugMesh(mesh);
+    planeModel = createModel(mesh2, blockTexture, modelShader, (vec3){1.0f, 1.0f, 1.0f});
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -93,6 +99,7 @@ void wrathGLPerFrame()
         // -- Reset drawCall counter for current frame
         drawcalls = 0; 
         renderSimpleSprite(testSprite);
+        renderSimpleModel(planeModel);
 
         GLCall(glDisable(GL_DEPTH_TEST));
         textBatchRendererDisplay(); 
@@ -111,5 +118,6 @@ void wrathGLCleanUp()
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
     deleteSprite(testSprite);
+    deleteModel(planeModel);
     windowCleanUp(); 
 }
