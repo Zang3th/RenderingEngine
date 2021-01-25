@@ -59,11 +59,14 @@
 ### License
    - This code is provided under a BSD-style license. See the file LICENSE for details
 
-### Structure of the 2D example application "sandbox"
+### Structure of the 2D example application "Sandbox"
    - To show the collaboration of the different modules
    - Just for visualization purposes, not UML conform    
 
    ![Application structure](Structure_001.png)
 
-### Look of the sandbox app
-   ![Sandboxlevel](Screenshot_006.png)
+### Look of the Sandbox app
+   ![Sandboxlevel](Screenshot_SB_006.png)
+
+### Look of the WrathGL app
+   ![Sandboxlevel](Screenshot_WR_000.png)

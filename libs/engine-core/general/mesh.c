@@ -11,14 +11,14 @@ mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int i
     mesh->indiceCount = indices;    
 
     //Allocate memory
-    mesh->vertices = malloc(mesh->verticeCount * sizeof(float));    //vec3  
-    mesh->texCoords = malloc(mesh->texCoordsCount * sizeof(float)); //vec2    
-    mesh->indices = malloc(mesh->indiceCount * sizeof(unsigned));   //unsigned int
+    mesh->vertices = malloc(mesh->verticeCount * sizeof(float));      //vec3  
+    mesh->texCoords = malloc(mesh->texCoordsCount * sizeof(float));   //vec2    
+    mesh->indices = malloc(mesh->indiceCount * sizeof(unsigned int)); //unsigned int
 
     //Set memory
     memset(&(mesh->vertices[0]), 0, mesh->verticeCount * sizeof(float));
     memset(&(mesh->texCoords[0]), 0, mesh->texCoordsCount * sizeof(float));
-    memset(&(mesh->indices[0]), 0, mesh->indiceCount * sizeof(unsigned));
+    memset(&(mesh->indices[0]), 0, mesh->indiceCount * sizeof(unsigned int));
 
     return mesh;
 }

@@ -8,17 +8,13 @@ void wrathGLInit()
 
     //Load resources
     resourceManagerLoadTexture("blockTexture", "res/textures/sandbox/Block.jpg");       
-    resourceManagerLoadShader("objectShader", "res/shader/wrathGL/object_vs.glsl", "res/shader/wrathGL/object_fs.glsl");
     resourceManagerLoadShader("modelShader", "res/shader/wrathGL/model_vs.glsl", "res/shader/wrathGL/model_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
-    resourceManagerLoadSpriteData();
 
     //Get resources
     unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
-    unsigned int* objectShader = resourceManagerGetShader("objectShader");
     unsigned int* modelShader = resourceManagerGetShader("modelShader");
-    unsigned int* spriteData = resourceManagerGetSpriteData();
 
     //Create plane      
     mesh_t* mesh = meshCreatorPlane(1000, 1);    
