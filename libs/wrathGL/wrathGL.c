@@ -20,20 +20,10 @@ void wrathGLInit()
     unsigned int* modelShader = resourceManagerGetShader("modelShader");
     unsigned int* spriteData = resourceManagerGetSpriteData();
 
-    //Create sprite
-    testSprite = createSprite
-    (
-        spriteData, blockTexture, objectShader, (vec2){0.0f, 0.0f},
-        (vec2){5.0f, 5.0f}, 0.0f, (vec3){0.0f, 1.0f, 1.0f}, false
-    );
-
-    //Create plane
-    mesh_t* mesh2 = meshCreatorPlane(1, 20);
-    debugMesh(mesh2);
-    //mesh_t* mesh = meshCreatorOneTile();
-    //debugMesh(mesh);
-    planeModel = createModel(mesh2, blockTexture, modelShader, (vec3){1.0f, 1.0f, 1.0f});
-
+    //Create plane      
+    mesh_t* mesh = meshCreatorPlane(1000, 1);    
+    planeModel = createModel(mesh, blockTexture, modelShader, (vec3){1.0f, 1.0f, 1.0f});
+  
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
         textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
@@ -61,6 +51,7 @@ void wrathGLAddText()
     textBatchRendererAddText("Rotation:" , 7.5f, HEIGHT - 175.0f, 0.5f);
     textBatchRendererAddText("Yaw:" , 20.0f, HEIGHT - 200.0f, 0.5f);
     textBatchRendererAddText("Pitch:" , 20.0f, HEIGHT - 225.0f, 0.5f);
+    textBatchRendererAddText("Vertices:" , 7.5f, HEIGHT - 250.0f, 0.5f);
 }
 
 void wrathGLRenderText()
@@ -71,6 +62,7 @@ void wrathGLRenderText()
     char zBuffer[6];
     char yawBuffer[6];
     char pitchBuffer[5];
+    char verticeBuffer[8];
 
     //Update buffers
     snprintf(&xBuffer[0], sizeof(xBuffer), "%4.f", camera->position[0]);   //X
@@ -78,6 +70,7 @@ void wrathGLRenderText()
     snprintf(&zBuffer[0], sizeof(zBuffer), "%4.f", camera->position[2]);   //Z
     snprintf(&yawBuffer[0], sizeof(yawBuffer), "%3.f", camera->yaw);       //Yaw
     snprintf(&pitchBuffer[0], sizeof(pitchBuffer), "%2.f", camera->pitch); //Pitch
+    snprintf(&verticeBuffer[0], sizeof(verticeBuffer), "%7d", vertices);   //Vertices
 
     //Render buffers
     textSimpleRendererDisplay(&xBuffer[0], 40.0f, HEIGHT - 100.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //X
@@ -85,6 +78,7 @@ void wrathGLRenderText()
     textSimpleRendererDisplay(&zBuffer[0], 40.0f, HEIGHT - 150.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //Z
     textSimpleRendererDisplay(&yawBuffer[0], 70.0f, HEIGHT - 200.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});   //Yaw
     textSimpleRendererDisplay(&pitchBuffer[0], 75.0f, HEIGHT - 225.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Pitch
+    textSimpleRendererDisplay(&verticeBuffer[0], 20.0f, HEIGHT - 275.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Vertices
 }
 
 void wrathGLPerFrame()
@@ -96,9 +90,9 @@ void wrathGLPerFrame()
         windowPrepare();         
 
     // --- Do render
-        // -- Reset drawCall counter for current frame
+        // -- Reset stats for current frame
         drawcalls = 0; 
-        renderSimpleSprite(testSprite);
+        vertices = 0;
         renderSimpleModel(planeModel);
 
         GLCall(glDisable(GL_DEPTH_TEST));
@@ -117,7 +111,6 @@ void wrathGLCleanUp()
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
-    deleteSprite(testSprite);
     deleteModel(planeModel);
     windowCleanUp(); 
 }

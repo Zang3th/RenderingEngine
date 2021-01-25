@@ -61,7 +61,7 @@ void windowInit(char* title)
         log_info("GLFW Window created!");      
 
     glfwMakeContextCurrent(window);   
-    glfwSwapInterval(1);   
+    glfwSwapInterval(0);   
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    
 
     if(!gladLoadGL()) 

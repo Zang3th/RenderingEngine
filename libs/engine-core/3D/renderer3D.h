@@ -14,6 +14,7 @@
 // --- Variables ---
 static mat4 projection;
 extern unsigned int drawcalls;
+extern unsigned int vertices;
 
 // --- Functions ---
 void rendererInit();

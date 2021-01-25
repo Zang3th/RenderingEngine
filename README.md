@@ -5,7 +5,7 @@
       - Located in the engine-core
    - Example applications to show how use the wrapper functions       
       - Sandbox: Box-Picker (2D)
-      - WrathGL: Third-person shooter (3D)  
+      - WrathGL: Terrain-Creator (3D)  
    - Written entirely in C
       - It really should be 100% C-Code -> sometimes github detects C++ files for whatever reason
 
@@ -16,7 +16,7 @@
    - Text rendering (X)
       - Batch rendering system (X)
    - OBJ-Loading
-   - Camerasystem (Third-person)
+   - Camerasystem (X)
    - Audiomanager for sounds and backgroundmusic        
 
 ### Example applications   
@@ -28,10 +28,13 @@
       - Liquids   
       - AI
    #### WrathGL App            
-      - 3D Mesh creation (planes, tiles) 
-      - Player
-      - Animation
-      - Bots
+      - 3D Mesh creation (planes, tiles) (X)
+      - Terrain creation
+         - Vertices
+         - Colors
+         - Lighting
+      - Water
+      - Models
 
 ### Credits
    - [SDL2](https://www.libsdl.org/index.php)

@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "../../../vendor/logging/log.h"
+#include <memory.h>
 
 typedef struct{
     float* vertices;

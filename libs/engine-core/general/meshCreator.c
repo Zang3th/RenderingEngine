@@ -28,34 +28,46 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
             float zPos = (float)j;
 
             //Save vertices
-            mesh->vertices[vIndex] = xPos * tileSize;
-            mesh->vertices[vIndex + 1] = yPos;
-            mesh->vertices[vIndex + 2] = zPos * tileSize;
+            if(vIndex + 2 < mesh->verticeCount)
+            {
+                mesh->vertices[vIndex] = xPos * tileSize;
+                mesh->vertices[vIndex + 1] = yPos;
+                mesh->vertices[vIndex + 2] = zPos * tileSize;
+
+                vIndex += 3;
+            }            
 
             //Save texture coordinates
-            mesh->texCoords[tIndex] = xPos;
-            mesh->texCoords[tIndex + 1] = zPos;
+            if(tIndex + 1 < mesh->texCoordsCount)
+            {
+                mesh->texCoords[tIndex] = xPos;
+                mesh->texCoords[tIndex + 1] = zPos;
 
-            if ((j != size) && (i != size))
-			{
-                unsigned int row1 = j * (size + 1);
-                unsigned int row2 = (j + 1) * (size + 1);
+                tIndex += 2;
+            }            
 
-                //Triangle 1
-                mesh->indices[iIndex] = row1 + i;
-                mesh->indices[iIndex + 1] = row1 + i + 1;
-                mesh->indices[iIndex + 2] = row2 + i + 1;
+            //Save indices
+            if(iIndex + 5 < mesh->indiceCount)
+            {
+                if ((j != size) && (i != size))
+			    {
+                    unsigned int row1 = j * (size + 1);
+                    unsigned int row2 = (j + 1) * (size + 1);
 
-                //Triangle 2
-                mesh->indices[iIndex + 3] = row1 + i;
-                mesh->indices[iIndex + 4] = row2 + i + 1;
-                mesh->indices[iIndex + 5] = row2 + i;      
+                    //Triangle 1
+                    mesh->indices[iIndex] = row1 + i;
+                    mesh->indices[iIndex + 1] = row1 + i + 1;
+                    mesh->indices[iIndex + 2] = row2 + i + 1;
+
+                    //Triangle 2
+                    mesh->indices[iIndex + 3] = row1 + i;
+                    mesh->indices[iIndex + 4] = row2 + i + 1;
+                    mesh->indices[iIndex + 5] = row2 + i; 
+
+                    iIndex += 6;     
        
-            }
-
-            vIndex += 3;
-            tIndex += 2;
-            iIndex += 6; 
+                }
+            }  
 		}
 	}    
 
