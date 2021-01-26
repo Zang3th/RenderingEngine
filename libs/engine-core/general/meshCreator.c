@@ -23,9 +23,10 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
 	{
 		for (int i = 0; i <= size; ++i)
 		{            
-            float xPos = (float)i;
-            float yPos = 0.0f;
+            float xPos = (float)i;            
             float zPos = (float)j;
+            //float yPos = getNoisePseudoRandom(xPos, zPos, 0.02, 10.0f);
+            float yPos = getNoisePerlin2D(xPos, zPos, 0.003f, 10.0f, 200.0f);
 
             //Save vertices
             if(vIndex + 2 < mesh->verticeCount)
@@ -64,8 +65,7 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
                     mesh->indices[iIndex + 4] = row2 + i + 1;
                     mesh->indices[iIndex + 5] = row2 + i; 
 
-                    iIndex += 6;     
-       
+                    iIndex += 6;  
                 }
             }  
 		}

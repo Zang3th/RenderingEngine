@@ -3,7 +3,7 @@
 ### Objectives:
    - Simple OpenGL-Wrapper functions
       - Located in the engine-core
-   - Example applications to show how use the wrapper functions       
+   - Example applications on how to use the wrapper functions       
       - Sandbox: Box-Picker (2D)
       - WrathGL: Terrain-Creator (3D)  
    - Written entirely in C
@@ -31,6 +31,7 @@
       - 3D Mesh creation (planes, tiles) (X)
       - Terrain creation
          - Vertices
+            - Procedural generated via noise
          - Colors
          - Lighting
       - Water
@@ -69,4 +70,4 @@
    ![Sandboxlevel](Screenshot_SB_006.png)
 
 ### Look of the WrathGL app
-   ![Sandboxlevel](Screenshot_WR_000.png)
+   ![Sandboxlevel](Screenshot_WR_001.png)

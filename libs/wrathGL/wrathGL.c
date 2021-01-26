@@ -89,7 +89,9 @@ void wrathGLPerFrame()
         // -- Reset stats for current frame
         drawcalls = 0; 
         vertices = 0;
+        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
         renderSimpleModel(planeModel);
+        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 
         GLCall(glDisable(GL_DEPTH_TEST));
         textBatchRendererDisplay(); 
