@@ -23,6 +23,7 @@ const extern unsigned int HEIGHT;
 extern float deltaTime;
 extern float lastFrame;
 extern camera_t* camera;
+extern bool wireframeMode;
 
 // --- Functions ---
 void windowInit(char* title);

@@ -17,6 +17,7 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
     unsigned int vIndex = 0;
     unsigned int tIndex = 0;
     unsigned int iIndex = 0;
+    unsigned int cIndex = 0;
 
     //Create vertices and texture coordinates
 	for (int j = 0; j <= size; ++j)
@@ -67,7 +68,17 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
 
                     iIndex += 6;  
                 }
-            }  
+            } 
+
+            //Save colors
+            if(cIndex + 2 < mesh->colorCount)
+            {
+                mesh->colors[cIndex] = (yPos / 255) * 1.1;
+                mesh->colors[cIndex + 1] = (yPos / 255) * 1.4;
+                mesh->colors[cIndex + 2] = (yPos / 255) * 1.1;
+
+                cIndex += 3;
+            } 
 		}
 	}    
 
@@ -106,10 +117,19 @@ mesh_t* meshCreatorOneTile()
         1, 2, 3
     };
 
+    float colors[] =
+    { 
+        1.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 1.0f,
+        1.0f, 1.0f, 1.0f
+    };
+
     //Set data
     memcpy(&(mesh->vertices[0]), vertices, sizeof(vertices));
     memcpy(&(mesh->texCoords[0]), texCoords, sizeof(texCoords));
     memcpy(&(mesh->indices[0]), indices, sizeof(indices));
+    memcpy(&(mesh->colors[0]), colors, sizeof(colors));
 
     return mesh;
 }

@@ -8,17 +8,20 @@ mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int i
     //Save sizes
     mesh->verticeCount = vertices * 3;
     mesh->texCoordsCount = texCoords * 2;
-    mesh->indiceCount = indices;    
+    mesh->indiceCount = indices;  
+    mesh->colorCount = mesh->verticeCount;
 
     //Allocate memory
     mesh->vertices = malloc(mesh->verticeCount * sizeof(float));      //vec3  
     mesh->texCoords = malloc(mesh->texCoordsCount * sizeof(float));   //vec2    
     mesh->indices = malloc(mesh->indiceCount * sizeof(unsigned int)); //unsigned int
+    mesh->colors = malloc(mesh->colorCount * sizeof(float));          //vec3
 
     //Set memory
     memset(&(mesh->vertices[0]), 0, mesh->verticeCount * sizeof(float));
     memset(&(mesh->texCoords[0]), 0, mesh->texCoordsCount * sizeof(float));
     memset(&(mesh->indices[0]), 0, mesh->indiceCount * sizeof(unsigned int));
+    memset(&(mesh->colors[0]), 0, mesh->colorCount * sizeof(float));
 
     return mesh;
 }
@@ -29,6 +32,7 @@ void debugMesh(mesh_t* mesh)
     log_info("verticeCount: %d (vertices: %d)", mesh->verticeCount, mesh->verticeCount / 3);
     log_info("texCoordsCount: %d (texCoords: %d)", mesh->texCoordsCount, mesh->texCoordsCount / 2);
     log_info("indiceCount: %d", mesh->indiceCount);
+    log_info("colorCount: %d", mesh->colorCount);
 
     for(int i = 0; i < mesh->verticeCount - 2; i+=3)
     {
@@ -52,6 +56,14 @@ void debugMesh(mesh_t* mesh)
         mesh->indices[i + 1], 
         mesh->indices[i + 2]);
     }
+
+    for(int i = 0; i < mesh->colorCount - 2; i+=3)
+    {
+        log_info("r: %f, g: %f, b: %f", 
+        mesh->colors[i], 
+        mesh->colors[i + 1], 
+        mesh->colors[i + 2]);
+    }
     printf("\n");
 }
 
@@ -60,5 +72,6 @@ void deleteMesh(mesh_t* mesh)
     free(mesh->vertices);
     free(mesh->texCoords);
     free(mesh->indices);
+    free(mesh->colors);
     free(mesh);
 }

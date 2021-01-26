@@ -9,9 +9,11 @@ typedef struct{
     float* vertices;
     float* texCoords;
     unsigned int* indices;
+    float* colors;
     unsigned int verticeCount;
     unsigned int texCoordsCount;
     unsigned int indiceCount;
+    unsigned int colorCount;
 } mesh_t;
 
 mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);

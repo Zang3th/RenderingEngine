@@ -77,5 +77,5 @@ float getNoisePerlin2D(float x, float z, float freq, int depth, float mul)
         za *= 2;
     }
 
-    return (fin/div * mul) - mul;
+    return fin/div * mul;
 }

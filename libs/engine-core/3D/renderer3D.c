@@ -17,7 +17,6 @@ void renderSimpleModel(model_t* model)
         cameraGetViewMatrix(camera, viewMatrix);
 
         setUniformMat4f(model->shader, "view", (float*)viewMatrix);    
-        setUniformVec3f(model->shader, "color", (float*)model->color);
         setUniformMat4f(model->shader, "model", (float*)model->model);
         setUniformMat4f(model->shader, "projection", (float*)projection);        
 

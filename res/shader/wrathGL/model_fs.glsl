@@ -1,11 +1,11 @@
-#version 330 core
-  
+#version 330 core 
+
 in vec2 texCoords;
+smooth in vec3 color;
 
 out vec4 fragColor;
 
 uniform sampler2D image;
-uniform vec3 color;
 
 void main()
 {

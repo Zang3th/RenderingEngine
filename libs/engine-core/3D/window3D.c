@@ -6,6 +6,7 @@ const unsigned int HEIGHT = 900;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 camera_t* camera = NULL;
+bool wireframeMode = false;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -128,6 +129,12 @@ void windowProcessEvents()
 
 	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
 		cameraProcessKeyboard(camera, DOWN, deltaTime);
+
+    if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)  
+            wireframeMode = true;
+
+    if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)  
+            wireframeMode = false;
 }
 
 void windowPrepare()

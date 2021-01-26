@@ -18,7 +18,9 @@ void wrathGLInit()
 
     //Create plane      
     mesh_t* mesh = meshCreatorPlane(1000, 1);    
-    planeModel = createModel(mesh, blockTexture, modelShader, (vec3){1.0f, 1.0f, 1.0f});
+    //mesh_t* mesh = meshCreatorOneTile();
+    //debugMesh(mesh);
+    planeModel = createModel(mesh, blockTexture, modelShader);
   
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -89,7 +91,8 @@ void wrathGLPerFrame()
         // -- Reset stats for current frame
         drawcalls = 0; 
         vertices = 0;
-        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+        if(wireframeMode == true){
+            GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
         renderSimpleModel(planeModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 
