@@ -17,6 +17,9 @@ unsigned int* createMeshVAO(mesh_t* mesh)
     unsigned int* vbo_c = createVertexBuffer(mesh->colors, mesh->colorCount * sizeof(float));
     defineVertexAttributes(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
+    unsigned int* vbo_n = createVertexBuffer(mesh->normals, mesh->normalCount * sizeof(float));
+    defineVertexAttributes(3, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
     //Create ib
     unsigned int* ibo = createIndexBuffer(mesh->indices, mesh->indiceCount * sizeof(unsigned int));
 
@@ -28,6 +31,8 @@ unsigned int* createMeshVAO(mesh_t* mesh)
     deleteVertexBuffer(vbo_t);
     unbindVertexBuffer(vbo_c);
     deleteVertexBuffer(vbo_c);
+    unbindVertexBuffer(vbo_n);
+    deleteVertexBuffer(vbo_n);
     deleteIndexBuffer(ibo);
 
     return vao;

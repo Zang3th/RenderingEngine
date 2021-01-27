@@ -1,5 +1,78 @@
 #include "meshCreator.h"
 
+void calculateNormals(mesh_t* mesh)
+{
+    //Iterate over all indices
+    for(int i = 0; i < mesh->indiceCount; i+=3)
+    {
+        //Get all indices for one triangle
+        int index0 = mesh->indices[i];
+        int index1 = mesh->indices[i + 1];
+        int index2 = mesh->indices[i + 2];
+
+        //Get all points of the triangle
+        float p0_x = mesh->vertices[index0];
+        float p0_y = mesh->vertices[index0 + 1];
+        float p0_z = mesh->vertices[index0 + 2];
+
+        float p1_x = mesh->vertices[index1];
+        float p1_y = mesh->vertices[index1 + 1];
+        float p1_z = mesh->vertices[index1 + 2];
+
+        float p2_x = mesh->vertices[index2];
+        float p2_y = mesh->vertices[index2 + 1];
+        float p2_z = mesh->vertices[index2 + 2];
+
+        //Calculate the u vector
+        float u0 = p1_x - p0_x;
+        float u1 = p1_y - p0_y;
+        float u2 = p1_z - p0_z;
+        vec3 U = {u0, u1, u2};
+
+        //Calculate the v vector
+        float v0 = p2_x - p0_x;
+        float v1 = p2_y - p0_y;
+        float v2 = p2_z - p0_z;
+        vec3 V = {v0, v1, v2};
+
+        //Calculate cross product
+        vec3 P;
+        glm_cross(U, V, P);
+
+        //Add normal to all precalculated normals of the vertice and normalize it
+        float p0_x_n = mesh->normals[index0] + P[0];
+        float p0_y_n = mesh->normals[index0 + 1] + P[1];
+        float p0_z_n = mesh->normals[index0 + 2] + P[2];    
+        vec3 P0 = {p0_x_n, p0_y_n, p0_z_n};
+        glm_normalize(P0);
+
+        float p1_x_n = mesh->normals[index1] + P[0];
+        float p1_y_n = mesh->normals[index1 + 1] + P[1];
+        float p1_z_n = mesh->normals[index1 + 2] + P[2];    
+        vec3 P1 = {p1_x_n, p1_y_n, p1_z_n};
+        glm_normalize(P1);
+
+        float p2_x_n = mesh->normals[index2] + P[0];
+        float p2_y_n = mesh->normals[index2 + 1] + P[1];
+        float p2_z_n = mesh->normals[index2 + 2] + P[2];    
+        vec3 P2 = {p2_x_n, p2_y_n, p2_z_n};
+        glm_normalize(P2);
+
+        //Save normals in array
+        mesh->normals[index0] = P0[0];
+        mesh->normals[index0 + 1] = P0[1];
+        mesh->normals[index0 + 2] = P0[2];
+
+        mesh->normals[index1] = P1[0];
+        mesh->normals[index1 + 1] = P1[1];
+        mesh->normals[index1 + 2] = P1[2];
+
+        mesh->normals[index2] = P2[0];
+        mesh->normals[index2 + 1] = P2[1];
+        mesh->normals[index2 + 2] = P2[2];
+    }
+}
+
 mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 {
     //Amount of vertices, texture coordinates and indices
@@ -109,6 +182,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 		}
 	}    
 
+    calculateNormals(mesh);
     return mesh;
 }
 
