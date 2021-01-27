@@ -81,38 +81,22 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
 
                     cIndex += 3;
                 }
-                else if(yPos > 180.0f && yPos < 200.0f)     //Light grey
+                else if(yPos > 160.0f && yPos < 200.0f)     //Grey -> gradient
                 {
-                    mesh->colors[cIndex] = 0.65f;
-                    mesh->colors[cIndex + 1] = 0.65f;
-                    mesh->colors[cIndex + 2] = 0.65f;
+                    mesh->colors[cIndex] = -0.6 + (yPos / 160.0f);
+                    mesh->colors[cIndex + 1] = -0.6 + (yPos / 160.0f);
+                    mesh->colors[cIndex + 2] = -0.6 + (yPos / 160.0f);
 
                     cIndex += 3;
                 }
-                else if(yPos > 160.0f && yPos < 180.0f)     //Dark grey
+                else if(yPos > 100.0f && yPos < 160.0f)     //Green -> gradient
                 {
-                    mesh->colors[cIndex] = 0.4f;
-                    mesh->colors[cIndex + 1] = 0.4f;
-                    mesh->colors[cIndex + 2] = 0.4f;
+                    mesh->colors[cIndex] = -0.4 + (yPos / 160.0f);
+                    mesh->colors[cIndex + 1] = -0.2 + (yPos / 145.0f);
+                    mesh->colors[cIndex + 2] = -0.6 + (yPos / 145.0f);
 
                     cIndex += 3;
-                }
-                else if(yPos > 140.0f && yPos < 160.0f)     //Light green
-                {
-                    mesh->colors[cIndex] = 0.68f;
-                    mesh->colors[cIndex + 1] = 0.91f;
-                    mesh->colors[cIndex + 2] = 0.54f;
-
-                    cIndex += 3;
-                }
-                else if(yPos > 100.0f && yPos < 140.0f)      //Dark green
-                {
-                    mesh->colors[cIndex] = 0.26f;
-                    mesh->colors[cIndex + 1] = 0.57f;
-                    mesh->colors[cIndex + 2] = 0.06f;
-
-                    cIndex += 3;
-                }
+                }     
                 else                                        //Brown
                 {
                     mesh->colors[cIndex] = 0.44f;
