@@ -7,7 +7,7 @@ void wrathGLInit()
     rendererInit();
 
     //Load resources
-    resourceManagerLoadTexture("blockTexture", "res/textures/sandbox/Block.jpg");       
+    resourceManagerLoadTexture("blockTexture", "res/textures/wrathGL/Grey.jpeg");       
     resourceManagerLoadShader("modelShader", "res/shader/wrathGL/model_vs.glsl", "res/shader/wrathGL/model_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
@@ -17,7 +17,7 @@ void wrathGLInit()
     unsigned int* modelShader = resourceManagerGetShader("modelShader");
 
     //Create plane      
-    mesh_t* mesh = meshCreatorPlane(1000, 1);    
+    mesh_t* mesh = meshCreatorTerrain(1000, 1);    
     //mesh_t* mesh = meshCreatorOneTile();
     //debugMesh(mesh);
     planeModel = createModel(mesh, blockTexture, modelShader);

@@ -1,6 +1,6 @@
 #include "meshCreator.h"
 
-mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
+mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 {
     //Amount of vertices, texture coordinates and indices
     unsigned int vAmount, tAmount, iAmount; 
