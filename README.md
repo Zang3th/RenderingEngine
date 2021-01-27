@@ -70,4 +70,4 @@
    ![Sandboxlevel](Screenshot_SB_006.png)
 
 ### Look of the WrathGL app
-   ![Sandboxlevel](Screenshot_WR_001.png)
+   ![Sandboxlevel](Screenshot_WR_002.png)

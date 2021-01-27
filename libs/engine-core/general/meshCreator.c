@@ -27,7 +27,7 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
             float xPos = (float)i;            
             float zPos = (float)j;
             //float yPos = getNoisePseudoRandom(xPos, zPos, 0.02, 10.0f);
-            float yPos = getNoisePerlin2D(xPos, zPos, 0.003f, 10.0f, 200.0f);
+            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f);
 
             //Save vertices
             if(vIndex + 2 < mesh->verticeCount)
@@ -73,11 +73,54 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
             //Save colors
             if(cIndex + 2 < mesh->colorCount)
             {
-                mesh->colors[cIndex] = (yPos / 255) * 1.1;
-                mesh->colors[cIndex + 1] = (yPos / 255) * 1.4;
-                mesh->colors[cIndex + 2] = (yPos / 255) * 1.1;
+                if(yPos > 200.0f)                           //White
+                {
+                    mesh->colors[cIndex] = 1.0f;
+                    mesh->colors[cIndex + 1] = 1.0f;
+                    mesh->colors[cIndex + 2] = 1.0f;
 
-                cIndex += 3;
+                    cIndex += 3;
+                }
+                else if(yPos > 180.0f && yPos < 200.0f)     //Light grey
+                {
+                    mesh->colors[cIndex] = 0.65f;
+                    mesh->colors[cIndex + 1] = 0.65f;
+                    mesh->colors[cIndex + 2] = 0.65f;
+
+                    cIndex += 3;
+                }
+                else if(yPos > 160.0f && yPos < 180.0f)     //Dark grey
+                {
+                    mesh->colors[cIndex] = 0.4f;
+                    mesh->colors[cIndex + 1] = 0.4f;
+                    mesh->colors[cIndex + 2] = 0.4f;
+
+                    cIndex += 3;
+                }
+                else if(yPos > 140.0f && yPos < 160.0f)     //Light green
+                {
+                    mesh->colors[cIndex] = 0.68f;
+                    mesh->colors[cIndex + 1] = 0.91f;
+                    mesh->colors[cIndex + 2] = 0.54f;
+
+                    cIndex += 3;
+                }
+                else if(yPos > 100.0f && yPos < 140.0f)      //Dark green
+                {
+                    mesh->colors[cIndex] = 0.26f;
+                    mesh->colors[cIndex + 1] = 0.57f;
+                    mesh->colors[cIndex + 2] = 0.06f;
+
+                    cIndex += 3;
+                }
+                else                                        //Brown
+                {
+                    mesh->colors[cIndex] = 0.44f;
+                    mesh->colors[cIndex + 1] = 0.41f;
+                    mesh->colors[cIndex + 2] = 0.23f;    
+
+                    cIndex += 3;
+                }
             } 
 		}
 	}    
