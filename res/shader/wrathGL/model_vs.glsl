@@ -14,7 +14,7 @@ uniform mat4 projection;
 
 void main()
 {
-    color = colorIn;
+    color = normalIn;
     texCoords = texCoordsIn;
     gl_Position = projection * view * model * vec4(posIn, 1.0f);
 }

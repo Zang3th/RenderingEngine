@@ -3,26 +3,26 @@
 void calculateNormals(mesh_t* mesh)
 {
     //Iterate over all indices
-    for(int i = 0; i < mesh->indiceCount; i+=3)
+    for(int i = 0; i+2 < mesh->indiceCount; i++)
     {
-        //Get all indices for one triangle
-        int index0 = mesh->indices[i];
-        int index1 = mesh->indices[i + 1];
-        int index2 = mesh->indices[i + 2];
+        //Get all indices for one triangle -> multiplied by 3 because one vertice consists out of 3 floats
+        int index0 = mesh->indices[i] * 3;
+        int index1 = mesh->indices[i + 1] * 3;
+        int index2 = mesh->indices[i + 2] * 3;
 
         //Get all points of the triangle
-        float p0_x = mesh->vertices[index0];
+        float p0_x = mesh->vertices[index0];     
         float p0_y = mesh->vertices[index0 + 1];
         float p0_z = mesh->vertices[index0 + 2];
 
-        float p1_x = mesh->vertices[index1];
+        float p1_x = mesh->vertices[index1];      
         float p1_y = mesh->vertices[index1 + 1];
         float p1_z = mesh->vertices[index1 + 2];
 
-        float p2_x = mesh->vertices[index2];
-        float p2_y = mesh->vertices[index2 + 1];
+        float p2_x = mesh->vertices[index2];       
+        float p2_y = mesh->vertices[index2 + 1];                   
         float p2_z = mesh->vertices[index2 + 2];
-
+        
         //Calculate the u vector
         float u0 = p1_x - p0_x;
         float u1 = p1_y - p0_y;
@@ -39,21 +39,21 @@ void calculateNormals(mesh_t* mesh)
         vec3 P;
         glm_cross(U, V, P);
 
-        //Add normal to all precalculated normals of the vertice and normalize it
+        //Add normal to all precalculated normals of the vertice, normalize it and switch y-axis
         float p0_x_n = mesh->normals[index0] + P[0];
-        float p0_y_n = mesh->normals[index0 + 1] + P[1];
+        float p0_y_n = mesh->normals[index0 + 1] + P[1] * (-1);
         float p0_z_n = mesh->normals[index0 + 2] + P[2];    
         vec3 P0 = {p0_x_n, p0_y_n, p0_z_n};
         glm_normalize(P0);
 
         float p1_x_n = mesh->normals[index1] + P[0];
-        float p1_y_n = mesh->normals[index1 + 1] + P[1];
+        float p1_y_n = mesh->normals[index1 + 1] + P[1] * (-1);
         float p1_z_n = mesh->normals[index1 + 2] + P[2];    
         vec3 P1 = {p1_x_n, p1_y_n, p1_z_n};
         glm_normalize(P1);
 
         float p2_x_n = mesh->normals[index2] + P[0];
-        float p2_y_n = mesh->normals[index2 + 1] + P[1];
+        float p2_y_n = mesh->normals[index2 + 1] + P[1] * (-1);
         float p2_z_n = mesh->normals[index2 + 2] + P[2];    
         vec3 P2 = {p2_x_n, p2_y_n, p2_z_n};
         glm_normalize(P2);
@@ -77,11 +77,11 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 {
     //Amount of vertices, texture coordinates and indices
     unsigned int vAmount, tAmount, iAmount; 
-    unsigned int squareAmount = size * size;
 
-    vAmount = squareAmount * 4;
-    tAmount = squareAmount * 4;
-    iAmount = squareAmount * 6;
+    //Calculate amounts
+    vAmount = (size + 1) * (size + 1);
+    tAmount = (size + 1) * (size + 1);
+    iAmount = size * size;
 
     //Create mesh
     mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);    
@@ -196,8 +196,7 @@ mesh_t* meshCreatorOneTile()
 
     //Create data
     float vertices[] =
-    {
-        //Position  
+    {  
         0.0f, 0.0f, 0.0f,
         20.0f, 0.0f, 0.0f,
         0.0f, 0.0f, 20.0f,
@@ -226,11 +225,20 @@ mesh_t* meshCreatorOneTile()
         1.0f, 1.0f, 1.0f
     };
 
+    float normals[] =
+    { 
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f
+    };
+
     //Set data
     memcpy(&(mesh->vertices[0]), vertices, sizeof(vertices));
     memcpy(&(mesh->texCoords[0]), texCoords, sizeof(texCoords));
     memcpy(&(mesh->indices[0]), indices, sizeof(indices));
     memcpy(&(mesh->colors[0]), colors, sizeof(colors));
+    memcpy(&(mesh->normals[0]), normals, sizeof(normals));
 
     return mesh;
 }
