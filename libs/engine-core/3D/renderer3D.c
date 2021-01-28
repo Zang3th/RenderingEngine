@@ -18,7 +18,8 @@ void renderSimpleModel(model_t* model)
 
         setUniformMat4f(model->shader, "view", (float*)viewMatrix);    
         setUniformMat4f(model->shader, "model", (float*)model->model);
-        setUniformMat4f(model->shader, "projection", (float*)projection);        
+        setUniformMat4f(model->shader, "projection", (float*)projection);     
+        setUniformVec3f(model->shader, "viewPos", (float*)camera->position);
 
         bindTexture(model->texture);
         bindVertexArray(model->vao);
