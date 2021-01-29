@@ -11,11 +11,13 @@ typedef struct{
     unsigned int* indices;
     float* colors;
     float* normals;
+    float* textureIndex;
     unsigned int verticeCount;
     unsigned int texCoordsCount;
     unsigned int indiceCount;
     unsigned int colorCount;
     unsigned int normalCount;
+    unsigned int texIndexCount;
 } mesh_t;
 
 mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);

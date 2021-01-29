@@ -87,10 +87,11 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
     mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);    
 
     //Array indices
-    unsigned int vIndex = 0;
-    unsigned int tIndex = 0;
-    unsigned int iIndex = 0;
-    unsigned int cIndex = 0;
+    unsigned int vertexIndex = 0;
+    unsigned int texCoordsIndex = 0;
+    unsigned int indiceIndex = 0;
+    unsigned int colorIndex = 0;
+    unsigned int texSamplerIndex = 0;
 
     //Create vertices and texture coordinates
 	for (int j = 0; j <= size; ++j)
@@ -103,26 +104,26 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
             float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f);
 
             //Save vertices
-            if(vIndex + 2 < mesh->verticeCount)
+            if(vertexIndex + 2 < mesh->verticeCount)
             {
-                mesh->vertices[vIndex] = xPos * tileSize;
-                mesh->vertices[vIndex + 1] = yPos;
-                mesh->vertices[vIndex + 2] = zPos * tileSize;
+                mesh->vertices[vertexIndex] = xPos * tileSize;
+                mesh->vertices[vertexIndex + 1] = yPos;
+                mesh->vertices[vertexIndex + 2] = zPos * tileSize;
 
-                vIndex += 3;
+                vertexIndex += 3;
             }            
 
             //Save texture coordinates
-            if(tIndex + 1 < mesh->texCoordsCount)
+            if(texCoordsIndex + 1 < mesh->texCoordsCount)
             {
-                mesh->texCoords[tIndex] = xPos;
-                mesh->texCoords[tIndex + 1] = zPos;
+                mesh->texCoords[texCoordsIndex] = xPos;
+                mesh->texCoords[texCoordsIndex + 1] = zPos;
 
-                tIndex += 2;
+                texCoordsIndex += 2;
             }            
 
             //Save indices
-            if(iIndex + 5 < mesh->indiceCount)
+            if(indiceIndex + 5 < mesh->indiceCount)
             {
                 if ((j != size) && (i != size))
 			    {
@@ -130,53 +131,78 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                     unsigned int row2 = (j + 1) * (size + 1);
 
                     //Triangle 1
-                    mesh->indices[iIndex] = row1 + i;
-                    mesh->indices[iIndex + 1] = row1 + i + 1;
-                    mesh->indices[iIndex + 2] = row2 + i + 1;
+                    mesh->indices[indiceIndex] = row1 + i;
+                    mesh->indices[indiceIndex + 1] = row1 + i + 1;
+                    mesh->indices[indiceIndex + 2] = row2 + i + 1;
 
                     //Triangle 2
-                    mesh->indices[iIndex + 3] = row1 + i;
-                    mesh->indices[iIndex + 4] = row2 + i + 1;
-                    mesh->indices[iIndex + 5] = row2 + i; 
+                    mesh->indices[indiceIndex + 3] = row1 + i;
+                    mesh->indices[indiceIndex + 4] = row2 + i + 1;
+                    mesh->indices[indiceIndex + 5] = row2 + i; 
 
-                    iIndex += 6;  
+                    indiceIndex += 6;  
                 }
             } 
 
-            //Save colors
-            if(cIndex + 2 < mesh->colorCount)
+            //Save colors and corresponding texture indices
+            if(colorIndex + 2 < mesh->colorCount)
             {
-                if(yPos > 200.0f)                           //White
+                if(yPos > 200.0f)                               //White
                 {
-                    mesh->colors[cIndex] = 1.0f;
-                    mesh->colors[cIndex + 1] = 1.0f;
-                    mesh->colors[cIndex + 2] = 1.0f;
+                    mesh->colors[colorIndex] = 1.0f;
+                    mesh->colors[colorIndex + 1] = 1.0f;
+                    mesh->colors[colorIndex + 2] = 1.0f;
 
-                    cIndex += 3;
+                    colorIndex += 3;
+
+                    if(texSamplerIndex < mesh->texIndexCount)   //Snow texture
+                    {
+                        unsigned int texIndex = 3;
+                        mesh->textureIndex[texSamplerIndex] = (float)texIndex;
+                        texSamplerIndex++;
+                    }
                 }
-                else if(yPos > 160.0f && yPos < 200.0f)     //Grey -> gradient
+                else if(yPos > 130.0f && yPos < 200.0f)         //Grey -> gradient
                 {
-                    mesh->colors[cIndex] = -0.6 + (yPos / 160.0f);
-                    mesh->colors[cIndex + 1] = -0.6 + (yPos / 160.0f);
-                    mesh->colors[cIndex + 2] = -0.6 + (yPos / 160.0f);
+                    mesh->colors[colorIndex] = -0.6 + (yPos / 160.0f);
+                    mesh->colors[colorIndex + 1] = -0.6 + (yPos / 160.0f);
+                    mesh->colors[colorIndex + 2] = -0.6 + (yPos / 160.0f);
 
-                    cIndex += 3;
+                    colorIndex += 3;
+
+                    if(texSamplerIndex < mesh->texIndexCount)   //Stone texture
+                    {
+                        mesh->textureIndex[texSamplerIndex] = 2.0f;
+                        texSamplerIndex++;
+                    }
                 }
-                else if(yPos > 100.0f && yPos < 160.0f)     //Green -> gradient
+                else if(yPos > 100.0f && yPos < 130.0f)         //Green -> gradient
                 {
-                    mesh->colors[cIndex] = -0.4 + (yPos / 160.0f);
-                    mesh->colors[cIndex + 1] = -0.2 + (yPos / 145.0f);
-                    mesh->colors[cIndex + 2] = -0.6 + (yPos / 145.0f);
+                    mesh->colors[colorIndex] = -0.4 + (yPos / 160.0f);
+                    mesh->colors[colorIndex + 1] = -0.2 + (yPos / 145.0f);
+                    mesh->colors[colorIndex + 2] = -0.6 + (yPos / 145.0f);
 
-                    cIndex += 3;
+                    colorIndex += 3;
+
+                    if(texSamplerIndex < mesh->texIndexCount)   //Grass texture
+                    {
+                        mesh->textureIndex[texSamplerIndex] = 1.0f;
+                        texSamplerIndex++;
+                    }
                 }     
-                else                                        //Brown
+                else                                            //Brown
                 {
-                    mesh->colors[cIndex] = 0.44f;
-                    mesh->colors[cIndex + 1] = 0.41f;
-                    mesh->colors[cIndex + 2] = 0.23f;    
+                    mesh->colors[colorIndex] = 0.44f;
+                    mesh->colors[colorIndex + 1] = 0.41f;
+                    mesh->colors[colorIndex + 2] = 0.23f;    
 
-                    cIndex += 3;
+                    colorIndex += 3;
+
+                    if(texSamplerIndex < mesh->texIndexCount)   //Dirt texture
+                    {
+                        mesh->textureIndex[texSamplerIndex] = 0.0f;
+                        texSamplerIndex++;
+                    }
                 }
             } 
 		}

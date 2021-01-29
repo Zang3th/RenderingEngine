@@ -21,7 +21,9 @@ void renderSimpleModel(model_t* model)
         setUniformMat4f(model->shader, "projection", (float*)projection);     
         setUniformVec3f(model->shader, "viewPos", (float*)camera->position);
 
-        bindTexture(model->texture);
+        for(int i = 0; i < model->textureCount; i++)
+            bindTextureToSlot(model->textures[i], i);
+
         bindVertexArray(model->vao);
 
         //Render quad

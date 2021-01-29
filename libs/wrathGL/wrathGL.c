@@ -7,20 +7,26 @@ void wrathGLInit()
     rendererInit();
 
     //Load resources
-    resourceManagerLoadTexture("blockTexture", "res/textures/wrathGL/Grey.jpeg");       
-    resourceManagerLoadShader("modelShader", "res/shader/wrathGL/model_vs.glsl", "res/shader/wrathGL/model_fs.glsl");
+    resourceManagerLoadTexture("dirtTexture", "res/textures/wrathGL/Dirt.jpg"); 
+    resourceManagerLoadTexture("grassTexture", "res/textures/wrathGL/Grass.jpg"); 
+    resourceManagerLoadTexture("stoneTexture", "res/textures/wrathGL/Stone.jpeg");   
+    resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");     
+    resourceManagerLoadShader("terrainShader", "res/shader/wrathGL/terrain_vs.glsl", "res/shader/wrathGL/terrain_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
 
     //Get resources
-    unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
-    unsigned int* modelShader = resourceManagerGetShader("modelShader");
+    unsigned int* dirtTexture = resourceManagerGetTexture("dirtTexture");
+    unsigned int* grassTexture = resourceManagerGetTexture("grassTexture");
+    unsigned int* stoneTexture = resourceManagerGetTexture("stoneTexture");
+    unsigned int* snowTexture = resourceManagerGetTexture("snowTexture");
+    unsigned int* terrainShader = resourceManagerGetShader("terrainShader");
 
     //Create plane      
-    mesh_t* mesh = meshCreatorTerrain(1000, 1);    
+    mesh_t* mesh = meshCreatorTerrain(1000, 1.3);    
     //mesh_t* mesh = meshCreatorOneTile();
     //debugMesh(mesh);
-    planeModel = createModel(mesh, blockTexture, modelShader);
+    planeModel = createTerrainModel(mesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
   
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!

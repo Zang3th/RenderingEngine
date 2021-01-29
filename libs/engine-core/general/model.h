@@ -9,19 +9,21 @@
 #include "mesh.h"
 #include <memory.h>
 
+#define MAX_MODEL_TEXTURES 4
+
 // --- Variables ---
 typedef struct{
     unsigned int* vao;
-    unsigned int* texture;
     unsigned int* shader;
-    vec3 color;
+    unsigned int* textures[MAX_MODEL_TEXTURES];
+    unsigned int textureCount;
     mat4 model;
     unsigned int verticesToRender;
 } model_t;
 
 // --- Functions ---
 unsigned int* createMeshVAO(mesh_t* mesh);
-model_t* createModel(mesh_t* mesh, unsigned int* texture, unsigned int* shader);
+model_t* createTerrainModel(mesh_t* mesh, unsigned int* shader, unsigned int* dirtTex, unsigned int* grassTex, unsigned int* stoneTex, unsigned int* snowTex);
 void deleteModel(model_t* model);
 
 #endif
