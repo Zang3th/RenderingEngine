@@ -22,7 +22,7 @@ void renderSimpleModel(model_t* model)
         setUniformVec3f(model->shader, "viewPos", (float*)camera->position);
 
         for(int i = 0; i < model->textureCount; i++)
-            bindTextureToSlot(model->textures[i], i);
+            bindTextureToSlot(model->textures[i], i);     
 
         bindVertexArray(model->vao);
 

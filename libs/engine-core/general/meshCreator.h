@@ -8,6 +8,7 @@
 #include <cglm/cglm.h>
 
 mesh_t* meshCreatorTerrain(unsigned int size, float tileSize);
+mesh_t* meshCreatorPlane(unsigned int size, float tileSize);
 mesh_t* meshCreatorOneTile();
 
 #endif

@@ -11,7 +11,9 @@ void wrathGLInit()
     resourceManagerLoadTexture("grassTexture", "res/textures/wrathGL/Grass.jpg"); 
     resourceManagerLoadTexture("stoneTexture", "res/textures/wrathGL/Stone.jpeg");   
     resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");     
+    resourceManagerLoadTexture("waterTexture", "res/textures/wrathGL/Water.jpg"); 
     resourceManagerLoadShader("terrainShader", "res/shader/wrathGL/terrain_vs.glsl", "res/shader/wrathGL/terrain_fs.glsl");
+    resourceManagerLoadShader("waterShader", "res/shader/wrathGL/water_vs.glsl", "res/shader/wrathGL/water_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
 
@@ -20,13 +22,19 @@ void wrathGLInit()
     unsigned int* grassTexture = resourceManagerGetTexture("grassTexture");
     unsigned int* stoneTexture = resourceManagerGetTexture("stoneTexture");
     unsigned int* snowTexture = resourceManagerGetTexture("snowTexture");
+    unsigned int* waterTexture = resourceManagerGetTexture("waterTexture");
     unsigned int* terrainShader = resourceManagerGetShader("terrainShader");
+    unsigned int* waterShader = resourceManagerGetShader("waterShader");
 
-    //Create plane      
-    mesh_t* mesh = meshCreatorTerrain(1000, 1.3);    
-    //mesh_t* mesh = meshCreatorOneTile();
-    //debugMesh(mesh);
-    planeModel = createTerrainModel(mesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
+    //Create meshes and models      
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
+    //debugMesh(terrainMesh); 
+    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
+
+    mesh_t* planeMesh = meshCreatorPlane(1000, 1.3);    
+    //debugMesh(planeMesh);
+    waterModel = createModel(planeMesh, waterShader, waterTexture);
+
   
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -99,7 +107,8 @@ void wrathGLPerFrame()
         vertices = 0;
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
-        renderSimpleModel(planeModel);
+        renderSimpleModel(terrainModel);
+        renderSimpleModel(waterModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 
         GLCall(glDisable(GL_DEPTH_TEST));
@@ -118,6 +127,7 @@ void wrathGLCleanUp()
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
-    deleteModel(planeModel);
+    deleteModel(terrainModel);
+    deleteModel(waterModel);
     windowCleanUp(); 
 }

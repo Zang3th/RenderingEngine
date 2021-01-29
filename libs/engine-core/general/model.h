@@ -24,6 +24,7 @@ typedef struct{
 // --- Functions ---
 unsigned int* createMeshVAO(mesh_t* mesh);
 model_t* createTerrainModel(mesh_t* mesh, unsigned int* shader, unsigned int* dirtTex, unsigned int* grassTex, unsigned int* stoneTex, unsigned int* snowTex);
+model_t* createModel(mesh_t* mesh, unsigned int* shader, unsigned int* texture);
 void deleteModel(model_t* model);
 
 #endif

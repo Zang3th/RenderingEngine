@@ -84,7 +84,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
     iAmount = size * size;
 
     //Create mesh
-    mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);    
+    mesh_t* mesh = createBigMesh(vAmount, tAmount, iAmount);    
 
     //Array indices
     unsigned int vertexIndex = 0;
@@ -205,6 +205,91 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                     }
                 }
             } 
+		}
+	}    
+
+    calculateNormals(mesh);
+    return mesh;
+}
+
+mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
+{
+    //Amount of vertices, texture coordinates and indices
+    unsigned int vAmount, tAmount, iAmount; 
+
+    //Calculate amounts
+    vAmount = (size + 1) * (size + 1);
+    tAmount = (size + 1) * (size + 1);
+    iAmount = size * size;
+
+    //Create mesh
+    mesh_t* mesh = createMesh(vAmount, tAmount, iAmount);    
+
+    //Array indices
+    unsigned int vertexIndex = 0;
+    unsigned int texCoordsIndex = 0;
+    unsigned int indiceIndex = 0;
+    unsigned int colorIndex = 0;
+
+    //Create vertices and texture coordinates
+	for (int j = 0; j <= size; ++j)
+	{
+		for (int i = 0; i <= size; ++i)
+		{            
+            float xPos = (float)i;
+            float yPos = 90.0f;
+            float zPos = (float)j;
+
+            //Save vertices
+            if(vertexIndex + 2 < mesh->verticeCount)
+            {
+                mesh->vertices[vertexIndex] = xPos * tileSize;
+                mesh->vertices[vertexIndex + 1] = yPos;
+                mesh->vertices[vertexIndex + 2] = zPos * tileSize;
+
+                vertexIndex += 3;
+            }            
+
+            //Save texture coordinates
+            if(texCoordsIndex + 1 < mesh->texCoordsCount)
+            {
+                mesh->texCoords[texCoordsIndex] = xPos;
+                mesh->texCoords[texCoordsIndex + 1] = zPos;
+
+                texCoordsIndex += 2;
+            }            
+
+            //Save indices
+            if(indiceIndex + 5 < mesh->indiceCount)
+            {
+                if ((j != size) && (i != size))
+			    {
+                    unsigned int row1 = j * (size + 1);
+                    unsigned int row2 = (j + 1) * (size + 1);
+
+                    //Triangle 1
+                    mesh->indices[indiceIndex] = row1 + i;
+                    mesh->indices[indiceIndex + 1] = row1 + i + 1;
+                    mesh->indices[indiceIndex + 2] = row2 + i + 1;
+
+                    //Triangle 2
+                    mesh->indices[indiceIndex + 3] = row1 + i;
+                    mesh->indices[indiceIndex + 4] = row2 + i + 1;
+                    mesh->indices[indiceIndex + 5] = row2 + i; 
+
+                    indiceIndex += 6;    
+                }
+            }  
+
+            //Save colors
+            if(colorIndex + 2 < mesh->colorCount)
+            {
+                mesh->colors[colorIndex] = 1.0f;
+                mesh->colors[colorIndex + 1] = 1.0f;
+                mesh->colors[colorIndex + 2] = 1.0f;
+
+                colorIndex += 3;
+            }
 		}
 	}    
 

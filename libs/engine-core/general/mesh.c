@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices)
+mesh_t* createBigMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices)
 {
     //Create mesh
     mesh_t* mesh = malloc(sizeof(mesh_t));
@@ -32,9 +32,41 @@ mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int i
     return mesh;
 }
 
+mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices)
+{
+    //Create mesh
+    mesh_t* mesh = malloc(sizeof(mesh_t));
+
+    //Save sizes
+    mesh->verticeCount = vertices * 3;
+    mesh->texCoordsCount = texCoords * 2;
+    mesh->indiceCount = indices * 6;  
+    mesh->colorCount = mesh->verticeCount;
+    mesh->normalCount = mesh->verticeCount;
+    mesh->texIndexCount = 0;
+
+    //Allocate memory
+    mesh->vertices = malloc(mesh->verticeCount * sizeof(float));      //vec3  
+    mesh->texCoords = malloc(mesh->texCoordsCount * sizeof(float));   //vec2    
+    mesh->indices = malloc(mesh->indiceCount * sizeof(unsigned int)); //6 * unsigned int
+    mesh->colors = malloc(mesh->colorCount * sizeof(float));          //vec3
+    mesh->normals = malloc(mesh->normalCount * sizeof(float));        //vec3
+    mesh->textureIndex = NULL;  
+
+    //Set memory
+    memset(&(mesh->vertices[0]), 0, mesh->verticeCount * sizeof(float));
+    memset(&(mesh->texCoords[0]), 0, mesh->texCoordsCount * sizeof(float));
+    memset(&(mesh->indices[0]), 0, mesh->indiceCount * sizeof(unsigned int));
+    memset(&(mesh->colors[0]), 0, mesh->colorCount * sizeof(float));
+    memset(&(mesh->normals[0]), 0, mesh->normalCount * sizeof(float));
+
+    return mesh;
+}
+
 void debugMesh(mesh_t* mesh)
 {
     printf("\n");
+    
     log_info("verticeCount: %d (vertices: %d)", mesh->verticeCount, mesh->verticeCount / 3);
     log_info("texCoordsCount: %d (texCoords: %d)", mesh->texCoordsCount, mesh->texCoordsCount / 2);
     log_info("indiceCount: %d", mesh->indiceCount);
@@ -42,7 +74,7 @@ void debugMesh(mesh_t* mesh)
     log_info("normalCount: %d (normals: %d)", mesh->normalCount, mesh->normalCount / 3);
     log_info("texIndexCount: %d", mesh->texIndexCount);
     
-    for(int i = 0; i < mesh->verticeCount - 2; i+=3)
+/*     for(int i = 0; i < mesh->verticeCount - 2; i+=3)
     {
         log_info("x: %f, y: %f, z: %f", 
         mesh->vertices[i], 
@@ -85,7 +117,7 @@ void debugMesh(mesh_t* mesh)
     {
         log_info("index: %f", 
         mesh->textureIndex[i]);
-    }
+    } */
 
     printf("\n");
 }
@@ -97,6 +129,7 @@ void deleteMesh(mesh_t* mesh)
     free(mesh->indices);
     free(mesh->colors);
     free(mesh->normals);
-    free(mesh->textureIndex);
+    if(mesh->textureIndex != NULL)
+        free(mesh->textureIndex);
     free(mesh);
 }

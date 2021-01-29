@@ -11,7 +11,7 @@
 #include "../engine-core/general/model.h"
 
 // --- Variables
-static model_t* planeModel = NULL;
+static model_t* terrainModel = NULL, *waterModel;
 
 // --- Functions ---
 void wrathGLInit();
