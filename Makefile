@@ -9,7 +9,7 @@ COMPILED_FILES_WRATHGL = $(wildcard compiled_wrathGL/*) $(wildcard compiled_engi
 INCLUDE_PATH = libs/
 LINKER_VENDOR = -DLOG_USE_COLOR
 LINKER_SANDBOX = -lSDL2 -lGL -lm -ldl -lfreetype -lchipmunk
-LINKER_WRATHGL = -lglfw3 -lX11 -pthread -lGL -lm -ldl -lfreetype
+LINKER_WRATHGL = -lglfw3 -lX11 -pthread -lGL -lm -ldl -lfreetype -lchipmunk
 CC = cc
 CFLAGS = -Wall -Wno-unused-variable -Wno-sizeof-pointer-memaccess
 

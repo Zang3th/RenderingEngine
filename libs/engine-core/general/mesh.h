@@ -20,7 +20,7 @@ typedef struct{
     unsigned int texIndexCount;
 } mesh_t;
 
-mesh_t* createBigMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
+mesh_t* createTerrainMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
 mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
 void debugMesh(mesh_t* mesh);
 void deleteMesh(mesh_t* mesh);

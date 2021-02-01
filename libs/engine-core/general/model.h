@@ -17,7 +17,7 @@ typedef struct{
     unsigned int* shader;
     unsigned int* textures[MAX_MODEL_TEXTURES];
     unsigned int textureCount;
-    mat4 model;
+    mat4 modelMatrix;
     unsigned int verticesToRender;
 } model_t;
 

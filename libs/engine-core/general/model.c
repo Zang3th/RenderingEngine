@@ -1,7 +1,7 @@
 #include "model.h"
 #include "utility.h"
 
-unsigned int* createBigMeshVAO(mesh_t* mesh)
+unsigned int* createTerrainMeshVAO(mesh_t* mesh)
 {
     //Create and bind vao
     unsigned int* vao = createVertexArray();
@@ -84,7 +84,7 @@ model_t* createTerrainModel(mesh_t* mesh, unsigned int* shader, unsigned int* di
 {
     //Create model
     model_t* model = malloc(sizeof(model_t));
-    model->vao = createBigMeshVAO(mesh);
+    model->vao = createTerrainMeshVAO(mesh);
     model->shader = shader;
     model->textures[0] = dirtTex;
     model->textures[1] = grassTex;
@@ -101,7 +101,7 @@ model_t* createTerrainModel(mesh_t* mesh, unsigned int* shader, unsigned int* di
     //Create model matrix
     mat4 modelMatrix;
     glm_mat4_identity(modelMatrix);
-    memcpy(&(model->model[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
+    memcpy(&(model->modelMatrix[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
 
     deleteMesh(mesh);
 
@@ -121,7 +121,7 @@ model_t* createModel(mesh_t* mesh, unsigned int* shader, unsigned int* texture)
     //Create model matrix
     mat4 modelMatrix;
     glm_mat4_identity(modelMatrix);
-    memcpy(&(model->model[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
+    memcpy(&(model->modelMatrix[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
 
     deleteMesh(mesh);
 

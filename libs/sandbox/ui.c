@@ -64,16 +64,16 @@ void uiRenderElements()
                 uiChangeButtonState(sprites[i], result, i);
             }          
 
-            renderSimpleSprite(sprites[i]);
+            renderSprite(sprites[i]);
         }
         else
-            renderSimpleSprite(sprites[i]);
+            renderSprite(sprites[i]);
     } 
 
     if(activeElement != NULL)
     {
         translateSprite(highlighter, (vec2){activeElement->basePosition[0], activeElement->basePosition[1]});
-        renderSimpleSprite(highlighter);
+        renderSprite(highlighter);
     }
 }
 
@@ -114,7 +114,7 @@ void uiRenderHighlighter()
 
         //Translate highlighter to mouse position and render it
         translateSprite(highlighter, (vec2){(float)new_mouse_x - 50.0f, (float)new_mouse_y - 50.0f});
-        renderSimpleSprite(highlighter);
+        renderSprite(highlighter);
         placementMode = true;
     }
 }

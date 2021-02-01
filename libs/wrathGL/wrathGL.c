@@ -1,57 +1,23 @@
 #include "wrathGL.h"
 
-void wrathGLInit()
+void wrathGLLoadResources()
 {
-    //Init modules
-    windowInit("RenderingEngine - WrathGL");   
-    rendererInit();
-
-    //Load resources
+    //Load textures
     resourceManagerLoadTexture("dirtTexture", "res/textures/wrathGL/Dirt.jpg"); 
     resourceManagerLoadTexture("grassTexture", "res/textures/wrathGL/Grass.jpg"); 
     resourceManagerLoadTexture("stoneTexture", "res/textures/wrathGL/Stone.jpeg");   
     resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");     
     resourceManagerLoadTexture("waterTexture", "res/textures/wrathGL/Water.jpg"); 
+
+    //Load shaders
     resourceManagerLoadShader("terrainShader", "res/shader/wrathGL/terrain_vs.glsl", "res/shader/wrathGL/terrain_fs.glsl");
     resourceManagerLoadShader("waterShader", "res/shader/wrathGL/water_vs.glsl", "res/shader/wrathGL/water_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
+    resourceManagerLoadShader("standardShader", "res/shader/sandbox/standard_vs.glsl", "res/shader/sandbox/standard_fs.glsl");
 
-    //Get resources
-    unsigned int* dirtTexture = resourceManagerGetTexture("dirtTexture");
-    unsigned int* grassTexture = resourceManagerGetTexture("grassTexture");
-    unsigned int* stoneTexture = resourceManagerGetTexture("stoneTexture");
-    unsigned int* snowTexture = resourceManagerGetTexture("snowTexture");
-    unsigned int* waterTexture = resourceManagerGetTexture("waterTexture");
-    unsigned int* terrainShader = resourceManagerGetShader("terrainShader");
-    unsigned int* waterShader = resourceManagerGetShader("waterShader");
-
-    //Create meshes and models      
-    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
-    //debugMesh(terrainMesh); 
-    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
-
-    mesh_t* planeMesh = meshCreatorPlane(1000, 1.3);    
-    //debugMesh(planeMesh);
-    waterModel = createModel(planeMesh, waterShader, waterTexture);
-
-  
-    // --- Init the whole text rendering system (batch and simple text renderer)
-        //Batch text rendering system ONLY ALLOWS 32 different characters!
-        textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
-        monitoringInit();  
-
-        //Add static text
-        monitoringAddText();
-        wrathGLAddText();
-
-        //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
-        textBatchRendererUploadToGPU(); 
-}
-
-bool wrathGLIsRunning()
-{
-    return windowIsRunning();
+    //Load sprite data
+    resourceManagerLoadSpriteData();  
 }
 
 void wrathGLAddText()
@@ -93,6 +59,55 @@ void wrathGLRenderText()
     textSimpleRendererDisplay(&verticeBuffer[0], 20.0f, HEIGHT - 275.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Vertices
 }
 
+void wrathGLInit()
+{
+    //Init modules
+    windowInit("RenderingEngine - WrathGL");   
+    rendererInit(camera);
+
+    //Load resources
+    wrathGLLoadResources();
+
+    //Get resources
+    unsigned int* dirtTexture = resourceManagerGetTexture("dirtTexture");
+    unsigned int* grassTexture = resourceManagerGetTexture("grassTexture");
+    unsigned int* stoneTexture = resourceManagerGetTexture("stoneTexture");
+    unsigned int* snowTexture = resourceManagerGetTexture("snowTexture");
+    unsigned int* waterTexture = resourceManagerGetTexture("waterTexture");
+    unsigned int* terrainShader = resourceManagerGetShader("terrainShader");
+    unsigned int* waterShader = resourceManagerGetShader("waterShader");
+    unsigned int* spriteShader = resourceManagerGetShader("standardShader");
+    unsigned int* spriteData = resourceManagerGetSpriteData();
+
+    //Create meshes   
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
+    mesh_t* planeMesh = meshCreatorPlane(1000, 1.3); 
+    
+    //Create models
+    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
+    waterModel = createModel(planeMesh, waterShader, waterTexture);  
+  
+    //Create sprite to test fbo rendering
+    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-220.0f, 20.0f}, (vec2){200.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
+
+    // --- Init the whole text rendering system (batch and simple text renderer)
+        //Batch text rendering system ONLY ALLOWS 32 different characters!
+        textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
+        monitoringInit();  
+
+        //Add static text
+        monitoringAddText();
+        wrathGLAddText();
+
+        //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
+        textBatchRendererUploadToGPU(); 
+}
+
+bool wrathGLIsRunning()
+{
+    return windowIsRunning();
+}
+
 void wrathGLPerFrame()
 {
     // --- Pre render
@@ -105,12 +120,18 @@ void wrathGLPerFrame()
         // -- Reset stats for current frame
         drawcalls = 0; 
         vertices = 0;
+
+        // -- Render models
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
-        renderSimpleModel(terrainModel);
-        renderSimpleModel(waterModel);
+        renderModel(terrainModel);
+        renderModel(waterModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 
+        // -- Render sprites
+        renderSprite(fboTestSprite);
+
+        // -- Render text
         GLCall(glDisable(GL_DEPTH_TEST));
         textBatchRendererDisplay(); 
         monitoringRenderText(deltaTime);
@@ -124,10 +145,14 @@ void wrathGLPerFrame()
 
 void wrathGLCleanUp()
 {
+    //Clean up models and sprites
+    deleteModel(terrainModel);
+    deleteModel(waterModel);
+    deleteSprite(fboTestSprite);
+
+    //Clean up modules
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
-    deleteModel(terrainModel);
-    deleteModel(waterModel);
-    windowCleanUp(); 
+    windowCleanUp();     
 }

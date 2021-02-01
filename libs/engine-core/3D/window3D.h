@@ -4,7 +4,7 @@
 #include "../../../vendor/loading/glad.h"
 #include <GLFW/glfw3.h>
 #include <stdbool.h>
-#include "camera.h"
+#include "../general/camera.h"
 #include "../../../vendor/logging/log.h"
 #include "../general/errorManager.h"
 

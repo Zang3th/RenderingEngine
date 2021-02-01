@@ -84,7 +84,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
     iAmount = size * size;
 
     //Create mesh
-    mesh_t* mesh = createBigMesh(vAmount, tAmount, iAmount);    
+    mesh_t* mesh = createTerrainMesh(vAmount, tAmount, iAmount);    
 
     //Array indices
     unsigned int vertexIndex = 0;

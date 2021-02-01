@@ -1,6 +1,6 @@
 #include "mesh.h"
 
-mesh_t* createBigMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices)
+mesh_t* createTerrainMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices)
 {
     //Create mesh
     mesh_t* mesh = malloc(sizeof(mesh_t));

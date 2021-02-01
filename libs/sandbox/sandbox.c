@@ -1,13 +1,8 @@
 #include "sandbox.h"
 
-void sandboxInit()
+void sandboxLoadResources()
 {
-    //Init modules
-    windowInit("RenderingEngine - Sandbox");     
-    rendererInit();   
-    physicsEngineInit();
-
-    //Load resources
+    //Load textures
     resourceManagerLoadTexture("blockTexture", "res/textures/sandbox/Crate.jpg");
     resourceManagerLoadTexture("solidBlockTexture", "res/textures/sandbox/Block_solid.jpg");
     resourceManagerLoadTexture("trashcanTexture", "res/textures/sandbox/Trashcan.png");
@@ -15,12 +10,27 @@ void sandboxInit()
     resourceManagerLoadTexture("sidebarTexture", "res/textures/sandbox/Sidebar.png"); 
     resourceManagerLoadTexture("bucketTexture", "res/textures/sandbox/Bucket.png");
     resourceManagerLoadTexture("stickmanTexture", "res/textures/sandbox/Stickman.png");       
-    resourceManagerLoadTexture("highlightTexture", "res/textures/sandbox/Highlighter.png");        
+    resourceManagerLoadTexture("highlightTexture", "res/textures/sandbox/Highlighter.png"); 
+
+    //Load shaders       
     resourceManagerLoadShader("standardShader", "res/shader/sandbox/standard_vs.glsl", "res/shader/sandbox/standard_fs.glsl");
     resourceManagerLoadShader("instancedShader", "res/shader/sandbox/instanced_vs.glsl", "res/shader/sandbox/instanced_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
-    resourceManagerLoadSpriteData();   
+
+    //Load sprite data
+    resourceManagerLoadSpriteData();  
+}
+
+void sandboxInit()
+{
+    //Init modules
+    windowInit("RenderingEngine - Sandbox");     
+    rendererInit(NULL); //Init with NULL to use no camera   
+    physicsEngineInit();
+
+    //Load resources
+    sandboxLoadResources();
 
     //Init modules that depend on resources
     uiInit();  
