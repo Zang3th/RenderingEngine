@@ -41,7 +41,7 @@ void resourceManagerLoadSpriteData()
     vao = createSpriteVAO();
 }
 
-unsigned int* resourceManagerGetTexture(char* name)
+unsigned int resourceManagerGetTexture(char* name)
 {
     for(int i = 0; i < texCount; i++)
     {
@@ -52,10 +52,10 @@ unsigned int* resourceManagerGetTexture(char* name)
     }
 
     log_error("Couldn't find texture %s", name);
-    return NULL;
+    return -1;
 }
 
-unsigned int* resourceManagerGetShader(char* name)
+unsigned int resourceManagerGetShader(char* name)
 {
     for(int i = 0; i < shaderCount; i++)
     {   
@@ -66,10 +66,10 @@ unsigned int* resourceManagerGetShader(char* name)
     }
 
     log_error("Couldn't find shader %s", name);
-    return NULL;
+    return -1;
 }
 
-unsigned int* resourceManagerGetSpriteData()
+unsigned int resourceManagerGetSpriteData()
 {
     return vao;
 }
@@ -89,6 +89,6 @@ void resourceManagerCleanUp()
     }
 
     //Delete vertexdata
-    if(vao != NULL)
+    if(vao != 0)
         deleteVertexArray(vao);
 }

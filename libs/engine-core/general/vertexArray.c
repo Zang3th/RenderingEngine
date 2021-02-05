@@ -1,21 +1,20 @@
 #include "vertexArray.h"
 
-unsigned int* createVertexArray()
+unsigned int createVertexArray()
 {
-    unsigned int* vaoID = (unsigned int*)malloc(sizeof(unsigned int));
-    GLCall(glGenVertexArrays(1, vaoID));
+    unsigned int vaoID;
+    GLCall(glGenVertexArrays(1, &vaoID));
     return vaoID;
 }
 
-void deleteVertexArray(unsigned int* vaoID)
+void deleteVertexArray(unsigned int vaoID)
 {
-    GLCall(glDeleteVertexArrays(1, vaoID));
-    free(vaoID);
+    GLCall(glDeleteVertexArrays(1, &vaoID));
 }
 
-void bindVertexArray(const unsigned int* vaoID)
+void bindVertexArray(unsigned int vaoID)
 {
-    GLCall(glBindVertexArray(*vaoID));
+    GLCall(glBindVertexArray(vaoID));
 }
 
 void unbindVertexArray()

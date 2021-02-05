@@ -5,16 +5,16 @@ bool placementMode = false;
 void uiInit()
 {
     //Get resources
-    unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
-    unsigned int* solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
-    unsigned int* trashcanTexture = resourceManagerGetTexture("trashcanTexture");
-    unsigned int* bgTexture = resourceManagerGetTexture("backgroundTexture");
-    unsigned int* sbTexture = resourceManagerGetTexture("sidebarTexture");
-    unsigned int* bucketTexture = resourceManagerGetTexture("bucketTexture");
-    unsigned int* stickmanTexture = resourceManagerGetTexture("stickmanTexture");
-    unsigned int* highlightTexture = resourceManagerGetTexture("highlightTexture");
-    unsigned int* standardShader = resourceManagerGetShader("standardShader");
-    unsigned int* spriteData = resourceManagerGetSpriteData();
+    unsigned int blockTexture = resourceManagerGetTexture("blockTexture");
+    unsigned int solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
+    unsigned int trashcanTexture = resourceManagerGetTexture("trashcanTexture");
+    unsigned int bgTexture = resourceManagerGetTexture("backgroundTexture");
+    unsigned int sbTexture = resourceManagerGetTexture("sidebarTexture");
+    unsigned int bucketTexture = resourceManagerGetTexture("bucketTexture");
+    unsigned int stickmanTexture = resourceManagerGetTexture("stickmanTexture");
+    unsigned int highlightTexture = resourceManagerGetTexture("highlightTexture");
+    unsigned int standardShader = resourceManagerGetShader("standardShader");
+    unsigned int spriteData = resourceManagerGetSpriteData();
 
     //Create sprites
     sprites[0] = createSprite(spriteData, bgTexture, standardShader, (vec2){0.0f, 0.0f}, 

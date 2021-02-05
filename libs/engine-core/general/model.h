@@ -13,18 +13,17 @@
 
 // --- Variables ---
 typedef struct{
-    unsigned int* vao;
-    unsigned int* shader;
-    unsigned int* textures[MAX_MODEL_TEXTURES];
+    unsigned int vao;
+    unsigned int shader;
+    unsigned int textures[MAX_MODEL_TEXTURES];
     unsigned int textureCount;
     mat4 modelMatrix;
     unsigned int verticesToRender;
 } model_t;
 
 // --- Functions ---
-unsigned int* createMeshVAO(mesh_t* mesh);
-model_t* createTerrainModel(mesh_t* mesh, unsigned int* shader, unsigned int* dirtTex, unsigned int* grassTex, unsigned int* stoneTex, unsigned int* snowTex);
-model_t* createModel(mesh_t* mesh, unsigned int* shader, unsigned int* texture);
+model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int grassTex, unsigned int stoneTex, unsigned int snowTex);
+model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int texture);
 void deleteModel(model_t* model);
 
 #endif

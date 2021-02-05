@@ -87,7 +87,7 @@ unsigned int buildShader(unsigned int vsID, unsigned int fsID)
     return programID;
 }
 
-unsigned int* createShader(const char* vsFilepath, const char* fsFilepath)
+unsigned int createShader(const char* vsFilepath, const char* fsFilepath)
 {    
     //Read in shader files
     char* vsSource = parseShader(vsFilepath);
@@ -102,20 +102,19 @@ unsigned int* createShader(const char* vsFilepath, const char* fsFilepath)
     free(fsSource);
 
     //Build shader
-    unsigned int* shaderID = (unsigned int*)malloc(sizeof(unsigned int));
-    *shaderID = buildShader(vsID, fsID);
+    unsigned int shaderID = buildShader(vsID, fsID);
     
     return shaderID;
 }
 
-void deleteShader(unsigned int* shaderID)
+void deleteShader(unsigned int shaderID)
 {
-    free(shaderID);
+    GLCall(glDeleteProgram(shaderID));
 }
 
-void bindShader(const unsigned int* shaderID)
+void bindShader(unsigned int shaderID)
 {
-    GLCall(glUseProgram(*shaderID));
+    GLCall(glUseProgram(shaderID));
 }
 
 void unbindShader()
@@ -123,38 +122,38 @@ void unbindShader()
     GLCall(glUseProgram(0));
 }
 
-void setUniform1i(const unsigned int* shaderID, const char* name, int value)
+void setUniform1i(unsigned int shaderID, const char* name, int value)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniform1i(location, value));
 }
 
-void setUniform1f(const unsigned int* shaderID, const char* name, float value)
+void setUniform1f(unsigned int shaderID, const char* name, float value)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniform1f(location, value));
 }
 
-void setUniform4f(const unsigned int* shaderID, const char* name, float v0, float v1, float v2, float v3)
+void setUniform4f(unsigned int shaderID, const char* name, float v0, float v1, float v2, float v3)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniform4f(location, v0, v1, v2, v3));
 }
 
-void setUniformMat4f(const unsigned int* shaderID, const char* name, float* matrix)
+void setUniformMat4f(unsigned int shaderID, const char* name, float* matrix)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniformMatrix4fv(location, 1, GL_FALSE, matrix)); //<cglm> documentation recommends this
 }
 
-void setUniformVec3f(const unsigned int* shaderID, const char* name, float* vector)
+void setUniformVec3f(unsigned int shaderID, const char* name, float* vector)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniform3fv(location, 1, (float*)vector));
 }
 
-void setUniform1iv(const unsigned int* shaderID, const char* name, int* values, unsigned int size)
+void setUniform1iv(unsigned int shaderID, const char* name, int* values, unsigned int size)
 {
-    GLCall(int location = glGetUniformLocation(*shaderID, name));
+    GLCall(int location = glGetUniformLocation(shaderID, name));
     GLCall(glUniform1iv(location, size, values));
 }

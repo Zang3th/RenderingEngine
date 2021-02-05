@@ -9,6 +9,7 @@
 #include "../engine-core/general/mesh.h"
 #include "../engine-core/general/meshCreator.h"
 #include "../engine-core/general/model.h"
+#include "waterRenderer.h"
 
 // --- Variables
 static model_t* terrainModel = NULL, *waterModel = NULL;

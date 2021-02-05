@@ -1,9 +1,9 @@
 #include "texture.h"
 
-unsigned int* createTexture(const char* path)
+unsigned int createTexture(const char* path)
 {
     int width, height, BPP; 
-    unsigned int* rendererID = (unsigned int*)malloc(sizeof(unsigned int));
+    unsigned int textureID;
     unsigned char* localBuffer = stbi_load(path, &width, &height, &BPP, 0);
 
     if(localBuffer)
@@ -18,11 +18,11 @@ unsigned int* createTexture(const char* path)
         else
         {
             log_error("Imageformat is not supported!");
-            return NULL;
+            return -1;
         }            
 
-        GLCall(glGenTextures(1, rendererID));
-        bindTexture(rendererID);
+        GLCall(glGenTextures(1, &textureID));
+        bindTexture(textureID);
         GLCall(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, localBuffer));
         GLCall(glGenerateMipmap(GL_TEXTURE_2D));
 
@@ -34,33 +34,32 @@ unsigned int* createTexture(const char* path)
         log_info("Successfully load texture at %s", path);
         stbi_image_free(localBuffer);
 
-        return rendererID;
+        return textureID;
     }
     else
     {
         log_error("Failed to load texture at %s", path);
         stbi_image_free(localBuffer);
 
-        return NULL;
+        return -2;
     }
 }
 
-void deleteTexture(unsigned int* textureID)
+void deleteTexture(unsigned int textureID)
 {
-    GLCall(glDeleteTextures(1, textureID));
-    free(textureID);
+    GLCall(glDeleteTextures(1, &textureID));
 }
 
-void bindTexture(const unsigned int* textureID)
+void bindTexture(unsigned int textureID)
 {
     GLCall(glActiveTexture(GL_TEXTURE0));
-    GLCall(glBindTexture(GL_TEXTURE_2D, *textureID));
+    GLCall(glBindTexture(GL_TEXTURE_2D, textureID));
 }
 
-void bindTextureToSlot(const unsigned int* textureID, unsigned int slot)
+void bindTextureToSlot(unsigned int textureID, unsigned int slot)
 {
     GLCall(glActiveTexture(GL_TEXTURE0 + slot));
-    GLCall(glBindTexture(GL_TEXTURE_2D, *textureID));
+    GLCall(glBindTexture(GL_TEXTURE_2D, textureID));
 }
 
 void unbindTexture()

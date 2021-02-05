@@ -18,7 +18,7 @@ const extern unsigned int WIDTH;
 const extern unsigned int HEIGHT;
 extern unsigned int drawcalls;
 
-void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader);
+void textRenderingSystemsInit(unsigned int batchShader, unsigned int simpleShader);
 void textRenderingSystemsCleanUp();
 
 //Texture caching
@@ -31,8 +31,8 @@ static textureBinding_t textureCache[MAX_TEXTURE_AMOUNT];
 static unsigned int cachedTextures = 0;
 
 // ----- Batch text rendering system ----- 
-static unsigned int* batchTextShader = NULL;
-static unsigned int* batchTextVAO = NULL, *batchTextVBO = NULL;
+static unsigned int batchTextShader;
+static unsigned int batchTextVAO, batchTextVBO;
 static float verticeBuffer[6 * 5 * MAX_GLYPH_AMOUNT];
 static unsigned int glyphCount = 0;
 
@@ -46,8 +46,8 @@ void textBatchRendererPrintUsage();
 void textBatchRendererDisplay();     
 
 // ----- Simple text rendering system ----- 
-static unsigned int* simpleTextShader = NULL;
-static unsigned int* simpleTextVAO = NULL, *simpleTextVBO = NULL;
+static unsigned int simpleTextShader;
+static unsigned int simpleTextVAO, simpleTextVBO;
 
 void textSimpleRendererCreateBuffer();
 void textSimpleRendererDisplay(const char* text, float x, float y, float scale, vec3 color);

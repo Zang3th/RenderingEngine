@@ -1,6 +1,6 @@
 #include "textRenderer.h"
 
-void textRenderingSystemsInit(unsigned int* batchShader, unsigned int* simpleShader)
+void textRenderingSystemsInit(unsigned int batchShader, unsigned int simpleShader)
 {
     //Save shaders for later use
     batchTextShader = batchShader;
@@ -177,7 +177,7 @@ void textBatchRendererDisplay()
 
     //Bind textures
     for(int i = 0; i < cachedTextures; i++)   
-        bindTextureToSlot(&textureCache[i].characterMap->characterTexture.textureID, i);          
+        bindTextureToSlot(textureCache[i].characterMap->characterTexture.textureID, i);          
 
     GLCall(glDrawArrays(GL_TRIANGLES, 0, 6 * glyphCount));
     drawcalls++;
@@ -239,7 +239,7 @@ void textSimpleRendererDisplay(const char* text, float x, float y, float scale, 
             { xpos + width, ypos + height,  1.0f, 0.0f }           
         };
 
-        bindTexture(&charMap->characterTexture.textureID);
+        bindTexture(charMap->characterTexture.textureID);
         bindVertexBuffer(simpleTextVBO);
         updateDynamicVertexBuffer(vertices, sizeof(vertices));
         unbindVertexBuffer();

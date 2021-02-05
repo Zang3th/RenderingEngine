@@ -1,9 +1,9 @@
 #include "objectInstancer.h"
 
-instance_t* objectInstancerCreateInstance(unsigned int* texture, float* color, float size, float mass)
+instance_t* objectInstancerCreateInstance(unsigned int texture, float* color, float size, float mass)
 {
     //Create and bind vao
-    unsigned int* vao = createVertexArray();
+    unsigned int vao = createVertexArray();
     bindVertexArray(vao);
 
     //Create data
@@ -25,12 +25,12 @@ instance_t* objectInstancerCreateInstance(unsigned int* texture, float* color, f
 
     //Create vbos, send it data, configure vao and set the attrib divisors
     //vbo1 (vertice data)
-    unsigned int* vbo1 = createVertexBuffer(vertices, sizeof(vertices));
+    unsigned int vbo1 = createVertexBuffer(vertices, sizeof(vertices));
     defineVertexAttributes(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);  
 
     //vbo2 (model matrix buffer - maximum size for vertex attributes is a vec4 
     //so we need to send 4 consecutive vec4's to simulate a mat4) 
-    unsigned int* vbo2 = createDynamicVertexBuffer(&modelBuffer[0], MAX_INSTANCES * 16 * sizeof(float));
+    unsigned int vbo2 = createDynamicVertexBuffer(&modelBuffer[0], MAX_INSTANCES * 16 * sizeof(float));
 
     defineVertexAttributes(1, 4, GL_FLOAT, GL_FALSE, 16 * sizeof(float), (void*)0);    
     defineVertexAttributes(2, 4, GL_FLOAT, GL_FALSE, 16 * sizeof(float), (void*)(4 * sizeof(float)));    

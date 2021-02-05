@@ -3,8 +3,8 @@
 void objectManagerInit()
 {    
     //Get resources
-    unsigned int* blockTexture = resourceManagerGetTexture("blockTexture");
-    unsigned int* solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
+    unsigned int blockTexture = resourceManagerGetTexture("blockTexture");
+    unsigned int solidBlockTexture = resourceManagerGetTexture("solidBlockTexture");
 
     //Create base instance
     blockInstance = objectInstancerCreateInstance(blockTexture, (vec3){1.0f, 1.0f, 1.0f}, 100.0f, 1.0f);

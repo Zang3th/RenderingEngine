@@ -1,9 +1,9 @@
 #include "sprite.h"
 
-unsigned int* createSpriteVAO()
+unsigned int createSpriteVAO()
 {
     //Create and bind vao
-    unsigned int* vao = createVertexArray();
+    unsigned int vao = createVertexArray();
     bindVertexArray(vao);
 
     //Create data
@@ -20,7 +20,7 @@ unsigned int* createSpriteVAO()
     };
 
     //Create vbo, send it data and configure vao
-    unsigned int* vbo = createVertexBuffer(vertices, sizeof(vertices));
+    unsigned int vbo = createVertexBuffer(vertices, sizeof(vertices));
     defineVertexAttributes(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 
     //Unbind vao, vbo and delete vbo
@@ -31,7 +31,7 @@ unsigned int* createSpriteVAO()
     return vao;
 }
 
-sprite_t* createSprite(unsigned int* vao, unsigned int* texture, unsigned int* shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
+sprite_t* createSprite(unsigned int vao, unsigned int texture, unsigned int shader, float* position, float* size, float rotation, float* baseColor, bool clickable)
 {   
     //Create sprite based on given parameters
     sprite_t sprite;

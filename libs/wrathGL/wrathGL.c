@@ -64,20 +64,21 @@ void wrathGLInit()
     //Init modules
     windowInit("RenderingEngine - WrathGL");   
     rendererInit(camera);
+    initWaterRenderer();
 
     //Load resources
     wrathGLLoadResources();
 
     //Get resources
-    unsigned int* dirtTexture = resourceManagerGetTexture("dirtTexture");
-    unsigned int* grassTexture = resourceManagerGetTexture("grassTexture");
-    unsigned int* stoneTexture = resourceManagerGetTexture("stoneTexture");
-    unsigned int* snowTexture = resourceManagerGetTexture("snowTexture");
-    unsigned int* waterTexture = resourceManagerGetTexture("waterTexture");
-    unsigned int* terrainShader = resourceManagerGetShader("terrainShader");
-    unsigned int* waterShader = resourceManagerGetShader("waterShader");
-    unsigned int* spriteShader = resourceManagerGetShader("standardShader");
-    unsigned int* spriteData = resourceManagerGetSpriteData();
+    unsigned int dirtTexture = resourceManagerGetTexture("dirtTexture");
+    unsigned int grassTexture = resourceManagerGetTexture("grassTexture");
+    unsigned int stoneTexture = resourceManagerGetTexture("stoneTexture");
+    unsigned int snowTexture = resourceManagerGetTexture("snowTexture");
+    unsigned int waterTexture = resourceManagerGetTexture("waterTexture");
+    unsigned int terrainShader = resourceManagerGetShader("terrainShader");
+    unsigned int waterShader = resourceManagerGetShader("waterShader");
+    unsigned int spriteShader = resourceManagerGetShader("standardShader");
+    unsigned int spriteData = resourceManagerGetSpriteData();
 
     //Create meshes   
     mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
@@ -88,7 +89,7 @@ void wrathGLInit()
     waterModel = createModel(planeMesh, waterShader, waterTexture);  
   
     //Create sprite to test fbo rendering
-    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-220.0f, 20.0f}, (vec2){200.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
+    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -124,11 +125,22 @@ void wrathGLPerFrame()
         // -- Render models
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
+
+        //Render terrain to reflect framebuffer    
+        bindWaterReflectFramebuffer();    
+        GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
+        GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+        renderModel(terrainModel);
+        renderModel(waterModel);
+        fboTestSprite->texture = reflectionTexture;
+        unbindFrameBuffer();
+
+        //Render terrain to default framebuffer
         renderModel(terrainModel);
         renderModel(waterModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
 
-        // -- Render sprites
+        // -- Render sprite
         renderSprite(fboTestSprite);
 
         // -- Render text
@@ -154,5 +166,6 @@ void wrathGLCleanUp()
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
+    cleanUpWaterRenderer();
     windowCleanUp();     
 }
