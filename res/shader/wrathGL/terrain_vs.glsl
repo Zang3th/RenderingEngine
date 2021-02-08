@@ -15,14 +15,17 @@ flat out vec3 normal;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+uniform vec4 clippingPlane;
 
 void main()
 {
     color = colorIn;
     texCoords = texCoordsIn;
     texIndex = texIndexIn;
-    fragPos = vec3(model * vec4(posIn, 1.0f));
+    vec4 fragPos_v4 = model * vec4(posIn, 1.0f);
+    fragPos = vec3(fragPos_v4);
     normal = mat3(transpose(inverse(model))) * normalIn;
 
+    gl_ClipDistance[0] = dot(fragPos_v4, clippingPlane);    
     gl_Position = projection * view * vec4(fragPos, 1.0f);
 }

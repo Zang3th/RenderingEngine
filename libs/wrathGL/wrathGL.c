@@ -90,6 +90,7 @@ void wrathGLInit()
   
     //Create sprite to test fbo rendering
     fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
+    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -126,22 +127,45 @@ void wrathGLPerFrame()
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
 
-        //Render terrain to reflect framebuffer    
-        bindWaterReflectFramebuffer();    
-        GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
-        GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+        //Render water textures onto sprites (for test purposes)
+        {
+            //Render terrain to reflect framebuffer  
+            GLCall(glEnable(GL_CLIP_DISTANCE0)); 
+            bindWaterReflectFramebuffer();    
+            GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
+            GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+            bindShader(resourceManagerGetShader("terrainShader"));
+            setUniformVec4f(resourceManagerGetShader("terrainShader"), "clippingPlane", (vec4){0.0f, 1.0f, 0.0f, -0.01f});
+            float distance = 2 * (camera->position[1] - 0.01f);
+            camera->position[1] -= distance;
+            camera->pitch = -camera->pitch;
+            renderModel(terrainModel);
+            camera->position[1] += distance;
+            camera->pitch = -camera->pitch;
+            fboTestSprite->texture = reflectionTexture; 
+            translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 20.0f}); 
+            unbindFrameBuffer();
+            renderSprite(fboTestSprite); 
+
+            //Render terrain to refract framebuffer  
+            GLCall(glEnable(GL_CLIP_DISTANCE0)); 
+            bindWaterRefractFramebuffer();    
+            GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
+            GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+            bindShader(resourceManagerGetShader("terrainShader"));
+            setUniformVec4f(resourceManagerGetShader("terrainShader"), "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.01f});
+            renderModel(terrainModel);
+            fboTestSprite->texture = refractionTexture;  
+            translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 240.0f});      
+            unbindFrameBuffer();
+            renderSprite(fboTestSprite); 
+        }
+
+        //Render scene
+        GLCall(glDisable(GL_CLIP_DISTANCE0)); //Doesn't work on every graphics driver
         renderModel(terrainModel);
         renderModel(waterModel);
-        fboTestSprite->texture = reflectionTexture;
-        unbindFrameBuffer();
-
-        //Render terrain to default framebuffer
-        renderModel(terrainModel);
-        renderModel(waterModel);
-        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));
-
-        // -- Render sprite
-        renderSprite(fboTestSprite);
+        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));  
 
         // -- Render text
         GLCall(glDisable(GL_DEPTH_TEST));
