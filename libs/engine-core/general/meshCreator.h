@@ -9,6 +9,6 @@
 
 mesh_t* meshCreatorTerrain(unsigned int size, float tileSize);
 mesh_t* meshCreatorPlane(unsigned int size, float tileSize);
-mesh_t* meshCreatorOneTile();
+mesh_t* meshCreatorOneTile(float size);
 
 #endif

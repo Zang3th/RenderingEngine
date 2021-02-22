@@ -4,6 +4,8 @@ unsigned int drawcalls = 0;
 unsigned int vertices = 0;
 const extern unsigned int WIDTH;
 const extern unsigned int HEIGHT;
+extern unsigned int reflectionTexture;
+extern unsigned int refractionTexture;
 
 void rendererInit(camera_t* camera)
 {

@@ -7,7 +7,9 @@ flat in vec3 normal;
 
 out vec4 fragColor;
 
-uniform sampler2D image;
+uniform sampler2D reflectionTexture;
+uniform sampler2D refractionTexture;
+
 uniform vec3 viewPos;
 
 const float ambientStrength = 0.2;
@@ -42,5 +44,10 @@ void main()
 {
     vec3 light = calculateLight();
     vec3 result = color * light;
-    fragColor = vec4(result, 1.0f) * texture(image, texCoords);
+
+    vec4 reflectColor = texture(reflectionTexture, texCoords);
+    vec4 refractColor = texture(refractionTexture, texCoords);
+    vec4 textures = mix(reflectColor, refractColor, 0.5);
+
+    fragColor = textures;
 }

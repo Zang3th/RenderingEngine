@@ -81,13 +81,18 @@ void wrathGLInit()
     unsigned int spriteData = resourceManagerGetSpriteData();
 
     //Create meshes   
-    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
-    mesh_t* planeMesh = meshCreatorPlane(1000, 1.3); 
-    
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.0);   
+    mesh_t* planeMesh = meshCreatorOneTile(1000.0f);
+
     //Create models
     terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
     waterModel = createModel(planeMesh, waterShader, waterTexture);  
-  
+    waterModel->textureCount = 2;
+    bindShader(waterShader);
+    setUniform1i(waterShader, "reflectionTexture", 0);
+    setUniform1i(waterShader, "refractionTexture", 1);
+    unbindShader();
+
     //Create sprite to test fbo rendering
     fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
     fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
@@ -127,43 +132,24 @@ void wrathGLPerFrame()
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
 
-        //Render water textures onto sprites (for test purposes)
-        {
-            //Render terrain to reflect framebuffer  
-            GLCall(glEnable(GL_CLIP_DISTANCE0)); 
-            bindWaterReflectFramebuffer();    
-            GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
-            GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-            bindShader(resourceManagerGetShader("terrainShader"));
-            setUniformVec4f(resourceManagerGetShader("terrainShader"), "clippingPlane", (vec4){0.0f, 1.0f, 0.0f, -0.01f});
-            float distance = 2 * (camera->position[1] - 0.01f);
-            camera->position[1] -= distance;
-            camera->pitch = -camera->pitch;
-            renderModel(terrainModel);
-            camera->position[1] += distance;
-            camera->pitch = -camera->pitch;
-            fboTestSprite->texture = reflectionTexture; 
-            translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 20.0f}); 
-            unbindFrameBuffer();
-            renderSprite(fboTestSprite); 
-
-            //Render terrain to refract framebuffer  
-            GLCall(glEnable(GL_CLIP_DISTANCE0)); 
-            bindWaterRefractFramebuffer();    
-            GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
-            GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-            bindShader(resourceManagerGetShader("terrainShader"));
-            setUniformVec4f(resourceManagerGetShader("terrainShader"), "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.01f});
-            renderModel(terrainModel);
-            fboTestSprite->texture = refractionTexture;  
-            translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 240.0f});      
-            unbindFrameBuffer();
-            renderSprite(fboTestSprite); 
-        }
-
-        //Render scene
+        // -- Render scene to reflection and refraction fbos
+        GLCall(glEnable(GL_CLIP_DISTANCE0)); 
+        renderToReflectFramebuffer(camera, terrainModel, resourceManagerGetShader("terrainShader"));
+        renderToRefractFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         GLCall(glDisable(GL_CLIP_DISTANCE0)); //Doesn't work on every graphics driver
+
+        // -- Render to test sprites
+        translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 20.0f}); 
+        fboTestSprite->texture = reflectionTexture; 
+        renderSprite(fboTestSprite);        
+        translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 240.0f});  
+        fboTestSprite->texture = refractionTexture;      
+        renderSprite(fboTestSprite); 
+
+        // -- Render scene        
         renderModel(terrainModel);
+        waterModel->textures[0] = reflectionTexture;
+        waterModel->textures[1] = refractionTexture;
         renderModel(waterModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));  
 

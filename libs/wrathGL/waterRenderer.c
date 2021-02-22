@@ -35,6 +35,35 @@ void bindWaterRefractFramebuffer()
     bindFrameBuffer(refractionFBO, REFRACTION_WIDTH, REFRACTION_HEIGHT);
 }
 
+void renderToReflectFramebuffer(camera_t* camera, model_t* terrain, unsigned int terrainShader)
+{
+    bindWaterReflectFramebuffer();    
+    GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    bindShader(terrainShader);    
+    setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, 1.0f, 0.0f, -0.01f});
+    float distance = 2 * (camera->position[1] + 0.01f);
+    camera->position[1] -= distance;
+    camera->pitch = -camera->pitch;
+    cameraUpdate(camera);
+    renderModel(terrain);
+    camera->position[1] += distance;
+    camera->pitch = -camera->pitch;    
+    cameraUpdate(camera);
+    unbindFrameBuffer();
+}
+
+void renderToRefractFramebuffer(model_t* terrain, unsigned int terrainShader)
+{
+    bindWaterRefractFramebuffer();    
+    GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
+    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    bindShader(terrainShader);
+    setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.01f});
+    renderModel(terrain);    
+    unbindFrameBuffer();
+}
+
 void cleanUpWaterRenderer()
 {
     deleteFrameBuffer(reflectionFBO);

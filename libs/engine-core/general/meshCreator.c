@@ -101,7 +101,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
             float xPos = (float)i;            
             float zPos = (float)j;
             //float yPos = getNoisePseudoRandom(xPos, zPos, 0.02, 10.0f);
-            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f) - 90.0f;
+            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f) - 120.0f;
 
             //Save vertices
             if(vertexIndex + 2 < mesh->verticeCount)
@@ -147,7 +147,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
             //Save colors and corresponding texture indices
             if(colorIndex + 2 < mesh->colorCount)
             {
-                if(yPos > 110.0f)                               //White
+                if(yPos > 80.0f)                               //White
                 {
                     mesh->colors[colorIndex] = 1.0f;
                     mesh->colors[colorIndex + 1] = 1.0f;
@@ -162,11 +162,11 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                         texSamplerIndex++;
                     }
                 }
-                else if(yPos > 40.0f && yPos < 110.0f)         //Grey -> gradient
+                else if(yPos > 40.0f && yPos < 80.0f)         //Grey -> gradient
                 {
-                    mesh->colors[colorIndex] = -0.6 + ((yPos + 90.0f) / 160.0f);
-                    mesh->colors[colorIndex + 1] = -0.6 + ((yPos + 90.0f) / 160.0f);
-                    mesh->colors[colorIndex + 2] = -0.6 + ((yPos + 90.0f) / 160.0f);
+                    mesh->colors[colorIndex] = -0.6 + ((yPos + 120.0f) / 160.0f);
+                    mesh->colors[colorIndex + 1] = -0.6 + ((yPos + 120.0f) / 160.0f);
+                    mesh->colors[colorIndex + 2] = -0.6 + ((yPos + 120.0f) / 160.0f);
 
                     colorIndex += 3;
 
@@ -178,9 +178,9 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                 }
                 else if(yPos > 10.0f && yPos < 40.0f)         //Green -> gradient
                 {
-                    mesh->colors[colorIndex] = -0.4 + ((yPos + 90.0f) / 160.0f);
-                    mesh->colors[colorIndex + 1] = -0.2 + ((yPos + 90.0f) / 145.0f);
-                    mesh->colors[colorIndex + 2] = -0.6 + ((yPos + 90.0f) / 145.0f);
+                    mesh->colors[colorIndex] = -0.4 + ((yPos + 120.0f) / 160.0f);
+                    mesh->colors[colorIndex + 1] = -0.2 + ((yPos + 120.0f) / 145.0f);
+                    mesh->colors[colorIndex + 2] = -0.6 + ((yPos + 120.0f) / 145.0f);
 
                     colorIndex += 3;
 
@@ -297,7 +297,7 @@ mesh_t* meshCreatorPlane(unsigned int size, float tileSize)
     return mesh;
 }
 
-mesh_t* meshCreatorOneTile()
+mesh_t* meshCreatorOneTile(float size)
 {
     //Amount of vertices, texture coordinates and indices
     unsigned int vAmount = 4, tAmount = 4, iAmount = 6;
@@ -309,9 +309,9 @@ mesh_t* meshCreatorOneTile()
     float vertices[] =
     {  
         0.0f, 0.0f, 0.0f,
-        20.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 20.0f,
-        20.0f, 0.0f, 20.0f
+        size, 0.0f, 0.0f,
+        0.0f, 0.0f, size,
+        size, 0.0f, size
     };
 
     float texCoords[] = 
@@ -330,9 +330,9 @@ mesh_t* meshCreatorOneTile()
 
     float colors[] =
     { 
-        1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f,
         1.0f, 1.0f, 1.0f
     };
 
