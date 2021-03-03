@@ -29,12 +29,12 @@
       - AI
    #### WrathGL App            
       - 3D Mesh creation (planes, tiles) (X)
-      - Terrain creation
-         - Vertices
-            - Procedural generated via noise
-         - Colors
-         - Lighting
-      - Water
+      - Terrain creation (X)
+         - Vertices (X)
+            - Procedural generated via noise (X)
+         - Colors (X)
+         - Lighting (X)
+      - Water (X)
       - Models
 
 ### Credits
@@ -70,5 +70,5 @@
    ![Sandboxlevel](Screenshot_SB_006.png)
 
 ### Look of the WrathGL app
-   ![WrathGL_far](Screenshot_WR_006_far.png)
-   ![WrathGL_close](Screenshot_WR_006_close.png)
+   ![WrathGL_far](Screenshot_WR_007_far.png)
+   ![WrathGL_close](Screenshot_WR_007_close.png)

@@ -162,7 +162,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                         texSamplerIndex++;
                     }
                 }
-                else if(yPos > 40.0f && yPos < 80.0f)         //Grey -> gradient
+                else if(yPos > 20.0f && yPos < 80.0f)         //Grey -> gradient
                 {
                     mesh->colors[colorIndex] = -0.6 + ((yPos + 120.0f) / 160.0f);
                     mesh->colors[colorIndex + 1] = -0.6 + ((yPos + 120.0f) / 160.0f);
@@ -176,7 +176,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
                         texSamplerIndex++;
                     }
                 }
-                else if(yPos > 10.0f && yPos < 40.0f)         //Green -> gradient
+                else if(yPos > 5.0f && yPos < 20.0f)         //Green -> gradient
                 {
                     mesh->colors[colorIndex] = -0.4 + ((yPos + 120.0f) / 160.0f);
                     mesh->colors[colorIndex + 1] = -0.2 + ((yPos + 120.0f) / 145.0f);

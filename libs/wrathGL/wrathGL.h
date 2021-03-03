@@ -13,7 +13,7 @@
 
 // --- Variables
 static model_t* terrainModel = NULL, *waterModel = NULL;
-static sprite_t* fboTestSprite = NULL;
+static float moveFactor = 0.0f, waveSpeed = 0.03f;
 
 // --- Functions ---
 void wrathGLInit();

@@ -1,53 +1,39 @@
 #version 330 core 
 
-in vec2 texCoords;
-flat in vec3 color;
-in vec3 fragPos;
-flat in vec3 normal;
+in vec4 clipSpace;
+in vec2 texCoordsOut;
 
 out vec4 fragColor;
 
+uniform sampler2D DuDvMap;
 uniform sampler2D reflectionTexture;
 uniform sampler2D refractionTexture;
+uniform float moveFactor;
 
-uniform vec3 viewPos;
-
-const float ambientStrength = 0.2;
-const float diffuseStrength = 0.85;
-const float specularStrength = 0.3;
-const vec3 lightDirection = vec3(-0.4, -1.0, -0.6);
-const vec3 lightColor = vec3(1.0, 1.0, 1.0);
-const float shininess = 4.0;
-
-vec3 calculateLight()
-{
-    vec3 normal_n = normalize(normal);
-
-    //Ambient
-    vec3 ambient = ambientStrength * lightColor;
-
-    //Diffuse
-    vec3 lightDir = normalize(-lightDirection); 
-    float diff = max(dot(normal_n, lightDir), 0.0);
-    vec3 diffuse = diffuseStrength * diff * lightColor;
-    
-    //Specular
-    vec3 viewDir = normalize(viewPos - fragPos);
-    vec3 reflectDir = reflect(-lightDir, normal_n);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-    vec3 specular = specularStrength * spec * lightColor;
-
-    return (ambient + diffuse + specular);
-}
+const float waveStrength = 0.02;
 
 void main()
 {
-    vec3 light = calculateLight();
-    vec3 result = color * light;
+    //Convert to normalized device space
+    vec2 normalizedDeviceSpace = ((clipSpace.xy / clipSpace.w) / 2.0) + 0.5;
+    vec2 reflectTexCoords = vec2(normalizedDeviceSpace.x, -normalizedDeviceSpace.y);
+    vec2 refractTexCoords = vec2(normalizedDeviceSpace.x, normalizedDeviceSpace.y);
 
-    vec4 reflectColor = texture(reflectionTexture, texCoords);
-    vec4 refractColor = texture(refractionTexture, texCoords);
-    vec4 textures = mix(reflectColor, refractColor, 0.5);
+    //Distort texture coords via DuDv-Map
+    vec2 distortion1 = ((texture(DuDvMap, vec2(texCoordsOut.x + moveFactor, texCoordsOut.y)).rg * 2.0) - 1.0) * waveStrength;
+    vec2 distortion2 = ((texture(DuDvMap, vec2(-texCoordsOut.x + moveFactor, texCoordsOut.y + moveFactor)).rg * 2.0) - 1.0) * waveStrength;
+    vec2 totalDistortion = distortion1 + distortion2;
 
-    fragColor = textures;
+    reflectTexCoords += totalDistortion;
+    reflectTexCoords.x = clamp(reflectTexCoords.x, 0.001, 0.999); //Clamp to prevent wrapping
+    reflectTexCoords.y = clamp(reflectTexCoords.y, -0.999, -0.001);
+    
+    refractTexCoords += totalDistortion;
+    refractTexCoords = clamp(refractTexCoords, 0.001, 0.999); 
+
+    vec4 reflectColor = texture(reflectionTexture, reflectTexCoords);
+    vec4 refractColor = texture(refractionTexture, refractTexCoords);
+
+    vec4 outColor = mix(reflectColor, refractColor, 0.5);
+    fragColor = mix(outColor, vec4(0.0, 0.3, 0.5, 1.0), 0.2);
 }

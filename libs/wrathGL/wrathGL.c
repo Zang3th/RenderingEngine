@@ -6,8 +6,8 @@ void wrathGLLoadResources()
     resourceManagerLoadTexture("dirtTexture", "res/textures/wrathGL/Dirt.jpg"); 
     resourceManagerLoadTexture("grassTexture", "res/textures/wrathGL/Grass.jpg"); 
     resourceManagerLoadTexture("stoneTexture", "res/textures/wrathGL/Stone.jpeg");   
-    resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");     
-    resourceManagerLoadTexture("waterTexture", "res/textures/wrathGL/Water.jpg"); 
+    resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");    
+    resourceManagerLoadTexture("DuDvMap", "res/textures/wrathGL/DuDvMap2.png");
 
     //Load shaders
     resourceManagerLoadShader("terrainShader", "res/shader/wrathGL/terrain_vs.glsl", "res/shader/wrathGL/terrain_fs.glsl");
@@ -15,9 +15,6 @@ void wrathGLLoadResources()
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
     resourceManagerLoadShader("standardShader", "res/shader/sandbox/standard_vs.glsl", "res/shader/sandbox/standard_fs.glsl");
-
-    //Load sprite data
-    resourceManagerLoadSpriteData();  
 }
 
 void wrathGLAddText()
@@ -74,11 +71,10 @@ void wrathGLInit()
     unsigned int grassTexture = resourceManagerGetTexture("grassTexture");
     unsigned int stoneTexture = resourceManagerGetTexture("stoneTexture");
     unsigned int snowTexture = resourceManagerGetTexture("snowTexture");
-    unsigned int waterTexture = resourceManagerGetTexture("waterTexture");
+    unsigned int DuDvMap = resourceManagerGetTexture("DuDvMap");
     unsigned int terrainShader = resourceManagerGetShader("terrainShader");
     unsigned int waterShader = resourceManagerGetShader("waterShader");
     unsigned int spriteShader = resourceManagerGetShader("standardShader");
-    unsigned int spriteData = resourceManagerGetSpriteData();
 
     //Create meshes   
     mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.0);   
@@ -86,16 +82,13 @@ void wrathGLInit()
 
     //Create models
     terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
-    waterModel = createModel(planeMesh, waterShader, waterTexture);  
-    waterModel->textureCount = 2;
+    waterModel = createModel(planeMesh, waterShader, DuDvMap);  
+    waterModel->textureCount = 3;
     bindShader(waterShader);
-    setUniform1i(waterShader, "reflectionTexture", 0);
-    setUniform1i(waterShader, "refractionTexture", 1);
+    setUniform1i(waterShader, "DuDvMap", 0);
+    setUniform1i(waterShader, "reflectionTexture", 1);
+    setUniform1i(waterShader, "refractionTexture", 2);
     unbindShader();
-
-    //Create sprite to test fbo rendering
-    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
-    fboTestSprite = createSprite(spriteData, waterTexture, spriteShader, (vec2){WIDTH-420.0f, 20.0f}, (vec2){400.0f, 200.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -137,19 +130,16 @@ void wrathGLPerFrame()
         renderToReflectFramebuffer(camera, terrainModel, resourceManagerGetShader("terrainShader"));
         renderToRefractFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         GLCall(glDisable(GL_CLIP_DISTANCE0)); //Doesn't work on every graphics driver
-
-        // -- Render to test sprites
-        translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 20.0f}); 
-        fboTestSprite->texture = reflectionTexture; 
-        renderSprite(fboTestSprite);        
-        translateSprite(fboTestSprite, (vec2){WIDTH-420.0f, 240.0f});  
-        fboTestSprite->texture = refractionTexture;      
-        renderSprite(fboTestSprite); 
-
+      
         // -- Render scene        
         renderModel(terrainModel);
-        waterModel->textures[0] = reflectionTexture;
-        waterModel->textures[1] = refractionTexture;
+        waterModel->textures[1] = reflectionTexture;
+        waterModel->textures[2] = refractionTexture;
+        bindShader(waterModel->shader);
+        moveFactor += waveSpeed * (deltaTime);
+        moveFactor = fmod(moveFactor, 1);
+        setUniform1f(waterModel->shader, "moveFactor", moveFactor);
+        unbindShader();
         renderModel(waterModel);
         GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));  
 
@@ -170,7 +160,6 @@ void wrathGLCleanUp()
     //Clean up models and sprites
     deleteModel(terrainModel);
     deleteModel(waterModel);
-    deleteSprite(fboTestSprite);
 
     //Clean up modules
     monitoringCleanUp();
