@@ -79,7 +79,7 @@ void windowInit(char* title)
     GLCall(glEnable(GL_BLEND)); //Enable blending to render transparent textures
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-    camera = cameraCreate((vec3){-311.0f, 1303.0f, 636.0f}, -1.0f, -55.0f); //Create camera
+    camera = cameraCreate((vec3){-293.0f, 1275.0f, 607.0f}, 0.0f, -57.0f); //Create camera
 
     windowTitleBuffer = malloc(sizeof(char) * 100);
     drawcallBuffer = malloc(sizeof(char) * 3);
