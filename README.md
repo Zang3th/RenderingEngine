@@ -31,11 +31,14 @@
       - 3D Mesh creation (planes, tiles) (X)
       - Terrain creation (X)
          - Vertices (X)
-            - Procedural generated via noise (X)
+            - Procedural generated with noise-function (X)
+            - Dynamic, changeable and controllable
+            - Backgroundthread calculates new terrain
+            - Renderthread renders new terrain
          - Colors (X)
+            - Dynamic, based on height (X)
          - Lighting (X)
       - Water (X)
-      - Models
 
 ### Credits
    - [SDL2](https://www.libsdl.org/index.php)
