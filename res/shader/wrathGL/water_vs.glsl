@@ -5,7 +5,6 @@ layout(location = 1) in vec2 texCoordsIn;
 layout(location = 2) in vec3 colorIn;
 layout(location = 3) in vec3 normalIn;
 
-out vec3 normal;
 out vec3 toCameraVector;
 out vec3 fragPos;
 out vec2 texCoords;
@@ -18,7 +17,6 @@ uniform vec3 cameraPosition;
 
 void main()
 {
-    normal = normalIn;
     vec4 worldPosition = model * vec4(posIn, 1.0f);
     toCameraVector = cameraPosition - worldPosition.xyz;
     fragPos = vec3(worldPosition);

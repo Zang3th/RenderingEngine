@@ -86,12 +86,13 @@ void wrathGLInit()
     terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
     waterModel = createModel(planeMesh, waterShader, DuDvMap);  
     waterModel->textures[1] = waterNormalMap;
-    waterModel->textureCount = 4;
+    waterModel->textureCount = 5;
     bindShader(waterShader);
     setUniform1i(waterShader, "DuDvMap", 0);
     setUniform1i(waterShader, "waterNormalMap", 1);
     setUniform1i(waterShader, "reflectionTexture", 2);
     setUniform1i(waterShader, "refractionTexture", 3);
+    setUniform1i(waterShader, "depthMap", 4);
     unbindShader();
 
     // --- Init the whole text rendering system (batch and simple text renderer)
@@ -139,6 +140,7 @@ void wrathGLPerFrame()
         renderModel(terrainModel);
         waterModel->textures[2] = reflectionTexture;
         waterModel->textures[3] = refractionTexture;
+        waterModel->textures[4] = refractionDepthTexture;
         bindShader(waterModel->shader);
         moveFactor += waveSpeed * (deltaTime);
         moveFactor = fmod(moveFactor, 1);

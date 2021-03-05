@@ -9,7 +9,7 @@
 #include "mesh.h"
 #include <memory.h>
 
-#define MAX_MODEL_TEXTURES 4
+#define MAX_MODEL_TEXTURES 16
 
 // --- Variables ---
 typedef struct{

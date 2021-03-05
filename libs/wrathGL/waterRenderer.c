@@ -59,7 +59,7 @@ void renderToRefractFramebuffer(model_t* terrain, unsigned int terrainShader)
     GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     bindShader(terrainShader);
-    setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.01f});
+    setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.5f});
     renderModel(terrain);    
     unbindFrameBuffer();
 }

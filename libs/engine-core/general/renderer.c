@@ -9,7 +9,7 @@ extern unsigned int refractionTexture;
 
 void rendererInit(camera_t* camera)
 {
-    glm_perspective(glm_rad(45.0f), (float)WIDTH / (float)HEIGHT, 0.1, 10000.0f, perspectiveProj); 
+    glm_perspective(glm_rad(45.0f), (float)WIDTH / (float)HEIGHT, 0.9f, 5000.0f, perspectiveProj); 
     glm_ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f, orthoProj);
 
     rendererCamera = camera;
