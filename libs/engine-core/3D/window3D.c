@@ -80,7 +80,7 @@ void windowInit(char* title)
     GLCall(glEnable(GL_BLEND)); //Enable blending to render transparent textures
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-    camera = cameraCreate((vec3){-293.0f, 1275.0f, 607.0f}, 0.0f, -57.0f); //Create camera
+    camera = cameraCreate((vec3){-331.0f, 1331.0f, 801.0f}, 0.0f, -55.0f); //Create camera
 
     windowTitleBuffer = malloc(sizeof(char) * 100);
     drawcallBuffer = malloc(sizeof(char) * 3);
@@ -139,18 +139,18 @@ void windowProcessEvents()
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)  
     {
-        camera->yaw = -17.0f;
-        camera->pitch = -9.0f;
-        vec3 newPos = {228.0f, 180.0f, 455.0f};
+        camera->yaw = 33.0f;
+        camera->pitch = -14.0f;
+        vec3 newPos = {93.0f, 162.0f, 370.0f};
         glm_vec3_copy(newPos, camera->position);       
         cameraUpdate(camera); 
     }    
 
     if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)  
     {
-        camera->yaw = -1.0f;
+        camera->yaw = 0.0f;
         camera->pitch = -55.0f;
-        vec3 newPos = {-311.0f, 1303.0f, 636.0f};
+        vec3 newPos = {-331.0f, 1331.0f, 801.0f};
         glm_vec3_copy(newPos, camera->position);       
         cameraUpdate(camera); 
     }      

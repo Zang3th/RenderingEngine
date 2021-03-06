@@ -24,17 +24,20 @@ vec3 calculateLight(vec4 texture)
 
     //Ambient
     vec3 ambient = ambientStrength * lightColor * texture.rgb;
+    //vec3 ambient = ambientStrength * lightColor;
 
     //Diffuse
     vec3 lightDir = normalize(-lightDirection); 
     float diff = max(dot(normal_n, lightDir), 0.0);
     vec3 diffuse = diffuseStrength * diff * lightColor * texture.rgb;
-    
+    //vec3 diffuse = diffuseStrength * diff * lightColor;
+
     //Specular
     vec3 viewDir = normalize(viewPos - fragPos);
     vec3 reflectDir = reflect(-lightDir, normal_n);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
     vec3 specular = specularStrength * spec * lightColor * texture.rgb;
+    //vec3 specular = specularStrength * spec * lightColor;
 
     return (ambient + diffuse + specular);
 }

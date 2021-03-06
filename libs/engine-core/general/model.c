@@ -79,23 +79,22 @@ unsigned int createMeshVAO(mesh_t* mesh)
     return vao;
 }
 
-model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int grassTex, unsigned int stoneTex, unsigned int snowTex)
+model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int stoneTex, unsigned int snowTex)
 {
     //Create model
     model_t* model = malloc(sizeof(model_t));
     model->vao = createTerrainMeshVAO(mesh);
     model->shader = shader;
     model->textures[0] = dirtTex;
-    model->textures[1] = grassTex;
-    model->textures[2] = stoneTex;
-    model->textures[3] = snowTex;
-    model->textureCount = 4;
+    model->textures[1] = stoneTex;
+    model->textures[2] = snowTex;
+    model->textureCount = 3;
     model->verticesToRender = mesh->indiceCount;
 
     //Create uniform texture array for indexing textures
     bindShader(model->shader); 
-    int texSlotSamplers[4] = {0, 1, 2, 3};
-    setUniform1iv(model->shader, "textureArray", texSlotSamplers, 4);
+    int texSlotSamplers[4] = {0, 1, 2};
+    setUniform1iv(model->shader, "textureArray", texSlotSamplers, 3);
 
     //Create model matrix
     mat4 modelMatrix;

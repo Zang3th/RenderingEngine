@@ -77,5 +77,5 @@ float getNoisePerlin2D(float x, float z, float roughness, unsigned int octaves, 
         za *= 2;
     }
     
-    return fin/div;
+    return fin/div - 120.0f;
 }

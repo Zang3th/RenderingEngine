@@ -22,7 +22,7 @@ typedef struct{
 } model_t;
 
 // --- Functions ---
-model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int grassTex, unsigned int stoneTex, unsigned int snowTex);
+model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int stoneTex, unsigned int snowTex);
 model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int texture);
 void deleteModel(model_t* model);
 

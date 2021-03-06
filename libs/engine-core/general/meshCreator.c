@@ -101,7 +101,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
             float xPos = (float)i;            
             float zPos = (float)j;
             //float yPos = getNoisePseudoRandom(xPos, zPos, 0.02, 10.0f);
-            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f) - 120.0f;
+            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f);
 
             //Save vertices
             if(vertexIndex + 2 < mesh->verticeCount)
@@ -157,12 +157,11 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 
                     if(texSamplerIndex < mesh->texIndexCount)   //Snow texture
                     {
-                        unsigned int texIndex = 3;
-                        mesh->textureIndex[texSamplerIndex] = (float)texIndex;
+                        mesh->textureIndex[texSamplerIndex] = 2.0f;
                         texSamplerIndex++;
                     }
                 }
-                else if(yPos > 20.0f && yPos < 80.0f)         //Grey -> gradient
+                else if(yPos > 4.0f && yPos < 80.0f)         //Grey -> gradient
                 {
                     mesh->colors[colorIndex] = -0.6 + ((yPos + 120.0f) / 160.0f);
                     mesh->colors[colorIndex + 1] = -0.6 + ((yPos + 120.0f) / 160.0f);
@@ -172,24 +171,10 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
 
                     if(texSamplerIndex < mesh->texIndexCount)   //Stone texture
                     {
-                        mesh->textureIndex[texSamplerIndex] = 2.0f;
-                        texSamplerIndex++;
-                    }
-                }
-                else if(yPos > 5.0f && yPos < 20.0f)         //Green -> gradient
-                {
-                    mesh->colors[colorIndex] = -0.4 + ((yPos + 120.0f) / 160.0f);
-                    mesh->colors[colorIndex + 1] = -0.2 + ((yPos + 120.0f) / 145.0f);
-                    mesh->colors[colorIndex + 2] = -0.6 + ((yPos + 120.0f) / 145.0f);
-
-                    colorIndex += 3;
-
-                    if(texSamplerIndex < mesh->texIndexCount)   //Grass texture
-                    {
                         mesh->textureIndex[texSamplerIndex] = 1.0f;
                         texSamplerIndex++;
                     }
-                }     
+                }   
                 else                                            //Brown
                 {
                     mesh->colors[colorIndex] = 0.44f;

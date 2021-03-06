@@ -4,7 +4,6 @@ void wrathGLLoadResources()
 {
     //Load textures
     resourceManagerLoadTexture("dirtTexture", "res/textures/wrathGL/Dirt.jpg"); 
-    resourceManagerLoadTexture("grassTexture", "res/textures/wrathGL/Grass.jpg"); 
     resourceManagerLoadTexture("stoneTexture", "res/textures/wrathGL/Stone.jpeg");   
     resourceManagerLoadTexture("snowTexture", "res/textures/wrathGL/Snow.jpeg");    
     resourceManagerLoadTexture("DuDvMap", "res/textures/wrathGL/DuDvMap.png");
@@ -15,7 +14,6 @@ void wrathGLLoadResources()
     resourceManagerLoadShader("waterShader", "res/shader/wrathGL/water_vs.glsl", "res/shader/wrathGL/water_fs.glsl");
     resourceManagerLoadShader("batchTextShader", "res/shader/sandbox/batchText_vs.glsl", "res/shader/sandbox/batchText_fs.glsl");
     resourceManagerLoadShader("simpleTextShader", "res/shader/sandbox/simpleText_vs.glsl", "res/shader/sandbox/simpleText_fs.glsl");
-    resourceManagerLoadShader("standardShader", "res/shader/sandbox/standard_vs.glsl", "res/shader/sandbox/standard_fs.glsl");
 }
 
 void wrathGLAddText()
@@ -69,21 +67,19 @@ void wrathGLInit()
 
     //Get resources
     unsigned int dirtTexture = resourceManagerGetTexture("dirtTexture");
-    unsigned int grassTexture = resourceManagerGetTexture("grassTexture");
     unsigned int stoneTexture = resourceManagerGetTexture("stoneTexture");
     unsigned int snowTexture = resourceManagerGetTexture("snowTexture");
     unsigned int DuDvMap = resourceManagerGetTexture("DuDvMap");
     unsigned int waterNormalMap = resourceManagerGetTexture("waterNormalMap");
     unsigned int terrainShader = resourceManagerGetShader("terrainShader");
     unsigned int waterShader = resourceManagerGetShader("waterShader");
-    unsigned int spriteShader = resourceManagerGetShader("standardShader");
 
     //Create meshes   
-    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.3);   
-    mesh_t* planeMesh = meshCreatorOneTile(1300.0f);
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6);   
+    mesh_t* planeMesh = meshCreatorOneTile(1600.0f);
 
     //Create models
-    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, grassTexture, stoneTexture, snowTexture);
+    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, stoneTexture, snowTexture);
     waterModel = createModel(planeMesh, waterShader, DuDvMap);  
     waterModel->textures[1] = waterNormalMap;
     waterModel->textureCount = 5;
