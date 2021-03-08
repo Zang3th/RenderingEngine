@@ -79,51 +79,43 @@ unsigned int createMeshVAO(mesh_t* mesh)
     return vao;
 }
 
-model_t* createTerrainModel(mesh_t* mesh, unsigned int shader, unsigned int dirtTex, unsigned int stoneTex, unsigned int snowTex)
+model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, unsigned int texCount)
 {
-    //Create model
-    model_t* model = malloc(sizeof(model_t));
-    model->vao = createTerrainMeshVAO(mesh);
-    model->shader = shader;
-    model->textures[0] = dirtTex;
-    model->textures[1] = stoneTex;
-    model->textures[2] = snowTex;
-    model->textureCount = 3;
-    model->verticesToRender = mesh->indiceCount;
+    if(texCount < MAX_MODEL_TEXTURES)
+    {
+        //Create model
+        model_t* model = malloc(sizeof(model_t));
+        model->vao = createTerrainMeshVAO(mesh);
+        model->verticesToRender = mesh->indiceCount;
+        model->shader = shader;
+        model->textureCount = texCount;
 
-    //Create uniform texture array for indexing textures
-    bindShader(model->shader); 
-    int texSlotSamplers[4] = {0, 1, 2};
-    setUniform1iv(model->shader, "textureArray", texSlotSamplers, 3);
+        //Copy textures
+        int texSlotSamplers[texCount];
 
-    //Create model matrix
-    mat4 modelMatrix;
-    glm_mat4_identity(modelMatrix);
-    memcpy(&(model->modelMatrix[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
+        for(int i = 0; i < texCount; i++)
+        {
+            texSlotSamplers[i] = i;  
+            model->textures[i] = textures[i];    
+        }
+        
+        //Create uniform texture array for indexing textures
+        bindShader(model->shader); 
+        setUniform1iv(model->shader, "textureArray", texSlotSamplers, texCount);
+        unbindShader();
 
-    deleteMesh(mesh);
+        //Create model matrix
+        mat4 modelMatrix;
+        glm_mat4_identity(modelMatrix);
+        memcpy(&(model->modelMatrix[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
 
-    return model;
-}
+        deleteMesh(mesh);
 
-model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int texture)
-{
-    //Create model
-    model_t* model = malloc(sizeof(model_t));
-    model->vao = createMeshVAO(mesh);
-    model->textures[0] = texture;
-    model->textureCount = 1;
-    model->shader = shader;
-    model->verticesToRender = mesh->indiceCount;
+        return model;
+    }
 
-    //Create model matrix
-    mat4 modelMatrix;
-    glm_mat4_identity(modelMatrix);
-    memcpy(&(model->modelMatrix[0][0]), &(modelMatrix[0][0]), sizeof(float) * 16);
-
-    deleteMesh(mesh);
-
-    return model;
+    log_error("Too many textures for this model!");
+    return NULL;
 }
 
 void deleteModel(model_t* model)

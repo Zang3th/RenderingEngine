@@ -13,7 +13,6 @@
 
 // --- Variables
 static model_t* terrainModel = NULL, *waterModel = NULL;
-static float moveFactor = 0.0f, waveSpeed = 0.02f;
 
 // --- Functions ---
 void wrathGLInit();

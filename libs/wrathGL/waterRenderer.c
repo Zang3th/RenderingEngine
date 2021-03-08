@@ -19,10 +19,12 @@ void initRefractionFBO()
     unbindFrameBuffer();
 }
 
-void initWaterRenderer()
+void initWaterRenderer(camera_t* camera)
 {
     initReflectionFBO();
     initRefractionFBO();
+
+    rendererCamera = camera;
 }
 
 void bindWaterReflectFramebuffer()
@@ -35,21 +37,21 @@ void bindWaterRefractFramebuffer()
     bindFrameBuffer(refractionFBO, REFRACTION_WIDTH, REFRACTION_HEIGHT);
 }
 
-void renderToReflectFramebuffer(camera_t* camera, model_t* terrain, unsigned int terrainShader)
+void renderToReflectFramebuffer(model_t* terrain, unsigned int terrainShader)
 {
     bindWaterReflectFramebuffer();    
     GLCall(glClearColor(0.2, 0.2, 0.2, 1.0));
     GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
     bindShader(terrainShader);    
     setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, 1.0f, 0.0f, -0.01f});
-    float distance = 2 * (camera->position[1] + 0.01f);
-    camera->position[1] -= distance;
-    camera->pitch = -camera->pitch;
-    cameraUpdate(camera);
+    float distance = 2 * (rendererCamera->position[1] + 0.01f);
+    rendererCamera->position[1] -= distance;
+    rendererCamera->pitch = -rendererCamera->pitch;
+    cameraUpdate(rendererCamera);
     renderModel(terrain);
-    camera->position[1] += distance;
-    camera->pitch = -camera->pitch;    
-    cameraUpdate(camera);
+    rendererCamera->position[1] += distance;
+    rendererCamera->pitch = -rendererCamera->pitch;    
+    cameraUpdate(rendererCamera);
     unbindFrameBuffer();
 }
 
@@ -62,6 +64,17 @@ void renderToRefractFramebuffer(model_t* terrain, unsigned int terrainShader)
     setUniformVec4f(terrainShader, "clippingPlane", (vec4){0.0f, -1.0f, 0.0f, 0.5f});
     renderModel(terrain);    
     unbindFrameBuffer();
+}
+
+void renderWater(model_t* water, float dt)
+{
+    bindShader(water->shader);
+    moveFactor += waveSpeed * (dt);
+    moveFactor = fmod(moveFactor, 1);
+    setUniform1f(water->shader, "moveFactor", moveFactor);
+    setUniformVec3f(water->shader, "cameraPosition", (float*)rendererCamera->position);
+    unbindShader();
+    renderModel(water);    
 }
 
 void cleanUpWaterRenderer()

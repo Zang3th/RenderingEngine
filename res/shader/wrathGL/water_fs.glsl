@@ -7,13 +7,16 @@ in vec2 texCoords;
 
 out vec4 fragColor;
 
-uniform sampler2D DuDvMap;
-uniform sampler2D waterNormalMap;
-uniform sampler2D reflectionTexture;
-uniform sampler2D refractionTexture;
-uniform sampler2D depthMap;
 uniform float moveFactor;
 uniform vec3 viewPos;
+uniform sampler2D textureArray[5];
+/*  
+    textureArray[0] -> DuDvMap
+    textureArray[1] -> waterNormalMap
+    textureArray[2] -> reflectionTexture
+    textureArray[3] -> refractionTexture  
+    textureArray[4] -> depthMap   
+*/
 
 const float waveStrength = 0.01;
 const float specularStrength = 0.15;
@@ -31,7 +34,7 @@ void main()
     vec2 refractTexCoords = vec2(normalizedDeviceSpace.x, normalizedDeviceSpace.y);
 
     //Sample from refraction depth texture
-    float depth = texture(depthMap, refractTexCoords).r;
+    float depth = texture(textureArray[4], refractTexCoords).r;
 
     //Distance of the camera to the floor
     float floorDistance = (2.0 * nearPlane * farPlane) / (farPlane + nearPlane - (2.0 * depth - 1.0) * (farPlane - nearPlane));
@@ -43,9 +46,9 @@ void main()
     float waterDepth = floorDistance - waterDistance;
 
     //Distort texture coords via DuDv-Map
-    vec2 distortedTexCoords = texture(DuDvMap, vec2(texCoords.x + moveFactor, texCoords.y)).rg * 0.1;
+    vec2 distortedTexCoords = texture(textureArray[0], vec2(texCoords.x + moveFactor, texCoords.y)).rg * 0.1;
     distortedTexCoords = texCoords + vec2(distortedTexCoords.x, distortedTexCoords.y + moveFactor);
-    vec2 totalDistortion = (texture(DuDvMap, distortedTexCoords).rg * 2.0 - 1.0) * waveStrength * clamp(waterDepth / 20.0, 0.0, 1.0);
+    vec2 totalDistortion = (texture(textureArray[0], distortedTexCoords).rg * 2.0 - 1.0) * waveStrength * clamp(waterDepth / 20.0, 0.0, 1.0);
 
     reflectTexCoords += totalDistortion;
     reflectTexCoords.x = clamp(reflectTexCoords.x, 0.001, 0.999); //Clamp to prevent wrapping
@@ -55,11 +58,11 @@ void main()
     refractTexCoords = clamp(refractTexCoords, 0.001, 0.999); 
 
     //Sample from reflect/refract textures at distorted coordinates
-    vec4 reflectColor = texture(reflectionTexture, reflectTexCoords);
-    vec4 refractColor = texture(refractionTexture, refractTexCoords);
+    vec4 reflectColor = texture(textureArray[2], reflectTexCoords);
+    vec4 refractColor = texture(textureArray[3], refractTexCoords);
 
     //Sample from normal map
-    vec4 normalMapColor = texture(waterNormalMap, distortedTexCoords);
+    vec4 normalMapColor = texture(textureArray[1], distortedTexCoords);
     vec3 mappedNormal = vec3(normalMapColor.r * 2.0 - 1.0, normalMapColor.b * 1.5, normalMapColor.g * 2.0 - 1.0);
     mappedNormal = normalize(mappedNormal);
 

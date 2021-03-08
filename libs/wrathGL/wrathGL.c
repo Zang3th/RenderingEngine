@@ -60,7 +60,7 @@ void wrathGLInit()
     //Init modules
     windowInit("RenderingEngine - WrathGL");   
     rendererInit(camera);
-    initWaterRenderer();
+    initWaterRenderer(camera);
 
     //Load resources
     wrathGLLoadResources();
@@ -71,29 +71,26 @@ void wrathGLInit()
     unsigned int snowTexture = resourceManagerGetTexture("snowTexture");
     unsigned int DuDvMap = resourceManagerGetTexture("DuDvMap");
     unsigned int waterNormalMap = resourceManagerGetTexture("waterNormalMap");
+
     unsigned int terrainShader = resourceManagerGetShader("terrainShader");
     unsigned int waterShader = resourceManagerGetShader("waterShader");
+    unsigned int batchTextShader = resourceManagerGetShader("batchTextShader");
+    unsigned int simpleTextShader = resourceManagerGetShader("simpleTextShader");
 
     //Create meshes   
-    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6);   
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6f);   
     mesh_t* planeMesh = meshCreatorOneTile(1600.0f);
 
     //Create models
-    terrainModel = createTerrainModel(terrainMesh, terrainShader, dirtTexture, stoneTexture, snowTexture);
-    waterModel = createModel(planeMesh, waterShader, DuDvMap);  
-    waterModel->textures[1] = waterNormalMap;
-    waterModel->textureCount = 5;
-    bindShader(waterShader);
-    setUniform1i(waterShader, "DuDvMap", 0);
-    setUniform1i(waterShader, "waterNormalMap", 1);
-    setUniform1i(waterShader, "reflectionTexture", 2);
-    setUniform1i(waterShader, "refractionTexture", 3);
-    setUniform1i(waterShader, "depthMap", 4);
-    unbindShader();
+    unsigned int terrainTextures[3] = {dirtTexture, stoneTexture, snowTexture};
+    terrainModel = createModel(terrainMesh, terrainShader, terrainTextures, 3);
+    
+    unsigned int waterTextures[5] = {DuDvMap, waterNormalMap, reflectionTexture, refractionTexture, refractionDepthTexture};
+    waterModel = createModel(planeMesh, waterShader, waterTextures, 5); 
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
-        textRenderingSystemsInit(resourceManagerGetShader("batchTextShader"), resourceManagerGetShader("simpleTextShader"));
+        textRenderingSystemsInit(batchTextShader, simpleTextShader);
         monitoringInit();  
 
         //Add static text
@@ -122,29 +119,23 @@ void wrathGLPerFrame()
         drawcalls = 0; 
         vertices = 0;
 
-        // -- Render models
+        // -- Activate wireframe rendering if enabled
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
 
-        // -- Render scene to reflection and refraction fbos
+        // -- Render scene to reflection and refraction framebuffers
         GLCall(glEnable(GL_CLIP_DISTANCE0)); 
-        renderToReflectFramebuffer(camera, terrainModel, resourceManagerGetShader("terrainShader"));
+        renderToReflectFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         renderToRefractFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         GLCall(glDisable(GL_CLIP_DISTANCE0)); //Doesn't work on every graphics driver
       
         // -- Render scene        
-        renderModel(terrainModel);
-        waterModel->textures[2] = reflectionTexture;
-        waterModel->textures[3] = refractionTexture;
-        waterModel->textures[4] = refractionDepthTexture;
-        bindShader(waterModel->shader);
-        moveFactor += waveSpeed * (deltaTime);
-        moveFactor = fmod(moveFactor, 1);
-        setUniform1f(waterModel->shader, "moveFactor", moveFactor);
-        setUniformVec3f(waterModel->shader, "cameraPosition", (float*)camera->position);
-        unbindShader();
-        renderModel(waterModel);
-        GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));  
+        renderModel(terrainModel);   
+        renderWater(waterModel, deltaTime);
+
+        // -- Deactivate wireframe rendering if enabled
+        if(wireframeMode == true){
+             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_FILL));}        
 
         // -- Render text
         GLCall(glDisable(GL_DEPTH_TEST));
