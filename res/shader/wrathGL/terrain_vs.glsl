@@ -9,7 +9,7 @@ layout(location = 4) in float texIndexIn;
 flat out vec3 color;
 out vec2 texCoords;
 flat out float texIndex;
-out vec3 fragPos;
+flat out vec3 fragPos;
 flat out vec3 normal;
 
 uniform mat4 model;

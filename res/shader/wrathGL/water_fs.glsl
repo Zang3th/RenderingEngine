@@ -19,10 +19,10 @@ uniform sampler2D textureArray[5];
 */
 
 const float waveStrength = 0.01;
-const float specularStrength = 0.15;
-const vec3 lightDirection = vec3(-0.4, -1.0, -0.6);
+const float specularStrength = 0.3;
+const vec3 lightPos = vec3(150.0, 5000.0, 3500.0);
 const vec3 lightColor = vec3(1.0, 1.0, 1.0);
-const float shininess = 50.0;
+const float shininess = 70.0;
 const float nearPlane = 0.9;
 const float farPlane = 5000.0;
 
@@ -72,9 +72,11 @@ void main()
     refractiveFactor = clamp(refractiveFactor, 0.0, 1.0);
    
     //Calculate specular light
+    vec3 lightDir = normalize(lightPos - fragPos); 
     vec3 viewDir = normalize(viewPos - fragPos);
-    vec3 reflectDir = reflect(normalize(lightDirection), mappedNormal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
+    vec3 halfwayDir = normalize(lightDir + viewDir);
+    vec3 reflectDir = reflect(-lightDir, mappedNormal);
+    float spec = pow(max(dot(mappedNormal, halfwayDir), 0.0), shininess);
     vec3 specular = specularStrength * spec * lightColor * clamp(waterDepth * 2.0, 0.0, 1.0);;
 
     vec4 outColor = mix(reflectColor, refractColor, refractiveFactor);
