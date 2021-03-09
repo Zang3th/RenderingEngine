@@ -129,13 +129,7 @@ void windowProcessEvents()
 		cameraProcessKeyboard(camera, UP, deltaTime);
 
 	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-		cameraProcessKeyboard(camera, DOWN, deltaTime);
-
-    if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)  
-        wireframeMode = true;
-
-    if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)  
-        wireframeMode = false;
+		cameraProcessKeyboard(camera, DOWN, deltaTime);   
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)  
     {
@@ -153,7 +147,13 @@ void windowProcessEvents()
         vec3 newPos = {-331.0f, 1331.0f, 801.0f};
         glm_vec3_copy(newPos, camera->position);       
         cameraUpdate(camera); 
-    }      
+    }  
+
+    if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)  
+        wireframeMode = true;
+
+    if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS)  
+        wireframeMode = false;
 }
 
 void windowPrepare()

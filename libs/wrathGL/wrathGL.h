@@ -13,6 +13,7 @@
 
 // --- Variables
 static model_t* terrainModel = NULL, *waterModel = NULL;
+static sprite_t* keyboardSprite = NULL, *terrainSprite = NULL;
 
 // --- Functions ---
 void wrathGLInit();

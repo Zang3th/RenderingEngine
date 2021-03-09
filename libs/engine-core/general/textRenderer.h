@@ -8,7 +8,7 @@
 #include "vertexBuffer.h"
 #include "texture.h"
 
-#define MAX_GLYPH_AMOUNT 100
+#define MAX_GLYPH_AMOUNT 1000
 #define MAX_TEXTURE_AMOUNT 32
 
 // ----- General text rendering system -----
