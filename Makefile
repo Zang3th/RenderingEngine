@@ -11,7 +11,7 @@ LINKER_VENDOR = -DLOG_USE_COLOR
 LINKER_SANDBOX = -lSDL2 -lGL -lm -ldl -lfreetype -lchipmunk
 LINKER_WRATHGL = -lglfw3 -lX11 -pthread -lGL -lm -ldl -lfreetype -lchipmunk
 CC = cc
-CFLAGS = -Wall -Wno-unused-variable -Wno-sizeof-pointer-memaccess
+CFLAGS = -Wall -Wno-unused-variable -Wno-sizeof-pointer-memaccess -Wno-format-truncation
 
 # ************************************************** DEMOS ************************************************************
 sandboxDemo: compile_sandbox compile_2D compile_vendor

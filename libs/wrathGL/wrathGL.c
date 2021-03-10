@@ -39,36 +39,53 @@ void wrathGLAddText()
     textBatchRendererAddText("F3: WIREFRAME ON", 7.5f, HEIGHT - 450.0f, 0.5f);
     textBatchRendererAddText("F4: WIREFRAME OFF", 7.5f, HEIGHT - 475.0f, 0.5f);
     textBatchRendererAddText("-------------------------------", 7.5, HEIGHT - 500.0f, 0.5f);
-    textBatchRendererAddText("    GENERATE", 7.5f, HEIGHT - 615.0f, 0.5f);
-    textBatchRendererAddText("F5:    NEW", 7.5f, HEIGHT - 635.0f, 0.5f);
-    textBatchRendererAddText("    TERRAIN", 7.5f, HEIGHT - 655.0f, 0.5f);
+    textBatchRendererAddText("ROUGHNESS:", 7.5, HEIGHT - 615.0f, 0.5f);
+    textBatchRendererAddText("OCTAVES:", 7.5, HEIGHT - 640.0f, 0.5f);
+    textBatchRendererAddText("DIVISOR:", 7.5, HEIGHT - 665.0f, 0.5f);
+    textBatchRendererAddText("AMPLITUDE:", 7.5, HEIGHT - 690.0f, 0.5f);
+    textBatchRendererAddText("    GENERATE", 7.5f, HEIGHT - 725.0f, 0.5f);
+    textBatchRendererAddText("F5:    NEW", 7.5f, HEIGHT - 750.0f, 0.5f);
+    textBatchRendererAddText("    TERRAIN", 7.5f, HEIGHT - 775.0f, 0.5f);
+    textBatchRendererAddText("-------------------------------", 7.5, HEIGHT - 800.0f, 0.5f);
 }
 
 void wrathGLRenderText()
 {   
     //Create buffers
-    char xBuffer[6];
-    char yBuffer[6];
-    char zBuffer[6];
-    char yawBuffer[6];
-    char pitchBuffer[5];
+    char xBuffer[5];
+    char yBuffer[5];
+    char zBuffer[5];
+    char yawBuffer[4];
+    char pitchBuffer[4];
     char verticeBuffer[8];
+    char roughnessBuffer[6];
+    char octavesBuffer[2];
+    char divisorBuffer[6];
+    char amplitudeBuffer[6];
 
     //Update buffers
-    snprintf(&xBuffer[0], sizeof(xBuffer), "%4.f", camera->position[0]);   //X
-    snprintf(&yBuffer[0], sizeof(yBuffer), "%4.f", camera->position[1]);   //Y
-    snprintf(&zBuffer[0], sizeof(zBuffer), "%4.f", camera->position[2]);   //Z
-    snprintf(&yawBuffer[0], sizeof(yawBuffer), "%3.f", camera->yaw);       //Yaw
-    snprintf(&pitchBuffer[0], sizeof(pitchBuffer), "%2.f", camera->pitch); //Pitch
-    snprintf(&verticeBuffer[0], sizeof(verticeBuffer), "%7d", vertices);   //Vertices
+    snprintf(&xBuffer[0], sizeof(xBuffer), "%4.f", camera->position[0]);               //X
+    snprintf(&yBuffer[0], sizeof(yBuffer), "%4.f", camera->position[1]);               //Y
+    snprintf(&zBuffer[0], sizeof(zBuffer), "%4.f", camera->position[2]);               //Z
+    snprintf(&yawBuffer[0], sizeof(yawBuffer), "%3.f", camera->yaw);                   //Yaw
+    snprintf(&pitchBuffer[0], sizeof(pitchBuffer), "%2.f", camera->pitch);             //Pitch
+    snprintf(&verticeBuffer[0], sizeof(verticeBuffer), "%7d", vertices);               //Vertices
+    snprintf(&roughnessBuffer[0], sizeof(roughnessBuffer), "%1.3f", noise->roughness); //Roughness
+    snprintf(&octavesBuffer[0], sizeof(octavesBuffer), "%1d", noise->octaves);         //Octaves
+    snprintf(&divisorBuffer[0], sizeof(divisorBuffer), "%1.3f", noise->divisor);       //Divisor
+    snprintf(&amplitudeBuffer[0], sizeof(amplitudeBuffer), "%3.1f", noise->amplitude); //Amplitude
 
     //Render buffers
-    textSimpleRendererDisplay(&xBuffer[0], 45.0f, HEIGHT - 100.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //X
-    textSimpleRendererDisplay(&yBuffer[0], 45.0f, HEIGHT - 125.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //Y
-    textSimpleRendererDisplay(&zBuffer[0], 45.0f, HEIGHT - 150.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});     //Z
-    textSimpleRendererDisplay(&yawBuffer[0], 70.0f, HEIGHT - 200.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});   //Yaw
-    textSimpleRendererDisplay(&pitchBuffer[0], 90.0f, HEIGHT - 225.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Pitch
-    textSimpleRendererDisplay(&verticeBuffer[0], 20.0f, HEIGHT - 275.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Vertices
+    textSimpleRendererDisplay(&xBuffer[0], 45.0f, HEIGHT - 100.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});          //X
+    textSimpleRendererDisplay(&yBuffer[0], 45.0f, HEIGHT - 125.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});          //Y
+    textSimpleRendererDisplay(&zBuffer[0], 45.0f, HEIGHT - 150.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});          //Z
+    textSimpleRendererDisplay(&yawBuffer[0], 70.0f, HEIGHT - 200.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});        //Yaw
+    textSimpleRendererDisplay(&pitchBuffer[0], 90.0f, HEIGHT - 225.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});      //Pitch
+    textSimpleRendererDisplay(&verticeBuffer[0], 20.0f, HEIGHT - 275.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});    //Vertices
+    textSimpleRendererDisplay(&roughnessBuffer[0], 130.0f, HEIGHT - 615.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Roughness
+    textSimpleRendererDisplay(&octavesBuffer[0], 130.0f, HEIGHT - 640.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});   //Octaves
+    textSimpleRendererDisplay(&divisorBuffer[0], 130.0f, HEIGHT - 665.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});   //Divisor
+    textSimpleRendererDisplay(&amplitudeBuffer[0], 130.0f, HEIGHT - 690.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f}); //Amplitude
 }
 
 void wrathGLInit()
@@ -98,8 +115,15 @@ void wrathGLInit()
 
     unsigned int spriteData = resourceManagerGetSpriteData();
 
-    //Create meshes   
-    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6f);   
+    //Create noise parameter struct
+    noise = (noise_t*)malloc(sizeof(noise_t)); 
+    noise->roughness = 0.008f;
+    noise->octaves = 8;
+    noise->divisor = 1.001f;
+    noise->amplitude = 200.0f;
+
+    //Create meshes  
+    mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6f, noise);   
     mesh_t* planeMesh = meshCreatorOneTile(1600.0f);
 
     //Create models
@@ -139,6 +163,13 @@ void wrathGLPerFrame()
         windowProcessEvents();
         windowPrepare();         
 
+        // -- If requested, generate new terrain
+        if(generateNewTerrain == true && currentlyGenerating == false)
+        {   
+            generateNewTerrain = false;
+            terrainEditorGenerateNew(terrainModel, noise);
+        }        
+
     // --- Do render
         // -- Reset stats for current frame
         drawcalls = 0; 
@@ -171,7 +202,7 @@ void wrathGLPerFrame()
         textBatchRendererDisplay(); 
         monitoringRenderText(deltaTime);
         wrathGLRenderText();
-        GLCall(glEnable(GL_DEPTH_TEST));        
+        GLCall(glEnable(GL_DEPTH_TEST));       
 
     // --- After render
         windowUpdateTitle(drawcalls);
@@ -181,10 +212,11 @@ void wrathGLPerFrame()
 void wrathGLCleanUp()
 {
     //Clean up models and sprites
-    deleteModel(terrainModel);
-    deleteModel(waterModel);
     deleteSprite(keyboardSprite);
     deleteSprite(terrainSprite);
+    deleteModel(terrainModel);
+    deleteModel(waterModel);
+    free(noise);
 
     //Clean up modules
     monitoringCleanUp();

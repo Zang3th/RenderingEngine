@@ -7,6 +7,7 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 camera_t* camera = NULL;
 bool wireframeMode = false;
+bool generateNewTerrain = false;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -154,6 +155,9 @@ void windowProcessEvents()
 
     if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS)  
         wireframeMode = false;
+
+    if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)  
+        generateNewTerrain = true;    
 }
 
 void windowPrepare()

@@ -73,5 +73,5 @@
    ![Sandboxlevel](Screenshot_SB_006.png)
 
 ### Look of the WrathGL app
-   ![WrathGL_far](Screenshot_WR_010_far.png)
-   ![WrathGL_close](Screenshot_WR_010_close.png)
+   ![WrathGL_far](Screenshot_WR_011_far.png)
+   ![WrathGL_close](Screenshot_WR_011_close.png)

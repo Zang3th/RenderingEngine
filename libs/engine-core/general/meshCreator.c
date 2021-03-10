@@ -73,7 +73,7 @@ void calculateNormals(mesh_t* mesh)
     }
 }
 
-mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
+mesh_t* meshCreatorTerrain(unsigned int size, float tileSize, noise_t* noiseStruct)
 {
     //Amount of vertices, texture coordinates and indices
     unsigned int vAmount, tAmount, iAmount; 
@@ -101,7 +101,7 @@ mesh_t* meshCreatorTerrain(unsigned int size, float tileSize)
             float xPos = (float)i;            
             float zPos = (float)j;
             //float yPos = getNoisePseudoRandom(xPos, zPos, 0.02, 10.0f);
-            float yPos = getNoisePerlin2D(xPos, zPos, 0.008f, 8.0f, 1.001f);
+            float yPos = getNoisePerlin2D(xPos, zPos, noiseStruct);
 
             //Save vertices
             if(vertexIndex + 2 < mesh->verticeCount)

@@ -7,7 +7,8 @@
 #include "noise.h"
 #include <cglm/cglm.h>
 
-mesh_t* meshCreatorTerrain(unsigned int size, float tileSize);
+// --- Functions ---
+mesh_t* meshCreatorTerrain(unsigned int size, float tileSize, noise_t* noiseStruct);
 mesh_t* meshCreatorPlane(unsigned int size, float tileSize);
 mesh_t* meshCreatorOneTile(float size);
 

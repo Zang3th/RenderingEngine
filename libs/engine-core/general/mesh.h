@@ -5,6 +5,7 @@
 #include "../../../vendor/logging/log.h"
 #include <memory.h>
 
+// --- Variables ---
 typedef struct{
     float* vertices;
     float* texCoords;
@@ -20,6 +21,7 @@ typedef struct{
     unsigned int texIndexCount;
 } mesh_t;
 
+// --- Functions ---
 mesh_t* createTerrainMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
 mesh_t* createMesh(unsigned int vertices, unsigned int texCoords, unsigned int indices);
 void debugMesh(mesh_t* mesh);

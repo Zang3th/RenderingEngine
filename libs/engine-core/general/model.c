@@ -1,7 +1,7 @@
 #include "model.h"
 #include "utility.h"
 
-unsigned int createTerrainMeshVAO(mesh_t* mesh)
+unsigned int createMeshVAO(mesh_t* mesh)
 {
     //Create and bind vao
     unsigned int vao = createVertexArray();
@@ -23,7 +23,7 @@ unsigned int createTerrainMeshVAO(mesh_t* mesh)
     unsigned int vbo_texSampler = createVertexBuffer(mesh->textureIndex, mesh->texIndexCount * sizeof(float));
     defineVertexAttributes(4, 1, GL_FLOAT, GL_FALSE, sizeof(float), (void*)0);
 
-    //Create ib
+    //Create and initialize ibo
     unsigned int ibo = createIndexBuffer(mesh->indices, mesh->indiceCount * sizeof(unsigned int));
 
     //Unbind vao, vbo's and delete vbo's
@@ -38,42 +38,7 @@ unsigned int createTerrainMeshVAO(mesh_t* mesh)
     deleteVertexBuffer(vbo_normal);
     unbindVertexBuffer(vbo_texSampler);
     deleteVertexBuffer(vbo_texSampler);
-
-    return vao;
-}
-
-unsigned int createMeshVAO(mesh_t* mesh)
-{
-    //Create and bind vao
-    unsigned int vao = createVertexArray();
-    bindVertexArray(vao);
-
-    //Create and initialize vbo's
-    unsigned int vbo_vertex = createVertexBuffer(mesh->vertices, mesh->verticeCount * sizeof(float));
-    defineVertexAttributes(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-    unsigned int vbo_texCoord = createVertexBuffer(mesh->texCoords, mesh->texCoordsCount * sizeof(float));
-    defineVertexAttributes(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-
-    unsigned int vbo_color = createVertexBuffer(mesh->colors, mesh->colorCount * sizeof(float));
-    defineVertexAttributes(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-    unsigned int vbo_normal = createVertexBuffer(mesh->normals, mesh->normalCount * sizeof(float));
-    defineVertexAttributes(3, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-    //Create ib
-    unsigned int ibo = createIndexBuffer(mesh->indices, mesh->indiceCount * sizeof(unsigned int));
-
-    //Unbind vao, vbo's and delete vbo's
-    unbindVertexArray(vao);
-    unbindVertexBuffer(vbo_vertex);
-    deleteVertexBuffer(vbo_vertex);
-    unbindVertexBuffer(vbo_texCoord);
-    deleteVertexBuffer(vbo_texCoord);
-    unbindVertexBuffer(vbo_color);
-    deleteVertexBuffer(vbo_color);
-    unbindVertexBuffer(vbo_normal);
-    deleteVertexBuffer(vbo_normal);
+    unbindIndexBuffer();
     deleteIndexBuffer(ibo);
 
     return vao;
@@ -85,7 +50,7 @@ model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, 
     {
         //Create model
         model_t* model = malloc(sizeof(model_t));
-        model->vao = createTerrainMeshVAO(mesh);
+        model->vao = createMeshVAO(mesh);
         model->verticesToRender = mesh->indiceCount;
         model->shader = shader;
         model->textureCount = texCount;

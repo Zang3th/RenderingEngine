@@ -24,6 +24,7 @@ extern float deltaTime;
 extern float lastFrame;
 extern camera_t* camera;
 extern bool wireframeMode;
+extern bool generateNewTerrain;
 
 // --- Functions ---
 void windowInit(char* title);

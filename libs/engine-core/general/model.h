@@ -23,6 +23,7 @@ typedef struct{
 
 // --- Functions ---
 model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, unsigned int texCount);
+unsigned int createMeshVAO(mesh_t* mesh);
 void deleteModel(model_t* model);
 
 #endif

@@ -10,10 +10,12 @@
 #include "../engine-core/general/meshCreator.h"
 #include "../engine-core/general/model.h"
 #include "waterRenderer.h"
+#include "terrainEditor.h"
 
 // --- Variables
 static model_t* terrainModel = NULL, *waterModel = NULL;
 static sprite_t* keyboardSprite = NULL, *terrainSprite = NULL;
+static noise_t* noise = NULL;
 
 // --- Functions ---
 void wrathGLInit();

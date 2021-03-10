@@ -60,17 +60,17 @@ float noise2D(float x, float z)
     return smooth_interpol(low, high, z_frac);
 }
 
-float getNoisePerlin2D(float x, float z, float roughness, unsigned int octaves, float divisor)
+float getNoisePerlin2D(float x, float z, noise_t* noiseStruct)
 {
-    float xa = x * roughness;
-    float za = z * roughness;
-    float amp = 200.0;
+    float xa = x * noiseStruct->roughness;
+    float za = z * noiseStruct->roughness;
+    float amp = noiseStruct->amplitude;
     float fin = 0;
     float div = 0.0;
 
-    for(int i = 0; i < octaves; i++)
+    for(int i = 0; i < noiseStruct->octaves; i++)
     {
-        div += divisor * amp;
+        div += noiseStruct->divisor * amp;
         fin += noise2D(xa, za) * amp;
         amp /= 2;
         xa *= 2;
