@@ -181,7 +181,7 @@ void wrathGLPerFrame()
         windowProcessEvents();
         windowPrepare();  
 
-        // -- If requested, generate new terrain mesh on new threadd        
+        // -- If requested, generate new terrain mesh on new thread        
         if(generateNewTerrain == true && currentlyGenerating == false)
         {   
             //Set states

@@ -1,7 +1,4 @@
 #include "terrainEditor.h"
-#include <sys/types.h>
-#include <sys/syscall.h>
-#include <unistd.h>
 
 //Init extern variables
 bool currentlyGenerating = false;
@@ -18,7 +15,7 @@ void* terrainEditorStartThread(void* args)
 
     currentlyGenerating = false;
     finishedGenerating = true;
-    
+
     pthread_exit(NULL);
 }
 
