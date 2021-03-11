@@ -1,7 +1,7 @@
 #include "model.h"
 #include "utility.h"
 
-unsigned int createMeshVAO(mesh_t* mesh)
+void assignVAO(model_t *model, mesh_t* mesh)
 {
     //Create and bind vao
     unsigned int vao = createVertexArray();
@@ -41,7 +41,8 @@ unsigned int createMeshVAO(mesh_t* mesh)
     unbindIndexBuffer();
     deleteIndexBuffer(ibo);
 
-    return vao;
+    model->vao = vao;
+    model->ibo = ibo;
 }
 
 model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, unsigned int texCount)
@@ -50,7 +51,7 @@ model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, 
     {
         //Create model
         model_t* model = malloc(sizeof(model_t));
-        model->vao = createMeshVAO(mesh);
+        assignVAO(model, mesh);
         model->verticesToRender = mesh->indiceCount;
         model->shader = shader;
         model->textureCount = texCount;
@@ -85,6 +86,7 @@ model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, 
 
 void deleteModel(model_t* model)
 {
+    deleteIndexBuffer(model->ibo);
     deleteVertexArray(model->vao);
     free(model);
 }

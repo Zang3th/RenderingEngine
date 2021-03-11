@@ -14,6 +14,7 @@
 // --- Variables ---
 typedef struct{
     unsigned int vao;
+    unsigned int ibo;
     unsigned int shader;
     unsigned int textures[MAX_MODEL_TEXTURES];
     unsigned int textureCount;
@@ -23,7 +24,7 @@ typedef struct{
 
 // --- Functions ---
 model_t* createModel(mesh_t* mesh, unsigned int shader, unsigned int* textures, unsigned int texCount);
-unsigned int createMeshVAO(mesh_t* mesh);
+void assignVAO(model_t *model, mesh_t* mesh);
 void deleteModel(model_t* model);
 
 #endif

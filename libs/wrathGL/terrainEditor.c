@@ -16,15 +16,17 @@ void terrainEditorGenerateNew(model_t* terrainModel, noise_t* noiseStruct)
     //Create new terrain mesh 
     mesh_t* terrainMesh = meshCreatorTerrain(1000, 1.6f, noiseStruct); 
 
-    //Create vao out of new mesh
-    unsigned int newVAO = createMeshVAO(terrainMesh);
+    //-----------------------------CRITICAL------------------------------
 
     //Delete old vao and ibo
+    deleteIndexBuffer(terrainModel->ibo);
     deleteVertexArray(terrainModel->vao);
 
-    //Change vao and ibo of the model
-    terrainModel->vao = newVAO;
+    //Assign vao and ibo out of the new mesh
+    assignVAO(terrainModel, terrainMesh);    
     terrainModel->verticesToRender = terrainMesh->indiceCount;
+
+    //-------------------------------------------------------------------
 
     //Delete new mesh
     deleteMesh(terrainMesh);
