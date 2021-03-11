@@ -61,28 +61,28 @@ void renderInstancedSprite(instance_t* instance)
 }
 
 void renderModel(model_t* model)
-{
-        bindShader(model->shader);         
+{        
+    bindShader(model->shader);         
 
-        mat4 viewMatrix;
-        cameraGetViewMatrix(rendererCamera, viewMatrix);
+    mat4 viewMatrix;
+    cameraGetViewMatrix(rendererCamera, viewMatrix);
 
-        setUniformMat4f(model->shader, "view", (float*)viewMatrix);    
-        setUniformMat4f(model->shader, "model", (float*)model->modelMatrix);
-        setUniformMat4f(model->shader, "projection", (float*)perspectiveProj);     
-        setUniformVec3f(model->shader, "viewPos", (float*)rendererCamera->position);
+    setUniformMat4f(model->shader, "view", (float*)viewMatrix);    
+    setUniformMat4f(model->shader, "model", (float*)model->modelMatrix);
+    setUniformMat4f(model->shader, "projection", (float*)perspectiveProj);     
+    setUniformVec3f(model->shader, "viewPos", (float*)rendererCamera->position);
 
-        for(int i = 0; i < model->textureCount; i++)
-            bindTextureToSlot(model->textures[i], i);     
+    for(int i = 0; i < model->textureCount; i++)
+        bindTextureToSlot(model->textures[i], i);     
 
-        bindVertexArray(model->vao);
+    bindVertexArray(model->vao);
 
-        //Render model
-        GLCall(glDrawElements(GL_TRIANGLES, model->verticesToRender, GL_UNSIGNED_INT, NULL));
-        drawcalls++;
-        vertices += model->verticesToRender;
+    //Render model
+    GLCall(glDrawElements(GL_TRIANGLES, model->verticesToRender, GL_UNSIGNED_INT, NULL));
+    drawcalls++;
+    vertices += model->verticesToRender;
 
-        unbindVertexArray();
-        unbindTexture();
-        unbindShader();
+    unbindVertexArray();
+    unbindTexture();
+    unbindShader();
 }

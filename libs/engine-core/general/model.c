@@ -39,7 +39,6 @@ void assignVAO(model_t *model, mesh_t* mesh)
     unbindVertexBuffer(vbo_texSampler);
     deleteVertexBuffer(vbo_texSampler);
     unbindIndexBuffer();
-    deleteIndexBuffer(ibo);
 
     model->vao = vao;
     model->ibo = ibo;

@@ -70,10 +70,17 @@ void wrathGLRenderText()
     snprintf(&yawBuffer[0], sizeof(yawBuffer), "%3.f", camera->yaw);                   //Yaw
     snprintf(&pitchBuffer[0], sizeof(pitchBuffer), "%2.f", camera->pitch);             //Pitch
     snprintf(&verticeBuffer[0], sizeof(verticeBuffer), "%7d", vertices);               //Vertices
+
+    //LOCK
+    pthread_mutex_lock(&lock);
+
     snprintf(&roughnessBuffer[0], sizeof(roughnessBuffer), "%1.3f", noise->roughness); //Roughness
     snprintf(&octavesBuffer[0], sizeof(octavesBuffer), "%1d", noise->octaves);         //Octaves
     snprintf(&divisorBuffer[0], sizeof(divisorBuffer), "%1.3f", noise->divisor);       //Divisor
     snprintf(&amplitudeBuffer[0], sizeof(amplitudeBuffer), "%3.1f", noise->amplitude); //Amplitude
+
+    //UNLOCK
+    pthread_mutex_unlock(&lock); 
 
     //Render buffers
     textSimpleRendererDisplay(&xBuffer[0], 45.0f, HEIGHT - 100.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});          //X
@@ -133,6 +140,14 @@ void wrathGLInit()
     unsigned int waterTextures[5] = {DuDvMap, waterNormalMap, reflectionTexture, refractionTexture, refractionDepthTexture};
     waterModel = createModel(planeMesh, waterShader, waterTextures, 5); 
 
+    //Create terrain calculation thread and thread args
+    calcTerrainThread = (pthread_t*)malloc(sizeof(pthread_t));
+    threadArgs = (threadArgs_t*)malloc(sizeof(threadArgs_t));
+
+    //Set thread args
+    threadArgs->noise = noise;
+    threadArgs->resultMesh = NULL;
+
     //Create sprites
     keyboardSprite = createSprite(spriteData, keyboardTexture, spriteShader, (vec2){15.0f, 250.0f}, (vec2){175.0f, 150.0f}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false);
     terrainSprite = createSprite(spriteData, terrainTexture, spriteShader, (vec2){40.0f, 495.0f}, (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);
@@ -157,20 +172,49 @@ bool wrathGLIsRunning()
 
 void wrathGLPerFrame()
 {
+    //Reset state
+    generateNewTerrain = false;
+
     // --- Pre render
         windowCalcFrametime();
         windowPollEvents();
         windowProcessEvents();
-        windowPrepare();         
+        windowPrepare();  
 
-        // -- If requested, generate new terrain
+        // -- If requested, generate new terrain mesh on new threadd        
         if(generateNewTerrain == true && currentlyGenerating == false)
         {   
-            generateNewTerrain = false;
-            terrainEditorGenerateNew(terrainModel, noise);
-        }        
+            //Set states
+            generateNewTerrain = false;     
+            currentlyGenerating = true;
+            finishedGenerating = false;
+
+            //Start thread
+            pthread_create(calcTerrainThread, NULL, terrainEditorStartThread, (void*)threadArgs);
+        }       
+
+        // -- Check if thread finished to bind the new mesh to the already existing terrain model
+        if(currentlyGenerating == false && finishedGenerating == true)
+        {
+            pthread_join(*calcTerrainThread, NULL);
+
+            //Delete old vao and ibo
+            deleteIndexBuffer(terrainModel->ibo);
+            deleteVertexArray(terrainModel->vao);
+
+            //Assign vao and ibo out of the new mesh
+            assignVAO(terrainModel, threadArgs->resultMesh); //TODO: Make faster!!   
+            terrainModel->verticesToRender = threadArgs->resultMesh->indiceCount;
+
+            //Delete new mesh
+            deleteMesh(threadArgs->resultMesh);
+
+            //Reset state
+            finishedGenerating = false;
+        }
 
     // --- Do render
+
         // -- Reset stats for current frame
         drawcalls = 0; 
         vertices = 0;
@@ -178,16 +222,16 @@ void wrathGLPerFrame()
         // -- Activate wireframe rendering if enabled
         if(wireframeMode == true){
             GLCall(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));}
-
+        
         // -- Render scene to reflection and refraction framebuffers
         GLCall(glEnable(GL_CLIP_DISTANCE0)); 
         renderToReflectFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         renderToRefractFramebuffer(terrainModel, resourceManagerGetShader("terrainShader"));
         GLCall(glDisable(GL_CLIP_DISTANCE0)); //Doesn't work on every graphics driver
-      
+    
         // -- Render scene        
         renderModel(terrainModel);   
-        renderWater(waterModel, deltaTime);
+        renderWater(waterModel, deltaTime);        
 
         // -- Deactivate wireframe rendering if enabled
         if(wireframeMode == true){
@@ -202,7 +246,7 @@ void wrathGLPerFrame()
         textBatchRendererDisplay(); 
         monitoringRenderText(deltaTime);
         wrathGLRenderText();
-        GLCall(glEnable(GL_DEPTH_TEST));       
+        GLCall(glEnable(GL_DEPTH_TEST));          
 
     // --- After render
         windowUpdateTitle(drawcalls);
@@ -211,6 +255,10 @@ void wrathGLPerFrame()
 
 void wrathGLCleanUp()
 {
+    //Clean up thread and thread args
+    free(threadArgs);
+    free(calcTerrainThread);
+
     //Clean up models and sprites
     deleteSprite(keyboardSprite);
     deleteSprite(terrainSprite);
