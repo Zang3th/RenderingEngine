@@ -33,8 +33,8 @@
          - Vertices (X)
             - Procedural generated with noise-function (X)
             - Dynamic, changeable and controllable
-            - Backgroundthread calculates new terrain
-            - Renderthread renders new terrain
+            - Backgroundthread calculates new terrain (X)
+            - Renderthread renders new terrain (X)
          - Colors (X)
             - Dynamic, based on height (X)
          - Lighting (X)
