@@ -135,10 +135,10 @@ void wrathGLInit()
 
     //Create models
     unsigned int terrainTextures[3] = {dirtTexture, stoneTexture, snowTexture};
-    terrainModel = createModel(terrainMesh, terrainShader, terrainTextures, 3);
+    terrainModel = createModel(terrainMesh, terrainShader, terrainTextures, 3, true);
     
     unsigned int waterTextures[5] = {DuDvMap, waterNormalMap, reflectionTexture, refractionTexture, refractionDepthTexture};
-    waterModel = createModel(planeMesh, waterShader, waterTextures, 5); 
+    waterModel = createModel(planeMesh, waterShader, waterTextures, 5, false); 
 
     //Create terrain calculation thread and thread args
     calcTerrainThread = (pthread_t*)malloc(sizeof(pthread_t));
@@ -193,18 +193,14 @@ void wrathGLPerFrame()
             pthread_create(calcTerrainThread, NULL, terrainEditorStartThread, (void*)threadArgs);
         }       
 
-        // -- Check if thread finished to bind the new mesh to the already existing terrain model
+        // -- Check if calculation thread finished to bind the new mesh to the already existing terrain model
         if(currentlyGenerating == false && finishedGenerating == true)
         {
+            //Join threads
             pthread_join(*calcTerrainThread, NULL);
 
-            //Delete old vao and ibo
-            deleteIndexBuffer(terrainModel->ibo);
-            deleteVertexArray(terrainModel->vao);
-
-            //Assign vao and ibo out of the new mesh
-            assignVAO(terrainModel, threadArgs->resultMesh); //TODO: Make faster!!   
-            terrainModel->verticesToRender = threadArgs->resultMesh->indiceCount;
+            //Update model with the new mesh data
+            updateDynamicMesh(terrainModel, threadArgs->resultMesh);
 
             //Delete new mesh
             deleteMesh(threadArgs->resultMesh);
@@ -214,7 +210,6 @@ void wrathGLPerFrame()
         }
 
     // --- Do render
-
         // -- Reset stats for current frame
         drawcalls = 0; 
         vertices = 0;
