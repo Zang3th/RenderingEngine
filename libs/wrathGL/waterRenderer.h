@@ -8,10 +8,10 @@
 #include "../engine-core/general/renderer.h"
 
 // --- Variables ---
-static unsigned int REFLECTION_WIDTH = 640;
-static unsigned int REFLECTION_HEIGHT = 320;
-static unsigned int REFRACTION_WIDTH = 1280;
-static unsigned int REFRACTION_HEIGHT = 720;
+static unsigned int REFLECTION_WIDTH = 1600;
+static unsigned int REFLECTION_HEIGHT = 900;
+static unsigned int REFRACTION_WIDTH = 800;
+static unsigned int REFRACTION_HEIGHT = 450;
 static camera_t* waterRendererCamera;
 static float moveFactor = 0.0f, waveSpeed = 0.02f;
 

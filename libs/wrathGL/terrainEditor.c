@@ -22,10 +22,10 @@ void* terrainEditorStartThread(void* args)
 mesh_t* terrainEditorGenerateNew(noise_t* noiseStruct)
 {
     //Randomize and edit noise parameter struct
-    noiseStruct->roughness = random_float(0.03f);
+    noiseStruct->roughness = getPseudoRandom(0.03f);
     noiseStruct->octaves = 8;
     noiseStruct->divisor = 1.001f;
-    noiseStruct->amplitude = random_float(1000.0f);
+    noiseStruct->amplitude = getPseudoRandom(1000.0f);
     
     //Create and assign new terrain mesh 
     mesh_t* newTerrainMesh = meshCreatorTerrain(1000, 1.6f, noiseStruct); 

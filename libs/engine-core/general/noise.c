@@ -1,13 +1,8 @@
 #include "noise.h"
 
-float random_float(float maxRange)
-{
-   return (float)rand()/(float)(RAND_MAX/maxRange);   
-}
-
 float getNoisePseudoRandom(float x, float z, float mul, float b)
 {
-    return random_float(mul) * (z * sin(random_float(b) * x) + x * cos(random_float(b) * z));
+    return getPseudoRandom(mul) * (z * sin(getPseudoRandom(b) * x) + x * cos(getPseudoRandom(b) * z));
 }
 
 static int SEED = 0;

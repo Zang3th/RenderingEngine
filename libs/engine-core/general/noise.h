@@ -2,7 +2,7 @@
 #define NOISE
 
 #include <math.h>
-#include <stdlib.h>
+#include "random.h"
 
 // --- Variables ---
 typedef struct{
@@ -13,7 +13,6 @@ typedef struct{
 } noise_t;
 
 // --- Functions ---
-float random_float(float maxRange);
 float getNoisePseudoRandom(float x, float z, float mul, float b);
 float getNoisePerlin2D(float x, float z, noise_t* noiseStruct);
 

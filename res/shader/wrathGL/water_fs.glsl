@@ -22,9 +22,10 @@ const float waveStrength = 0.01;
 const float specularStrength = 0.3;
 const vec3 lightPos = vec3(150.0, 5000.0, 3500.0);
 const vec3 lightColor = vec3(1.0, 1.0, 1.0);
-const float shininess = 70.0;
+const float shininess = 100.0;
 const float nearPlane = 0.9;
 const float farPlane = 5000.0;
+const float fresnelReflective = 0.9;
 
 void main()
 {
@@ -69,6 +70,7 @@ void main()
     //Fresnel effect
     vec3 viewVector = normalize(toCameraVector);
     float refractiveFactor = dot(viewVector, mappedNormal);
+    refractiveFactor = pow(refractiveFactor, fresnelReflective);
     refractiveFactor = clamp(refractiveFactor, 0.0, 1.0);
    
     //Calculate specular light
@@ -77,7 +79,7 @@ void main()
     vec3 halfwayDir = normalize(lightDir + viewDir);
     vec3 reflectDir = reflect(-lightDir, mappedNormal);
     float spec = pow(max(dot(mappedNormal, halfwayDir), 0.0), shininess);
-    vec3 specular = specularStrength * spec * lightColor * clamp(waterDepth * 2.0, 0.0, 1.0);;
+    vec3 specular = specularStrength * spec * lightColor * clamp(waterDepth * 2.0, 0.0, 0.5);;
 
     vec4 outColor = mix(reflectColor, refractColor, refractiveFactor);
     fragColor = mix(outColor, vec4(0.0, 0.3, 0.6, 1.0), 0.2) + vec4(specular, 0.0);

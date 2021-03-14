@@ -3,6 +3,7 @@
 
 #include "../engine-core/general/model.h"
 #include "../engine-core/general/noise.h"
+#include "../engine-core/general/random.h"
 #include "../engine-core/general/mesh.h"
 #include "../engine-core/general/meshCreator.h"
 #include "../engine-core/general/resourceManager.h"
