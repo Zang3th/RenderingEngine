@@ -1,5 +1,5 @@
-#ifndef UI
-#define UI
+#ifndef UI_SANDBOX
+#define UI_SANDBOX
 
 #include "../engine-core/2D/window2D.h"
 #include "../engine-core/general/sprite.h"

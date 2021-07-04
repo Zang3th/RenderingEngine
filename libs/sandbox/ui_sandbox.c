@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "ui_sandbox.h"
 
 bool placementMode = false;
 
@@ -21,7 +21,7 @@ void uiInit()
                              (vec2){WIDTH, HEIGHT}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false);       
 
     sprites[1] = createSprite(spriteData, sbTexture, standardShader, (vec2){1300.0f, 0.0f}, 
-                             (vec2){300.0f, HEIGHT}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false); 
+                             (vec2){300.0f, HEIGHT}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false); 
 
     sprites[2] = createSprite(spriteData, trashcanTexture, standardShader, (vec2){1466.6f, HEIGHT - 133.3f}, 
                              (vec2){100.0f, 100.0f}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, true); 

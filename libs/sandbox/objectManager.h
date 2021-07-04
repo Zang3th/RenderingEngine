@@ -1,7 +1,7 @@
 #ifndef OBJECTMANAGER
 #define OBJECTMANAGER
 
-#include "ui.h"
+#include "ui_sandbox.h"
 #include "../engine-core/2D/window2D.h"
 #include "../engine-core/general/renderer.h"
 #include "../engine-core/general/objectInstancer.h"

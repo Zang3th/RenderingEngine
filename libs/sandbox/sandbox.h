@@ -5,7 +5,7 @@
 #include "../engine-core/general/renderer.h"
 #include "../engine-core/general/physicsEngine2D.h"
 #include "../engine-core/general/resourceManager.h"
-#include "ui.h"
+#include "ui_sandbox.h"
 #include "objectManager.h"
 #include "../engine-core/general/textRenderer.h"
 #include "../engine-core/general/monitoring.h"
