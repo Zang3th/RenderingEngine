@@ -33,7 +33,7 @@ void sandboxInit()
     sandboxLoadResources();
 
     //Init modules that depend on resources
-    uiInit();  
+    uiInit_sandbox();  
     objectManagerInit();   
 
     // --- Init the whole text rendering system (batch and simple text renderer)
@@ -42,7 +42,7 @@ void sandboxInit()
         monitoringInit();  
 
         //Add static text
-        uiAddText();    
+        uiAddText_sandbox();    
         monitoringAddText();
 
         //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
@@ -64,10 +64,10 @@ void sandboxPerFrame()
         phyicsEnginePerFrame(deltaTime); //Update physics
 
     // --- Render
-        uiRenderElements();    
-        objectManagerCheckForPlacement();
-        objectManagerRenderObjects();   
-        uiRenderHighlighter();
+        uiRender_sandbox();               //Render UI   
+        objectManagerCheckForPlacement(); //Check for different place modes
+        objectManagerRenderObjects();     //Render placed objects
+        uiRenderHighlighter_sandbox();    //Render highlighter after objects to be on top
         textBatchRendererDisplay();       //Render batched text
         monitoringRenderText(deltaTime);  //Render simple text
 
@@ -81,7 +81,7 @@ void sandboxCleanUp()
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
     objectManagerCleanUp();
-    uiCleanUp();
+    uiCleanUp_sandbox();
     resourceManagerCleanUp();   
     physicsEngineCleanUp();  
     windowCleanUp();     

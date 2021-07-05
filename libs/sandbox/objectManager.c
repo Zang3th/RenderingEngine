@@ -35,7 +35,7 @@ void objectManagerCheckForPlacement()
         windowGetMousePos(&x, &y);
              
         //Get current active mode from the UI 
-        int mode = uiGetBlockmode();
+        int mode = uiGetBlockmode_sandbox();
 
         if(mode == 1) //Blockmode
         {
@@ -48,7 +48,7 @@ void objectManagerCheckForPlacement()
                 objectInstancerAddInstance(blockInstance, (float*) v);
             }
         }
-        else if(mode == 2) //solidBlockMode
+        else if(mode == 2) //SolidBlockMode
         {
             if(x != last_x || y != last_y)
             {

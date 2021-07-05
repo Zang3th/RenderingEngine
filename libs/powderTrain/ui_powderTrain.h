@@ -1,7 +1,10 @@
-#ifndef UI_SANDBOX
-#define UI_SANDBOX
+#ifndef UI_POWDERTRAIN
+#define UI_POWDERTRAIN
 
 #include "../engine-core/general/ui.h"
+
+// --- Variables ---
+static unsigned int bgID, sbID, sandID, waterID, stoneID, fireID, acidID, woodID;
 
 // --- Functions ---
 void uiInit_powderTrain();

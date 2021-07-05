@@ -1,33 +1,19 @@
 #ifndef UI_SANDBOX
 #define UI_SANDBOX
 
-#include "../engine-core/2D/window2D.h"
-#include "../engine-core/general/sprite.h"
-#include "../engine-core/general/resourceManager.h"
-#include "../engine-core/general/renderer.h"
+#include "../engine-core/general/ui.h"
 #include "objectManager.h"
-#include "../engine-core/general/textRenderer.h"
 
 // --- Variables ---
-#define UI_ELEMENTS 7
-
-static sprite_t* sprites[UI_ELEMENTS];
-static sprite_t* highlighter = NULL;
-static sprite_t* activeElement = NULL;
-static bool elementActive;
-
+static unsigned int bgID, sbID, blockID, solidBlockID, bucketID, stickmanID;
 extern bool placementMode;
 
 // --- Functions ---
-void uiInit();
-void uiRenderElements();
-void uiAddText();
-void uiRenderHighlighter();
-int uiGetBlockmode();
-void uiCleanUp();
-bool uiButtonHover(int* x, int* y, sprite_t* sprite);
-int uiGetButtonState(sprite_t* sprite);
-void uiChangeButtonState(sprite_t* sprite, int result, int count);
-void uiDeleteButtonPressed();
+void uiInit_sandbox();
+void uiAddText_sandbox();
+int uiGetBlockmode_sandbox();
+void uiRender_sandbox();
+void uiRenderHighlighter_sandbox();
+void uiCleanUp_sandbox();
 
 #endif

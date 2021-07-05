@@ -1,9 +1,10 @@
 #include "ui.h"
 
+sprite_t* highlighter = NULL;
+
 static bool uiButtonHover(int* x, int* y, sprite_t* sprite)
 {
     //Called every frame to check if mouse cursor is inside one of the clickable buttons
-
     int mouse_x = *x;
     int mouse_y = *y;
     int sprite_x1 = (int)(sprite->basePosition[0]);
@@ -28,14 +29,14 @@ static int uiGetButtonState(sprite_t* sprite)
     bool isHovered = uiButtonHover(&x, &y, sprite);
     bool gotAlreadyClicked = sprite->gotClicked;
     
-    if(activeElement != NULL)
+    if(elementActive)
     {
         if(gotAlreadyClicked)
         {
             if(rightMousePressed)
             {
                 sprite->gotClicked = false;
-                activeElement = NULL;
+                elementActive = false;
                 return 0;
             }
 
@@ -49,7 +50,7 @@ static int uiGetButtonState(sprite_t* sprite)
         if(isHovered && leftMousePressed)
         {
             sprite->gotClicked = true;
-            activeElement = sprite;
+            elementActive = true;
             return 2;
         }
         else if(isHovered)
@@ -63,7 +64,7 @@ static void uiChangeButtonState(sprite_t* sprite, int result, int count)
 {    
     if(result == 1) //Hovered button state
     {
-        glm_vec3_copy((vec3){0.7f, 0.7f, 0.7f}, sprite->currentColor);
+        glm_vec3_copy(hoverColor, sprite->currentColor);
     }                
     else if(result == 2) //Clicked button state
     {  
@@ -71,7 +72,9 @@ static void uiChangeButtonState(sprite_t* sprite, int result, int count)
         {
             glm_vec3_copy(sprite->baseColor, sprite->currentColor);
             activeElement = NULL;
+            elementActive = false;
             sprite->gotClicked = false;
+            trashcanCallback();
         }
         else
         {
@@ -80,16 +83,20 @@ static void uiChangeButtonState(sprite_t* sprite, int result, int count)
     }
 }
 
-void uiInit()
+void uiInit(float color[3])
 {
+    glm_vec3_copy(color, hoverColor);
+
     for(int i = 0; i < UI_ELEMENTS_MAX; i++)
         ui_Elements[i] = NULL;
 }
 
-void uiAddElement(sprite_t* sprite)
+unsigned int uiAddElement(sprite_t* sprite)
 {
+    unsigned int index = numberOfElements;
     ui_Elements[numberOfElements] = sprite;
     numberOfElements++; 
+    return index;
 }
 
 void uiAddHighlighter(sprite_t* sprite)
@@ -105,6 +112,9 @@ void uiAddTrashcan(sprite_t* sprite)
 
 void uiRender()
 {
+    //Deactivate highlight box for certain elements
+    activeElement = NULL;
+
     for(int i = 0; i < numberOfElements; i++)
     {
         if(ui_Elements[i]->isClickable)
@@ -135,15 +145,30 @@ void uiRender()
     }
 }
 
+sprite_t* uiGetPressedButton()
+{
+    return activeElement;
+}
+
+bool uiIsButtonPressed(unsigned int index)
+{
+    return ui_Elements[index]->gotClicked;
+}
+
+bool uiIsButtonHovered(int* x, int* y, unsigned int index)
+{
+    return uiButtonHover(x, y, ui_Elements[index]);
+}
+
+void uiDefineTrashcanCallback(void (*func))
+{
+    trashcanCallback = func;
+}
+
 void uiCleanUp()
 {
     for(int i = 0; i < numberOfElements; i++)
         deleteSprite(ui_Elements[i]); 
 
     deleteSprite(highlighter);      
-}
-
-sprite_t* uiGetPressedButton()
-{
-    return activeElement;
 }
