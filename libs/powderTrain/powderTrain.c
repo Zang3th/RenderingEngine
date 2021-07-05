@@ -28,7 +28,7 @@ void powderTrainInit()
     powderTrainLoadResources();
 
     //Init modules that depend on resources
-    uiInit();
+    uiInit_powderTrain();
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -36,7 +36,7 @@ void powderTrainInit()
         monitoringInit();  
 
         //Add static text
-        uiAddText();    
+        uiAddText_powderTrain();    
         monitoringAddText();
 
         //After all text got added -> create one big buffer out of it, to render all batched text in one drawcall
@@ -51,33 +51,26 @@ bool powderTrainIsRunning()
 void powderTrainPerFrame()
 {
     // --- Pre render
-        // -- Poll events
         windowPollEvents();
-
-        // -- Prepare frame
         windowCalcFrametime();
         windowPrepare();    
+        drawcalls = 0;                   //Reset drawcalls for current frame
 
-    // --- Do render
-        // -- Reset drawCall counter for current frame
-        drawcalls = 0; 
-        uiRenderElements();    
-
-        textBatchRendererDisplay(); 
-        monitoringRenderText(deltaTime);   
+    // --- Render
+        uiRender_powderTrain();          //Render UI    
+        textBatchRendererDisplay();      //Render batched text
+        monitoringRenderText(deltaTime); //Render simple text   
 
     // --- After render
         windowUpdateTitle(drawcalls);
-
-        // -- End frame
-        windowSwapBuffer();   
+        windowSwapBuffer();              //End frame
 }
 
 void powderTrainCleanUp()
 {
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
-    uiCleanUp();
+    uiCleanUp_powderTrain();
     resourceManagerCleanUp();
     windowCleanUp();
 }

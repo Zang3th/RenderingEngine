@@ -8,6 +8,8 @@ float lastFrame = 0.0f;
 camera_t* camera = NULL;
 bool wireframeMode = false;
 bool generateNewTerrain = false;
+bool leftMousePressed = false;
+bool rightMousePressed = false;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -185,6 +187,12 @@ void windowCalcFrametime()
     float currentFrame = glfwGetTime();
 	deltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
+}
+
+void windowGetMousePos(int* x, int* y)
+{
+    *x = lastX;
+    *y = lastY;
 }
 
 void windowUpdateTitle(int drawcalls)

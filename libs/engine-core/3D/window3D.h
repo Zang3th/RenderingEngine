@@ -25,6 +25,8 @@ extern float lastFrame;
 extern camera_t* camera;
 extern bool wireframeMode;
 extern bool generateNewTerrain;
+extern bool leftMousePressed;
+extern bool rightMousePressed;
 
 // --- Functions ---
 void windowInit(char* title);
@@ -35,6 +37,7 @@ void windowPrepare();
 void windowSwapBuffer();
 void windowCleanUp();
 void windowCalcFrametime();
+void windowGetMousePos(int* x, int* y);
 void windowUpdateTitle(int drawcalls);
 void windowPrepareDrawcallBuffer(int drawcalls);
 

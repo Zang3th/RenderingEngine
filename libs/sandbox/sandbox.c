@@ -57,34 +57,23 @@ bool sandboxIsRunning()
 void sandboxPerFrame()
 {
     // --- Pre render
-        // -- Poll events
         windowPollEvents();
-
-        // -- Prepare frame
         windowCalcFrametime();
         windowPrepare();    
+        drawcalls = 0;                   //Reset drawcalls for current fram
+        phyicsEnginePerFrame(deltaTime); //Update physics
 
-        // -- Update physics
-        phyicsEnginePerFrame(deltaTime);
-
-    // --- Do render
-        // -- Reset drawCall counter for current frame
-        drawcalls = 0; 
+    // --- Render
         uiRenderElements();    
-
         objectManagerCheckForPlacement();
-        objectManagerRenderObjects();    
-
-        uiRenderHighlighter(); 
-
-        textBatchRendererDisplay(); 
-        monitoringRenderText(deltaTime);   
+        objectManagerRenderObjects();   
+        uiRenderHighlighter();
+        textBatchRendererDisplay();       //Render batched text
+        monitoringRenderText(deltaTime);  //Render simple text
 
     // --- After render
         windowUpdateTitle(drawcalls);
-
-        // -- End frame
-        windowSwapBuffer();       
+        windowSwapBuffer();               //End frame    
 }
 
 void sandboxCleanUp()
