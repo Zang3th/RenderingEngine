@@ -8,16 +8,21 @@
       - WrathGL: Terrain-Creator (3D)  
       - PowderTrain: Falling-Sand-Simulation (2D)
    - Written entirely in C
+   - Bulletpoints marked with (X) are already implemented
 
 ### General functionalities
    - Basic OpenGL-Wrapping (VAO, VBO, IBO, Shader, Texture, Errorhandling)  (X)  
    - Windowcreation for 2D and 3D (X)
+   - GUI-Library (X)
    - 2D Sprite-Renderer (X)
+      - Instanced rendering (X)
+   - 3D Model-Renderer (X)
+      - Dynamic mesh creation (X)
+      - OBJ-Loading
    - Text rendering (X)
-      - Batch rendering system (X)
-   - OBJ-Loading
+      - Batch rendering system (X)   
    - Camerasystem (X)
-   - Audiomanager for sounds and backgroundmusic        
+   - Audiomanager for sounds and backgroundmusic
 
 ### Example applications   
    #### Sandbox App (2D)
@@ -32,7 +37,7 @@
       - Terrain creation (X)
          - Vertices (X)
             - Procedural generated with noise-function (X)
-            - Dynamic, changeable and controllable
+            - Dynamic and changeable (X)
             - Backgroundthread calculates new terrain (X)
             - Renderthread renders new terrain (X)
          - Colors (X)
@@ -40,10 +45,10 @@
          - Lighting (X)
       - Water (X)
    #### PowderTrain App (2D)
+      - GUI (X)   
       - Pixel-Renderer
       - Sand-Simulation
          - Different materials/substances -> different reactions
-      - GUI   
 
 ### Credits
    - [SDL2](https://www.libsdl.org/index.php)
@@ -72,7 +77,7 @@
    - To show the collaboration of the different modules
    - Just for visualization purposes, not UML conform    
 
-   ![Application structure](Structure_001.png)
+   ![Application structure](Structure_002.png)
 
 ### Look of the Sandbox App
    ![Sandbox](Screenshot_SB_006.png)
