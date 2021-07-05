@@ -211,7 +211,7 @@ void windowPrepareDrawcallBuffer(int drawcalls)
     strcat(windowTitleBuffer, " (Drawcalls: ");
 
     //Put drawcalls in the drawcall buffer
-    int ret = snprintf(drawcallBuffer, sizeof(drawcallBuffer), "%d", drawcalls);
+    int ret = snprintf(drawcallBuffer, 3, "%d", drawcalls);
 
     strcat(windowTitleBuffer, drawcallBuffer);
     strcat(windowTitleBuffer, ")");

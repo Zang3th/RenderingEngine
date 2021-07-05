@@ -28,8 +28,8 @@ void monitoringRenderText(float dt)
     } 
 
     //Update buffers
-    snprintf(&dtAccAvgBuffer[0], sizeof(dtAccAvgBuffer), "%2.2f", dtAccumulated_avg * 1000);
-    snprintf(&fpsAvgBuffer[0], sizeof(fpsAvgBuffer), "%2.2f", framerate_avg);
+    snprintf(&dtAccAvgBuffer[0], 5, "%2.2f", dtAccumulated_avg * 1000);
+    snprintf(&fpsAvgBuffer[0], 5, "%2.2f", framerate_avg);
 
     //Render updated buffers
     textSimpleRendererDisplay(&dtAccAvgBuffer[0], 135.0f, HEIGHT - 25.0f, 0.5f, (vec3){0.8f, 0.8f, 0.8f});

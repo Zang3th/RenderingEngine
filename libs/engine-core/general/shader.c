@@ -15,10 +15,10 @@ char* parseShader(const char* filepath)
     rewind(fp);
 
     char *string = malloc(fsize + 1);
-    fread(string, 1, fsize, fp);
+    size_t readInBytes = fread(string, 1, fsize, fp);
     fclose(fp);
 
-    log_info("Successfully read shader at %s | size: %d", filepath, fsize);
+    log_info("Successfully read shader at %s | size: %d", filepath, readInBytes);
 
     string[fsize] = 0;
     return string;
