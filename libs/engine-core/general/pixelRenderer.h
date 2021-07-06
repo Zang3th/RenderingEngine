@@ -6,6 +6,8 @@
 #include "renderer.h"
 
 // --- Variables ---
+static unsigned int textureID;
+static sprite_t* image = NULL;
 
 // --- Functions ---
 void pixelRendererInit(unsigned int width, unsigned int height);

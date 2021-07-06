@@ -23,13 +23,13 @@ void powderTrainInit()
     //Init modules
     windowInit("RenderingEngine - PowderTrain"); 
     rendererInit(NULL); //Init with NULL to use no camera   
-    pixelRendererInit(WIDTH - 100, HEIGHT);
 
     //Load resources
     powderTrainLoadResources();
 
     //Init modules that depend on resources
     uiInit_powderTrain();
+    pixelRendererInit(WIDTH - 100, HEIGHT);
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -61,9 +61,9 @@ void powderTrainPerFrame()
 
     // --- Render
         uiRender_powderTrain();          //Render UI    
+        pixelRendererFlush();
         textBatchRendererDisplay();      //Render batched text
         monitoringRenderText(deltaTime); //Render simple text   
-        pixelRendererFlush();
 
     // --- After render
         windowUpdateTitle(drawcalls);
@@ -74,8 +74,8 @@ void powderTrainCleanUp()
 {
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
+    pixelRendererCleanUp();
     uiCleanUp_powderTrain();
     resourceManagerCleanUp();
-    pixelRendererCleanUp();
     windowCleanUp();
 }
