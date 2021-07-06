@@ -6,6 +6,7 @@
 #include "ui_powderTrain.h"
 #include "../engine-core/general/textRenderer.h"
 #include "../engine-core/general/monitoring.h"
+#include "../engine-core/general/pixelRenderer.h"
 
 // --- Functions ---
 void powderTrainInit();

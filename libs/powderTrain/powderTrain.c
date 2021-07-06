@@ -23,6 +23,7 @@ void powderTrainInit()
     //Init modules
     windowInit("RenderingEngine - PowderTrain"); 
     rendererInit(NULL); //Init with NULL to use no camera   
+    pixelRendererInit(WIDTH - 100, HEIGHT);
 
     //Load resources
     powderTrainLoadResources();
@@ -51,15 +52,18 @@ bool powderTrainIsRunning()
 void powderTrainPerFrame()
 {
     // --- Pre render
+        drawcalls = 0;                   //Reset drawcalls for current frame
         windowPollEvents();
         windowCalcFrametime();
         windowPrepare();    
-        drawcalls = 0;                   //Reset drawcalls for current frame
+        pixelRendererSet(100, 100, (vec3){1.0f, 1.0f, 1.0f});
+        pixelRendererSet(200, 200, (vec3){0.0f, 1.0f, 0.0f});
 
     // --- Render
         uiRender_powderTrain();          //Render UI    
         textBatchRendererDisplay();      //Render batched text
         monitoringRenderText(deltaTime); //Render simple text   
+        pixelRendererFlush();
 
     // --- After render
         windowUpdateTitle(drawcalls);
@@ -72,5 +76,6 @@ void powderTrainCleanUp()
     textRenderingSystemsCleanUp();
     uiCleanUp_powderTrain();
     resourceManagerCleanUp();
+    pixelRendererCleanUp();
     windowCleanUp();
 }
