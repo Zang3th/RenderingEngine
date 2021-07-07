@@ -71,14 +71,16 @@ static void uiChangeButtonState(sprite_t* sprite, int result, int count)
         if(count == trashCanID)
         {
             glm_vec3_copy(sprite->baseColor, sprite->currentColor);
-            activeElement = NULL;
+            activeElement.sprite = NULL;
+            activeElement.index = -1;
             elementActive = false;
             sprite->gotClicked = false;
             trashcanCallback();
         }
         else
         {
-            activeElement = sprite;
+            activeElement.sprite = sprite;
+            activeElement.index = count;
         }                             
     }
 }
@@ -113,7 +115,8 @@ void uiAddTrashcan(sprite_t* sprite)
 void uiRender()
 {
     //Deactivate highlight box for certain elements
-    activeElement = NULL;
+    activeElement.sprite = NULL;
+    activeElement.index = -1;
 
     for(int i = 0; i < numberOfElements; i++)
     {
@@ -138,16 +141,21 @@ void uiRender()
             renderSprite(ui_Elements[i]);
     }
 
-    if(activeElement != NULL)
+    if(activeElement.sprite != NULL)
     {
-        translateSprite(highlighter, (vec2){activeElement->basePosition[0], activeElement->basePosition[1]});
+        translateSprite(highlighter, (vec2){activeElement.sprite->basePosition[0], activeElement.sprite->basePosition[1]});
         renderSprite(highlighter);
     }
 }
 
-sprite_t* uiGetPressedButton()
+int uiGetPressedButtonID()
 {
-    return activeElement;
+    return activeElement.index;
+}
+
+sprite_t* uiGetPressedButtonSprite()
+{
+    return activeElement.sprite;
 }
 
 bool uiIsButtonPressed(unsigned int index)

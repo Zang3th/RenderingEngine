@@ -64,8 +64,7 @@ bool windowIsRunning()
 void windowPollEvents()
 {
     while(SDL_PollEvent(&event))
-    {
-        leftMousePressed = false; 
+    {        
         rightMousePressed = false;
 
         switch(event.type)
@@ -87,17 +86,23 @@ void windowPollEvents()
 
             case SDL_MOUSEBUTTONDOWN:
                 windowHandleMouseClick(&event.button);                    
-                break;       
+                break;  
+
+            case SDL_MOUSEBUTTONUP:
+                if(event.button.button == SDL_BUTTON_LEFT)
+                    leftMousePressed = false;
         }
     }
 }
 
 void windowHandleMouseClick(SDL_MouseButtonEvent* MBE)
 {
-  if(MBE->button == SDL_BUTTON_LEFT)  
-    leftMousePressed = true;
-  else if(MBE->button == SDL_BUTTON_RIGHT)
-    rightMousePressed = true;  
+    if(MBE->button == SDL_BUTTON_LEFT)
+    {
+        leftMousePressed = true;
+    }      
+    else if(MBE->button == SDL_BUTTON_RIGHT)
+        rightMousePressed = true;  
 }
 
 void windowPrepare()

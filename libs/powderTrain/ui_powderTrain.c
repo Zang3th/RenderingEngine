@@ -48,6 +48,19 @@ void uiInit_powderTrain()
                              (vec2){75.0f, 75.0f}, 0.0f, (vec3){0.98f, 0.7f, 0.0f}, false));
 }
 
+int uiGetPressedButton_powderTrain()
+{
+    return uiGetPressedButtonID();
+}
+
+bool uiIsMouseInsideMainWindow_powderTrain(int* mouse_x, int* mouse_y)
+{
+    //Check if mouse is inside of the sidebar
+    bool isInsideBar = uiIsButtonHovered(mouse_x, mouse_y, sbID);
+
+    return !isInsideBar;
+}
+
 void uiRender_powderTrain()
 {
     uiRender();

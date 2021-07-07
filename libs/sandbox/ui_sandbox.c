@@ -63,7 +63,7 @@ void uiAddText_sandbox()
 int uiGetBlockmode_sandbox()
 {
     //Get pressed button
-    sprite_t* pressedButton = uiGetPressedButton();
+    sprite_t* pressedButton = uiGetPressedButtonSprite();
    
     //Branch if a button is pressed
     if(pressedButton != NULL)
@@ -95,7 +95,7 @@ void uiRenderHighlighter_sandbox()
 
     //Check if mouse is outside of the sidebar and an element is active/chosen
     bool isInsideBar = uiIsButtonHovered(&mouse_x, &mouse_y, sbID);
-    sprite_t* pressedButton = uiGetPressedButton();
+    sprite_t* pressedButton = uiGetPressedButtonSprite();
 
     if((isInsideBar == false) && (pressedButton != NULL))
     {  

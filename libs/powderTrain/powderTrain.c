@@ -28,12 +28,7 @@ void powderTrainInit()
 
     //Init modules that depend on resources
     uiInit_powderTrain();
-    pixelRendererInit("res/textures/powderTrain/Background_1500x900.jpg");
-
-    pixelRendererSet(1, 1, (vec3){1.0f, 0.0f, 0.0f});
-    pixelRendererSet(1, 900, (vec3){1.0f, 0.0f, 0.0f});
-    pixelRendererSet(1500, 1, (vec3){1.0f, 0.0f, 0.0f});
-    pixelRendererSet(1500, 900, (vec3){1.0f, 0.0f, 0.0f});    
+    particleSystemInit();      
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -60,11 +55,10 @@ void powderTrainPerFrame()
         windowPollEvents();
         windowCalcFrametime();
         windowPrepare();    
-        
-        pixelRendererSet(getPseudoRandom(1500), getPseudoRandom(900), (vec3){1.0f, 1.0f, 1.0f});
+        particleSystemCheckSpawn();      //Check if new particles need to be spawned  
         
     // --- Render
-        pixelRendererFlush();
+        particleSystemUpdate();          //Render particles   
         uiRender_powderTrain();          //Render UI            
         textBatchRendererDisplay();      //Render batched text
         monitoringRenderText(deltaTime); //Render simple text   
@@ -78,7 +72,7 @@ void powderTrainCleanUp()
 {
     monitoringCleanUp();
     textRenderingSystemsCleanUp();
-    pixelRendererCleanUp();
+    particleSystemCleanUp();
     uiCleanUp_powderTrain();
     resourceManagerCleanUp();
     windowCleanUp();
