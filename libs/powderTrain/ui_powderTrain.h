@@ -4,7 +4,7 @@
 #include "../engine-core/general/ui.h"
 
 // --- Variables ---
-static unsigned int bgID, sbID, sandID, waterID, stoneID, fireID, acidID, woodID;
+static unsigned int sbID, sandID, waterID, stoneID, fireID, acidID, woodID;
 
 // --- Functions ---
 void uiInit_powderTrain();

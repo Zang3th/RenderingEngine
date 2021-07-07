@@ -3,7 +3,6 @@
 void powderTrainLoadResources()
 {
     //Load textures
-    resourceManagerLoadTexture("backgroundTexture", "res/textures/powderTrain/Background.jpg");
     resourceManagerLoadTexture("sidebarTexture", "res/textures/powderTrain/Sidebar.jpg");
     resourceManagerLoadTexture("blockTexture", "res/textures/powderTrain/Block.png");
     resourceManagerLoadTexture("trashcanTexture", "res/textures/sandbox/Trashcan.png");
@@ -29,7 +28,12 @@ void powderTrainInit()
 
     //Init modules that depend on resources
     uiInit_powderTrain();
-    pixelRendererInit(WIDTH - 100, HEIGHT);
+    pixelRendererInit("res/textures/powderTrain/Background_1500x900.jpg");
+
+    pixelRendererSet(1, 1, (vec3){1.0f, 0.0f, 0.0f});
+    pixelRendererSet(1, 900, (vec3){1.0f, 0.0f, 0.0f});
+    pixelRendererSet(1500, 1, (vec3){1.0f, 0.0f, 0.0f});
+    pixelRendererSet(1500, 900, (vec3){1.0f, 0.0f, 0.0f});    
 
     // --- Init the whole text rendering system (batch and simple text renderer)
         //Batch text rendering system ONLY ALLOWS 32 different characters!
@@ -56,12 +60,12 @@ void powderTrainPerFrame()
         windowPollEvents();
         windowCalcFrametime();
         windowPrepare();    
-        pixelRendererSet(100, 100, (vec3){1.0f, 1.0f, 1.0f});
-        pixelRendererSet(200, 200, (vec3){0.0f, 1.0f, 0.0f});
-
+        
+        pixelRendererSet(getPseudoRandom(1500), getPseudoRandom(900), (vec3){1.0f, 1.0f, 1.0f});
+        
     // --- Render
-        uiRender_powderTrain();          //Render UI    
         pixelRendererFlush();
+        uiRender_powderTrain();          //Render UI            
         textBatchRendererDisplay();      //Render batched text
         monitoringRenderText(deltaTime); //Render simple text   
 

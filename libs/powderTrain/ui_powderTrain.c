@@ -12,7 +12,6 @@ void uiInit_powderTrain()
     uiDefineTrashcanCallback(uiTrashcanCallback_powderTrain);
 
     //Get resources
-    unsigned int bgTexture = resourceManagerGetTexture("backgroundTexture");
     unsigned int sbTexture = resourceManagerGetTexture("sidebarTexture");
     unsigned int blockTexture = resourceManagerGetTexture("blockTexture");
     unsigned int trashcanTexture = resourceManagerGetTexture("trashcanTexture");
@@ -21,9 +20,6 @@ void uiInit_powderTrain()
     unsigned int spriteData = resourceManagerGetSpriteData();
 
     //Create sprites and add them to UI
-    bgID = uiAddElement(createSprite(spriteData, bgTexture, standardShader, (vec2){0.0f, 0.0f}, 
-                             (vec2){WIDTH, HEIGHT}, 0.0f, (vec3){0.7f, 0.7f, 0.7f}, false));
-
     sbID = uiAddElement(createSprite(spriteData, sbTexture, standardShader, (vec2){1500.0f, 0.0f}, 
                              (vec2){100.0f, HEIGHT}, 0.0f, (vec3){1.0f, 1.0f, 1.0f}, false));
 
