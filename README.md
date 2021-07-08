@@ -87,4 +87,4 @@
    ![WrathGL_close](Screenshot_WR_011_close.png)
 
 ### Look of the PowderTrain App
-   ![PowderTrain](Screenshot_PT_001.png)   
+   ![PowderTrain](Screenshot_PT_002.png)   

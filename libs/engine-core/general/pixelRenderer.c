@@ -54,8 +54,8 @@ void pixelRendererReset(unsigned int x, unsigned int y)
     if(x > 0 && y > 0)
     {
         pixelArray[y - 1][x - 1][0] = backgroundImage[y - 1][x - 1][0];
-        pixelArray[y - 1][x - 1][1] = backgroundImage[y - 1][x - 1][0];
-        pixelArray[y - 1][x - 1][2] = backgroundImage[y - 1][x - 1][0];
+        pixelArray[y - 1][x - 1][1] = backgroundImage[y - 1][x - 1][1];
+        pixelArray[y - 1][x - 1][2] = backgroundImage[y - 1][x - 1][2];
     }
 }
 
