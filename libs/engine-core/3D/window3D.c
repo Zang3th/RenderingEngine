@@ -1,17 +1,10 @@
 #include "window3D.h"
 
-//Init extern variables
-const unsigned int WIDTH = 1600;
-const unsigned int HEIGHT = 900;
-float deltaTime = 0.0f;
-float lastFrame = 0.0f;
 camera_t* camera = NULL;
 bool wireframeMode = false;
 bool generateNewTerrain = false;
-bool leftMousePressed = false;
-bool rightMousePressed = false;
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
     if(windowInFocus)
     {
@@ -28,7 +21,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     } 
 }
 
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
@@ -43,65 +36,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 	}
 }
 
-void windowInit(char* title)
-{
-    windowName = title;
-
-    if(!glfwInit())
-        log_error("GLFW could not be initialized! GLFW_Error: %d", glfwGetError(NULL));
-    else
-        log_info("GLFW initialized!");
-        
-    glfwWindowHint(GLFW_SAMPLES, 8);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);    
-
-    window = glfwCreateWindow(WIDTH, HEIGHT, windowName, NULL, NULL);
-
-    if(!window)
-        log_error("Window could not be created! GLFW_Error: %d", glfwGetError(NULL));
-    else
-        log_info("GLFW Window created!");      
-
-    glfwMakeContextCurrent(window);   
-    glfwSwapInterval(0);   
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    
-
-    if(!gladLoadGL()) 
-        log_error("Couldn't load OpenGL via glad!");
-    else   
-        log_info("OpenGL %d.%d loaded via glad!", GLVersion.major, GLVersion.minor);
-
-    glfwSetCursorPosCallback(window, mouse_callback);
-    glfwSetMouseButtonCallback(window, mouse_button_callback);
-
-    GLCall(glViewport(0, 0, WIDTH, HEIGHT));  
-    GLCall(glEnable(GL_DEPTH_TEST));
-    GLCall(glDepthFunc(GL_LEQUAL));
-	GLCall(glEnable(GL_MULTISAMPLE));    
-    GLCall(glEnable(GL_BLEND)); //Enable blending to render transparent textures
-	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-
-    camera = cameraCreate((vec3){-331.0f, 1331.0f, 801.0f}, 0.0f, -55.0f); //Create camera
-
-    windowTitleBuffer = malloc(sizeof(char) * 100);
-    drawcallBuffer = malloc(sizeof(char) * 3);
-
-    isRunning = true; //Start application
-}
-
-bool windowIsRunning()
-{
-    return isRunning;
-}
-
-void windowPollEvents()
-{
-    glfwPollEvents();
-}
-
-void windowProcessEvents()
+static void process_events()
 {
     if(glfwWindowShouldClose(window))
     {
@@ -159,60 +94,67 @@ void windowProcessEvents()
         wireframeMode = false;
 
     if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)  
-        generateNewTerrain = true;    
+        generateNewTerrain = true;
 }
 
-void windowPrepare()
+void window3DInit(char* title)
 {
-    GLCall(glClearColor(0.0, 0.0, 0.0, 1.0));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+    windowInit(title);
+
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);    
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+
+    GLCall(glEnable(GL_DEPTH_TEST));
+    GLCall(glDepthFunc(GL_LEQUAL));
+
+    //Create camera
+    camera = cameraCreate((vec3){-331.0f, 1331.0f, 801.0f}, 0.0f, -55.0f);
 }
 
-void windowSwapBuffer()
+bool window3DIsRunning()
 {
-    glfwSwapBuffers(window);
+    return windowIsRunning();
 }
 
-void windowCleanUp()
+void window3DPollEvents()
 {
-    free(windowTitleBuffer);
-    free(drawcallBuffer);
+    glfwPollEvents();
+    process_events();
+}
 
-    glfwTerminate();
+void window3DPrepare()
+{
+    windowPrepare();
+}
+
+void window3DSwapBuffer()
+{
+    windowSwapBuffer();
+}
+
+void window3DCleanUp()
+{
+    windowCleanUp();
     cameraDestroy(camera);
 }
 
-void windowCalcFrametime()
+void window3DCalcFrametime()
 {
-    float currentFrame = glfwGetTime();
-	deltaTime = currentFrame - lastFrame;
-	lastFrame = currentFrame;
+    windowCalcFrametime();
 }
 
-void windowGetMousePos(int* x, int* y)
+void window3DGetMousePos(double* x, double* y)
 {
-    *x = lastX;
-    *y = lastY;
+    windowGetMousePos(x, y);
 }
 
-void windowUpdateTitle(int drawcalls)
+void window3DUpdateTitle(int drawcalls)
 {
-    strcpy(windowTitleBuffer, windowName);
-    
-    //Update window title buffer
+    windowUpdateTitle(drawcalls);
+}
+
+void window3DPrepareDrawcallBuffer(int drawcalls)
+{
     windowPrepareDrawcallBuffer(drawcalls);
-
-    //Put buffer in action
-    glfwSetWindowTitle(window, &windowTitleBuffer[0]);
-}
-
-void windowPrepareDrawcallBuffer(int drawcalls)
-{
-    strcat(windowTitleBuffer, " (Drawcalls: ");
-
-    //Put drawcalls in the drawcall buffer
-    int ret = snprintf(drawcallBuffer, 3, "%d", drawcalls);
-
-    strcat(windowTitleBuffer, drawcallBuffer);
-    strcat(windowTitleBuffer, ")");
 }

@@ -98,7 +98,7 @@ void wrathGLRenderText()
 void wrathGLInit()
 {
     //Init modules
-    windowInit("RenderingEngine - WrathGL");   
+    window3DInit("RenderingEngine - WrathGL");   
     rendererInit(camera);
     initWaterRenderer(camera);
 
@@ -176,10 +176,9 @@ void wrathGLPerFrame()
     generateNewTerrain = false;
 
     // --- Pre render
-        windowCalcFrametime();
-        windowPollEvents();
-        windowProcessEvents();
-        windowPrepare();  
+        window3DCalcFrametime();
+        window3DPollEvents();
+        window3DPrepare();  
 
         // -- If requested, generate new terrain mesh on new thread        
         if(generateNewTerrain == true && currentlyGenerating == false)
@@ -244,8 +243,8 @@ void wrathGLPerFrame()
         GLCall(glEnable(GL_DEPTH_TEST));          
 
     // --- After render
-        windowUpdateTitle(drawcalls);
-        windowSwapBuffer(); 
+        window3DUpdateTitle(drawcalls);
+        window3DSwapBuffer(); 
 }
 
 void wrathGLCleanUp()
@@ -266,5 +265,5 @@ void wrathGLCleanUp()
     textRenderingSystemsCleanUp();
     resourceManagerCleanUp(); 
     cleanUpWaterRenderer();
-    windowCleanUp();     
+    window3DCleanUp();     
 }

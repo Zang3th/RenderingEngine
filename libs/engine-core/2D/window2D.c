@@ -1,166 +1,100 @@
 #include "window2D.h"
 
-//Init extern variables
-const unsigned int WIDTH = 1600;
-const unsigned int HEIGHT = 900;
-long lastFrame = 0;
-float deltaTime = 0.0f;
-bool leftMousePressed = false;
-bool rightMousePressed = false;
-
-void windowInit(char* title)
+static void mouse_pos_callback(GLFWwindow* window, double xpos, double ypos)
 {
-    windowName = title;
-
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
-        log_error("SDL could not be initialized! SDL_Error: %s", SDL_GetError());
-    else
-        log_info("SDL initialized!");
-
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-    window = SDL_CreateWindow(windowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
-    if(window == NULL)
-        log_error("Window could not be created! SDL_Error: %s", SDL_GetError());
-    else
-        log_info("SDL Window created!");
-
-    context = SDL_GL_CreateContext(window);
-    if(context == NULL)
-        log_error("Context could not be created! SDL_Error: %s", SDL_GetError());
-    else
-        log_info("Created context!");
-    
-    if(SDL_GL_MakeCurrent(window, context) < 0) 
-        log_error("Context could not be made current! SDL_Error: %s", SDL_GetError());
-    else
-        log_info("Context made current!");         
-
-    if(!gladLoadGL()) 
-        log_error("Couldn't load OpenGL via glad!");
-    else   
-        log_info("OpenGL %d.%d loaded via glad!", GLVersion.major, GLVersion.minor);
-
-    isRunning = true;
-    SDL_GL_SetSwapInterval(1);
-
-    windowTitleBuffer = malloc(sizeof(char) * 100);
-    drawcallBuffer = malloc(sizeof(char) * 3);
-
-    //Enable blending to render transparent textures
-    GLCall(glEnable(GL_BLEND));
-	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    lastX = xpos;
+    lastY = ypos;
 }
 
-bool windowIsRunning()
-{        
-    return isRunning;
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+        leftMousePressed = true;
+	}
+
+    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+    {
+        leftMousePressed = false;
+    }
+
+    if(button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+         rightMousePressed = true;
+	}
 }
 
-void windowPollEvents()
+static void process_events()
 {
-    while(SDL_PollEvent(&event))
-    {        
-        rightMousePressed = false;
+    if(glfwWindowShouldClose(window))
+    {
+        isRunning = false; 
+        log_info("Quitting!");
+    }
 
-        switch(event.type)
-        {
-            case SDL_QUIT:
-                isRunning = false;
-                log_info("Quitting!");
-                break;
-
-            case SDL_KEYDOWN:
-                switch(event.key.keysym.sym)
-                {
-                    case SDLK_ESCAPE:
-                    isRunning = false;
-                    log_info("Quitting!");
-                    break;
-                }
-                break;
-
-            case SDL_MOUSEBUTTONDOWN:
-                windowHandleMouseClick(&event.button);                    
-                break;  
-
-            case SDL_MOUSEBUTTONUP:
-                if(event.button.button == SDL_BUTTON_LEFT)
-                    leftMousePressed = false;
-        }
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+        isRunning = false; 
+        log_info("Quitting!");
     }
 }
 
-void windowHandleMouseClick(SDL_MouseButtonEvent* MBE)
+void window2DInit(char* title)
 {
-    if(MBE->button == SDL_BUTTON_LEFT)
-    {
-        leftMousePressed = true;
-    }      
-    else if(MBE->button == SDL_BUTTON_RIGHT)
-        rightMousePressed = true;  
+    windowInit(title);
+
+    glfwSetCursorPosCallback(window, mouse_pos_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
 }
 
-void windowPrepare()
-{
-    GLCall(glClearColor(0.0, 0.0, 0.0, 1.0));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+bool window2DIsRunning()
+{        
+    return windowIsRunning();
 }
 
-void windowSwapBuffer()
+void window2DPollEvents()
 {    
-    SDL_GL_SwapWindow(window);
+    windowPollEvents();
+    process_events();
 }
 
-void windowCleanUp()
+void window2DPrepare()
 {
-    free(windowTitleBuffer);
-    free(drawcallBuffer);
-    
-    SDL_GL_DeleteContext(context);
-    SDL_DestroyWindow(window);
-    SDL_Quit();    
+    windowPrepare();
+}
+
+void window2DSwapBuffer()
+{    
+    windowSwapBuffer();
+}
+
+void window2DCleanUp()
+{
+    windowCleanUp();   
 }   
 
-void windowCalcFrametime()
+void window2DCalcFrametime()
 {   
-    long currentFrame = SDL_GetTicks();
-    deltaTime = ((float)(currentFrame - lastFrame)) / 1000;
-    lastFrame = currentFrame;
+    windowCalcFrametime();
 }
 
-void windowGetMousePos(int* x, int* y)
+void window2DGetMousePos(double* x, double* y)
 {
-    SDL_GetMouseState(x, y);
+    windowGetMousePos(x, y);
 }
 
-void windowSetMousePos(int x, int y)
+void window2DSetMousePos(double x, double y)
 {
-    SDL_WarpMouseInWindow(window, x, y);
+    windowSetMousePos(x, y);
 }
 
-void windowUpdateTitle(int drawcalls)
+void window2DUpdateTitle(int drawcalls)
 {
-    strcpy(windowTitleBuffer, windowName);
-    
-    //Update window title buffer
+    windowUpdateTitle(drawcalls);
+}
+
+void window2DPrepareDrawcallBuffer(int drawcalls)
+{
     windowPrepareDrawcallBuffer(drawcalls);
-
-    //Put buffer in action
-    SDL_SetWindowTitle(window, &windowTitleBuffer[0]);
-}
-
-void windowPrepareDrawcallBuffer(int drawcalls)
-{
-    strcat(windowTitleBuffer, " (Drawcalls: ");
-
-    //Put drawcalls in the drawcall buffer
-    int ret = snprintf(drawcallBuffer, 3, "%d", drawcalls);
-
-    strcat(windowTitleBuffer, drawcallBuffer);
-    strcat(windowTitleBuffer, ")");
 }

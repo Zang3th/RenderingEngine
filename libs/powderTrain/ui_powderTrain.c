@@ -53,7 +53,7 @@ int uiGetPressedButton_powderTrain()
     return uiGetPressedButtonID();
 }
 
-bool uiIsMouseInsideMainWindow_powderTrain(int* mouse_x, int* mouse_y)
+bool uiIsMouseInsideMainWindow_powderTrain(double* mouse_x, double* mouse_y)
 {
     //Check if mouse is inside of the sidebar
     bool isInsideBar = uiIsButtonHovered(mouse_x, mouse_y, sbID);

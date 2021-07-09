@@ -132,12 +132,15 @@ void particleSystemCheckSpawn()
     //If a button is pressed and left mouse is hold 
     if(pressedButton > 0 && leftMousePressed)
     {
-        //Get mouse position
-        int x, y;
-        windowGetMousePos(&x, &y);
+        //Get mouse position as double
+        double mouse_x, mouse_y;
+        window2DGetMousePos(&mouse_x, &mouse_y);
+        //Cast to int cause we're working with pixels here
+        int x = (int)mouse_x;
+        int y = (int)mouse_y;
 
         //Check if mouse is inside main window bounds
-        if(uiIsMouseInsideMainWindow_powderTrain(&x, &y))
+        if(uiIsMouseInsideMainWindow_powderTrain(&mouse_x, &mouse_y))
         {
             //Spawn 17 particles per click
             particleSystemSpawnElement(x, y, pressedButton);

@@ -10,30 +10,28 @@ COMPILED_FILES_WRATHGL = $(wildcard compiled_wrathGL/*) $(wildcard compiled_engi
 COMPILED_FILES_POWDERTRAIN = $(wildcard compiled_powderTrain/*) $(wildcard compiled_engine_2D/*) $(wildcard compiled_vendor/*) 
 INCLUDE_PATH = libs/
 LINKER_VENDOR = -DLOG_USE_COLOR
-LINKER_SANDBOX = -lSDL2 -lGL -lm -ldl -lfreetype -lchipmunk
-LINKER_WRATHGL = -lglfw3 -lX11 -pthread -lGL -lm -ldl -lfreetype -lchipmunk
-LINKER_POWDERTRAIN = -lSDL2 -lGL -lm -ldl -lfreetype -lchipmunk
+LINKER_PROJECTS = -lglfw3 -lX11 -pthread -lGL -lm -ldl -lfreetype -lchipmunk
 CC = gcc
 CFLAGS = -O2 -Wall -Wno-unused-variable
 
 # ************************************************** DEMOS ************************************************************
 sandboxDemo: compile_sandbox compile_2D compile_vendor
-	$(CC) $(CFLAGS) app/sandboxDemo.c $(COMPILED_FILES_SANDBOX) -I$(INCLUDE_PATH) -o sandboxDemo $(LINKER_SANDBOX)
+	$(CC) $(CFLAGS) app/sandboxDemo.c $(COMPILED_FILES_SANDBOX) -I$(INCLUDE_PATH) -o sandboxDemo $(LINKER_PROJECTS)
 
 wrathGLDemo: compile_wrathGL compile_3D compile_vendor
-	$(CC) $(CFLAGS) app/wrathGLDemo.c $(COMPILED_FILES_WRATHGL) -I$(INCLUDE_PATH) -o wrathGLDemo $(LINKER_WRATHGL)
+	$(CC) $(CFLAGS) app/wrathGLDemo.c $(COMPILED_FILES_WRATHGL) -I$(INCLUDE_PATH) -o wrathGLDemo $(LINKER_PROJECTS)
 
 powderTrainDemo: compile_powderTrain compile_2D compile_vendor
-	$(CC) $(CFLAGS) app/powderTrainDemo.c $(COMPILED_FILES_POWDERTRAIN) -I$(INCLUDE_PATH) -o powderTrainDemo $(LINKER_POWDERTRAIN)
+	$(CC) $(CFLAGS) app/powderTrainDemo.c $(COMPILED_FILES_POWDERTRAIN) -I$(INCLUDE_PATH) -o powderTrainDemo $(LINKER_PROJECTS)
 
 sandboxDemoDebug: compile_sandbox compile_2D compile_vendor
-	$(CC) $(CFLAGS) app/sandboxDemo.c $(COMPILED_FILES_SANDBOX) -I$(INCLUDE_PATH) -g -o sandboxDemoDebug $(LINKER_SANDBOX)
+	$(CC) $(CFLAGS) app/sandboxDemo.c $(COMPILED_FILES_SANDBOX) -I$(INCLUDE_PATH) -g -o sandboxDemoDebug $(LINKER_PROJECTS)
 
 wrathGLDemoDebug: compile_wrathGL compile_3D compile_vendor
-	$(CC) $(CFLAGS) app/wrathGLDemo.c $(COMPILED_FILES_WRATHGL) -I$(INCLUDE_PATH) -g -o wrathGLDemoDebug $(LINKER_WRATHGL)
+	$(CC) $(CFLAGS) app/wrathGLDemo.c $(COMPILED_FILES_WRATHGL) -I$(INCLUDE_PATH) -g -o wrathGLDemoDebug $(LINKER_PROJECTS)
 
 powderTrainDemoDebug: compile_powderTrain compile_2D compile_vendor
-	$(CC) $(CFLAGS) app/powderTrainDemo.c $(COMPILED_FILES_POWDERTRAIN) -I$(INCLUDE_PATH) -g -o powderTrainDemoDebug $(LINKER_POWDERTRAIN)
+	$(CC) $(CFLAGS) app/powderTrainDemo.c $(COMPILED_FILES_POWDERTRAIN) -I$(INCLUDE_PATH) -g -o powderTrainDemoDebug $(LINKER_PROJECTS)
 
 # *********************************************** DIRS TO COMPILE *****************************************************
 compile_sandbox:

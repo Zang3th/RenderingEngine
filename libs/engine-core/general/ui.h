@@ -1,7 +1,7 @@
 #ifndef UI
 #define UI
 
-#include "../2D/window2D.h"
+#include "window.h"
 #include "sprite.h"
 #include "renderer.h"
 #include "textRenderer.h"
@@ -34,7 +34,7 @@ void uiRender();
 int uiGetPressedButtonID();
 sprite_t* uiGetPressedButtonSprite();
 bool uiIsButtonPressed(unsigned int index);
-bool uiIsButtonHovered(int* x, int* y, unsigned int index);
+bool uiIsButtonHovered(double* x, double* y, unsigned int index);
 void uiDefineTrashcanCallback(void (*func));
 void uiCleanUp();
 

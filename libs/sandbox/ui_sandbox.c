@@ -89,8 +89,8 @@ void uiRender_sandbox()
 void uiRenderHighlighter_sandbox()
 {
     //Get mouse position
-    int mouse_x, mouse_y;
-    windowGetMousePos(&mouse_x, &mouse_y);
+    double mouse_x, mouse_y;
+    window2DGetMousePos(&mouse_x, &mouse_y);
     placementMode = false;
 
     //Check if mouse is outside of the sidebar and an element is active/chosen
@@ -100,8 +100,8 @@ void uiRenderHighlighter_sandbox()
     if((isInsideBar == false) && (pressedButton != NULL))
     {  
         //Correct mouse position if its outside of the main window bounds
-        int new_mouse_x = mouse_x;
-        int new_mouse_y = mouse_y;
+        double new_mouse_x = mouse_x;
+        double new_mouse_y = mouse_y;
 
         if(mouse_x < 50)
             new_mouse_x = 50;
@@ -112,8 +112,6 @@ void uiRenderHighlighter_sandbox()
             new_mouse_y = 50;
         else if(mouse_y > 850)
             new_mouse_y = 850;
-
-        windowSetMousePos(new_mouse_x, new_mouse_y);
 
         //Translate highlighter to mouse position and render it
         translateSprite(highlighter, (vec2){(float)new_mouse_x - 50.0f, (float)new_mouse_y - 50.0f});

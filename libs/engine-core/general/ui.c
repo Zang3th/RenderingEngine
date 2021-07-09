@@ -2,15 +2,15 @@
 
 sprite_t* highlighter = NULL;
 
-static bool uiButtonHover(int* x, int* y, sprite_t* sprite)
+static bool uiButtonHover(double* x, double* y, sprite_t* sprite)
 {
-    //Called every frame to check if mouse cursor is inside one of the clickable buttons
-    int mouse_x = *x;
-    int mouse_y = *y;
-    int sprite_x1 = (int)(sprite->basePosition[0]);
-    int sprite_x2 = (int)(sprite->basePosition[0] + sprite->baseSize[0]);
-    int sprite_y1 = (int)(sprite->basePosition[1]);
-    int sprite_y2 = (int)(sprite->basePosition[1] + sprite->baseSize[1]);
+    //Called to check if mouse cursor is inside one of the sprites
+    float mouse_x = (float)*x;
+    float mouse_y = (float)*y;
+    float sprite_x1 = sprite->basePosition[0];
+    float sprite_x2 = sprite->basePosition[0] + sprite->baseSize[0];
+    float sprite_y1 = sprite->basePosition[1];
+    float sprite_y2 = sprite->basePosition[1] + sprite->baseSize[1];
 
     if(mouse_x >= sprite_x1 && mouse_x <= sprite_x2 && mouse_y >= sprite_y1 && mouse_y <= sprite_y2)
         return true;
@@ -24,7 +24,7 @@ static int uiGetButtonState(sprite_t* sprite)
     //return 1 for hover rendering
     //return 2 for click rendering
 
-    int x, y;
+    double x, y;
     windowGetMousePos(&x, &y);
     bool isHovered = uiButtonHover(&x, &y, sprite);
     bool gotAlreadyClicked = sprite->gotClicked;
@@ -163,7 +163,7 @@ bool uiIsButtonPressed(unsigned int index)
     return ui_Elements[index]->gotClicked;
 }
 
-bool uiIsButtonHovered(int* x, int* y, unsigned int index)
+bool uiIsButtonHovered(double* x, double* y, unsigned int index)
 {
     return uiButtonHover(x, y, ui_Elements[index]);
 }

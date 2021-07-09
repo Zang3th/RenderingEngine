@@ -20,7 +20,7 @@ void powderTrainLoadResources()
 void powderTrainInit()
 {
     //Init modules
-    windowInit("RenderingEngine - PowderTrain"); 
+    window2DInit("RenderingEngine - PowderTrain"); 
     rendererInit(NULL); //Init with NULL to use no camera   
 
     //Load resources
@@ -45,16 +45,16 @@ void powderTrainInit()
 
 bool powderTrainIsRunning()
 {
-    return windowIsRunning();
+    return window2DIsRunning();
 }
 
 void powderTrainPerFrame()
 {
     // --- Pre render
         drawcalls = 0;                   //Reset drawcalls for current frame
-        windowPollEvents();
-        windowCalcFrametime();
-        windowPrepare();    
+        window2DPollEvents();
+        window2DCalcFrametime();
+        window2DPrepare();    
         particleSystemCheckSpawn();      //Check if new particles need to be spawned  
         
     // --- Render
@@ -64,8 +64,8 @@ void powderTrainPerFrame()
         monitoringRenderText(deltaTime); //Render simple text   
 
     // --- After render
-        windowUpdateTitle(drawcalls);
-        windowSwapBuffer();              //End frame
+        window2DUpdateTitle(drawcalls);
+        window2DSwapBuffer();              //End frame
 }
 
 void powderTrainCleanUp()
@@ -75,5 +75,5 @@ void powderTrainCleanUp()
     particleSystemCleanUp();
     uiCleanUp_powderTrain();
     resourceManagerCleanUp();
-    windowCleanUp();
+    window2DCleanUp();
 }

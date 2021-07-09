@@ -25,7 +25,7 @@ void sandboxLoadResources()
 void sandboxInit()
 {
     //Init modules
-    windowInit("RenderingEngine - Sandbox");     
+    window2DInit("RenderingEngine - Sandbox");     
     rendererInit(NULL); //Init with NULL to use no camera   
     physicsEngineInit();
 
@@ -51,15 +51,15 @@ void sandboxInit()
 
 bool sandboxIsRunning()
 {        
-    return windowIsRunning();
+    return window2DIsRunning();
 }
 
 void sandboxPerFrame()
 {
     // --- Pre render
-        windowPollEvents();
-        windowCalcFrametime();
-        windowPrepare();    
+        window2DPollEvents();
+        window2DCalcFrametime();
+        window2DPrepare();    
         drawcalls = 0;                   //Reset drawcalls for current fram
         phyicsEnginePerFrame(deltaTime); //Update physics
 
@@ -72,8 +72,8 @@ void sandboxPerFrame()
         monitoringRenderText(deltaTime);  //Render simple text
 
     // --- After render
-        windowUpdateTitle(drawcalls);
-        windowSwapBuffer();               //End frame    
+        window2DUpdateTitle(drawcalls);
+        window2DSwapBuffer();               //End frame    
 }
 
 void sandboxCleanUp()
@@ -84,5 +84,5 @@ void sandboxCleanUp()
     uiCleanUp_sandbox();
     resourceManagerCleanUp();   
     physicsEngineCleanUp();  
-    windowCleanUp();     
+    window2DCleanUp();     
 }    

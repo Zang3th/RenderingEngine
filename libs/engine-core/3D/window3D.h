@@ -1,44 +1,26 @@
 #ifndef WINDOW3D
 #define WINDOW3D
 
-#include "../../../vendor/loading/glad.h"
-#include <GLFW/glfw3.h>
-#include <stdbool.h>
+#include "../general/window.h"
 #include "../general/camera.h"
-#include "../../../vendor/logging/log.h"
-#include "../general/errorManager.h"
 
 // --- Variables ---
-static GLFWwindow* window = NULL;
-static char* windowName = NULL;
-static bool isRunning = false;
-static char* windowTitleBuffer = NULL;
-static char* drawcallBuffer = NULL;
-static float lastX = 0.0f;
-static float lastY = 0.0f;
 static bool windowInFocus = false;
 
-const extern unsigned int WIDTH;
-const extern unsigned int HEIGHT;
-extern float deltaTime;
-extern float lastFrame;
 extern camera_t* camera;
 extern bool wireframeMode;
 extern bool generateNewTerrain;
-extern bool leftMousePressed;
-extern bool rightMousePressed;
 
 // --- Functions ---
-void windowInit(char* title);
-bool windowIsRunning();
-void windowPollEvents();
-void windowProcessEvents();
-void windowPrepare();
-void windowSwapBuffer();
-void windowCleanUp();
-void windowCalcFrametime();
-void windowGetMousePos(int* x, int* y);
-void windowUpdateTitle(int drawcalls);
-void windowPrepareDrawcallBuffer(int drawcalls);
+void window3DInit(char* title);
+bool window3DIsRunning();
+void window3DPollEvents();
+void window3DPrepare();
+void window3DSwapBuffer();
+void window3DCleanUp();
+void window3DCalcFrametime();
+void window3DGetMousePos(double* x, double* y);
+void window3DUpdateTitle(int drawcalls);
+void window3DPrepareDrawcallBuffer(int drawcalls);
 
 #endif

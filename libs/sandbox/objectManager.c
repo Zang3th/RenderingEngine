@@ -31,8 +31,8 @@ void objectManagerCheckForPlacement()
     if(placementMode && leftMousePressed)
     {
         //Add current mouse position to position array for the renderqueue
-        int x, y;
-        windowGetMousePos(&x, &y);
+        double x, y;
+        window2DGetMousePos(&x, &y);
              
         //Get current active mode from the UI 
         int mode = uiGetBlockmode_sandbox();
