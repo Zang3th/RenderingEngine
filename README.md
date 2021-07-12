@@ -46,12 +46,11 @@
       - Water (X)
    #### PowderTrain App (2D)
       - GUI (X)   
-      - Pixel-Renderer
-      - Sand-Simulation
-         - Different materials/substances -> different reactions
+      - Pixel-Renderer (X)
+      - Sand-Simulation (X)
+         - Different materials/substances -> different reactions (X)
 
 ### Credits
-   - [SDL2](https://www.libsdl.org/index.php)
    - [log.c](https://github.com/rxi/log.c)
    - [stb_image](https://github.com/nothings/stb/blob/master/stb_image.h)
    - [cglm](https://github.com/recp/cglm)
@@ -65,7 +64,7 @@
    - There will be a guide on how to build the engine or a script that does everything for you, when it's a bit more matured
    - For now:   
       - Clone the repository
-      - Install the dependencies (SDL2, cglm, FreeType, Chipmunk2D, GLFW) 
+      - Install the dependencies (cglm, FreeType, Chipmunk2D, GLFW) 
          - Take a look at the credits to find the repositories
       - Execute one of the shell scripts or the Makefile itself to build the demo applications
       - Run the demo applications  
@@ -77,14 +76,14 @@
    - To show the collaboration of the different modules
    - Just for visualization purposes, not UML conform    
 
-   ![Application structure](Structure_002.png)
+   ![Application structure](Structure_003.png)
 
 ### Look of the Sandbox App
-   ![Sandbox](Screenshot_SB_006.png)
+   ![Sandbox](Screenshot_SB_007.png)
 
 ### Look of the WrathGL App
    ![WrathGL_far](Screenshot_WR_011_far.png)
    ![WrathGL_close](Screenshot_WR_011_close.png)
 
 ### Look of the PowderTrain App
-   ![PowderTrain](Screenshot_PT_002.png)   
+   ![PowderTrain](Screenshot_PT_003.png)   
