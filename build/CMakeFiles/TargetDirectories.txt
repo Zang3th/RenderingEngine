@@ -1,5 +1,0 @@
-/home/zanget3u/Dev/RenderingEngine/build/CMakeFiles/rebuild_cache.dir
-/home/zanget3u/Dev/RenderingEngine/build/CMakeFiles/edit_cache.dir
-/home/zanget3u/Dev/RenderingEngine/build/CMakeFiles/powderTrainDemo.dir
-/home/zanget3u/Dev/RenderingEngine/build/CMakeFiles/wrathGLDemo.dir
-/home/zanget3u/Dev/RenderingEngine/build/CMakeFiles/sandboxDemo.dir
