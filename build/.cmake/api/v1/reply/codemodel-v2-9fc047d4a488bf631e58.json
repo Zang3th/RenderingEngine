@@ -1,0 +1,77 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RenderingEngine",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "powderTrainDemo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-powderTrainDemo-Release-24cb2e25c7931b57d9fe.json",
+					"name" : "powderTrainDemo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "sandboxDemo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-sandboxDemo-Release-d0dd4d6436d27f5f82b6.json",
+					"name" : "sandboxDemo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "wrathGLDemo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-wrathGLDemo-Release-efa331cb2d0fa42a2bab.json",
+					"name" : "wrathGLDemo",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/zanget3u/Dev/RenderingEngine/build",
+		"source" : "/home/zanget3u/Dev/RenderingEngine"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

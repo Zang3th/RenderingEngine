@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/sandboxDemo.c.o"
+  "CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/objectManager.c.o"
+  "CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/sandbox.c.o"
+  "CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/ui_sandbox.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/2D/src/window2D.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/camera.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/errorManager.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/frameBuffer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/indexBuffer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/mesh.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/meshCreator.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/model.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/monitoring.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/noise.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/objectInstancer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/physicsEngine2D.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/pixelRenderer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/random.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/renderer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/resourceManager.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/shader.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/sprite.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/textCollector.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/textRenderer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/texture.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/ui.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/utility.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/vertexArray.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/vertexBuffer.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/general/src/window.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/glad.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/log.c.o"
+  "CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/stb_image.c.o"
+  "sandboxDemo"
+  "sandboxDemo.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/sandboxDemo.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

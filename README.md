@@ -60,13 +60,14 @@
    - [GLFW](https://github.com/glfw/glfw) 
 
 ### Using & Compiling
-   - Currently only for linux
-   - There will be a guide on how to build the engine or a script that does everything for you, when it's a bit more matured
-   - For now:   
+   - Currently only for linux, using CMake as a buildsystem
       - Clone the repository
       - Install the dependencies (cglm, FreeType, Chipmunk2D, GLFW) 
          - Take a look at the credits to find the repositories
-      - Execute one of the shell scripts or the Makefile itself to build the demo applications
+      - mkdir build
+      - cd build/
+      - cmake ..
+      - make
       - Run the demo applications  
 
 ### License
@@ -76,14 +77,14 @@
    - To show the collaboration of the different modules
    - Just for visualization purposes, not UML conform    
 
-   ![Application structure](Structure_003.png)
+   ![Application structure](res/screenshots/Structure_003.png)
 
 ### Look of the Sandbox App
-   ![Sandbox](Screenshot_SB_007.png)
+   ![Sandbox](res/screenshots/Screenshot_SB_007.png)
 
 ### Look of the WrathGL App
-   ![WrathGL_far](Screenshot_WR_011_far.png)
-   ![WrathGL_close](Screenshot_WR_011_close.png)
+   ![WrathGL_far](res/screenshots/Screenshot_WR_011_far.png)
+   ![WrathGL_close](res/screenshots/Screenshot_WR_011_close.png)
 
 ### Look of the PowderTrain App
-   ![PowderTrain](Screenshot_PT_003.png)   
+   ![PowderTrain](res/screenshots/Screenshot_PT_003.png)   

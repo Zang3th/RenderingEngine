@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/terrainEditor.c.o"
+  "CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/waterRenderer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/wrathGL.c.o"
+  "CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/wrathGLDemo.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/3D/src/window3D.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/camera.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/errorManager.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/frameBuffer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/indexBuffer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/mesh.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/meshCreator.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/model.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/monitoring.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/noise.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/objectInstancer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/physicsEngine2D.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/pixelRenderer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/random.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/renderer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/resourceManager.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/shader.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/sprite.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/textCollector.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/textRenderer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/texture.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/ui.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/utility.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/vertexArray.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/vertexBuffer.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/general/src/window.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/glad.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/log.c.o"
+  "CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/stb_image.c.o"
+  "wrathGLDemo"
+  "wrathGLDemo.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/wrathGLDemo.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

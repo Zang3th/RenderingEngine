@@ -1,0 +1,497 @@
+[
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/apps/powderTrainDemo/powderTrainDemo.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/powderTrainDemo.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/powderTrainDemo.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/apps/powderTrainDemo/src/particleSystem.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/particleSystem.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/particleSystem.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/apps/powderTrainDemo/src/powderTrain.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/powderTrain.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/powderTrain.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/apps/powderTrainDemo/src/ui_powderTrain.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/ui_powderTrain.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/src/ui_powderTrain.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/2D/src/window2D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/2D/src/window2D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/2D/src/window2D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/camera.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/errorManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/frameBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/indexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/mesh.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/meshCreator.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/model.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/monitoring.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/noise.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/objectInstancer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/physicsEngine2D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/pixelRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/random.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/renderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/resourceManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/shader.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/sprite.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/textCollector.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/textRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/texture.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/ui.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/utility.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/vertexArray.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/vertexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/general/src/window.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/vendor/src/glad.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/vendor/src/log.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/powderTrainDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/powderTrainDemo.dir/engine-core/vendor/src/stb_image.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/wrathGLDemo.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/wrathGLDemo.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/wrathGLDemo.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/terrainEditor.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/terrainEditor.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/terrainEditor.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/waterRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/waterRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/waterRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/apps/wrathGLDemo/src/wrathGL.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/wrathGL.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/src/wrathGL.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/3D/src/window3D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/3D/src/window3D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/3D/src/window3D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/camera.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/errorManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/frameBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/indexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/mesh.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/meshCreator.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/model.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/monitoring.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/noise.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/objectInstancer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/physicsEngine2D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/pixelRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/random.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/renderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/resourceManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/shader.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/sprite.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/textCollector.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/textRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/texture.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/ui.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/utility.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/vertexArray.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/vertexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/general/src/window.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/glad.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/log.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/wrathGLDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/3D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/wrathGLDemo.dir/engine-core/vendor/src/stb_image.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/sandboxDemo.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/sandboxDemo.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/sandboxDemo.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/objectManager.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/objectManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/objectManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/sandbox.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/sandbox.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/sandbox.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/apps/sandboxDemo/src/ui_sandbox.c.o -c /home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/ui_sandbox.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/src/ui_sandbox.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/2D/src/window2D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/2D/src/window2D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/2D/src/window2D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/camera.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/camera.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/errorManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/errorManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/frameBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/frameBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/indexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/indexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/mesh.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/mesh.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/meshCreator.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/meshCreator.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/model.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/model.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/monitoring.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/monitoring.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/noise.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/noise.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/objectInstancer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/objectInstancer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/physicsEngine2D.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/physicsEngine2D.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/pixelRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/pixelRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/random.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/random.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/renderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/renderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/resourceManager.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/resourceManager.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/shader.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/shader.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/sprite.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/sprite.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/textCollector.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textCollector.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/textRenderer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/textRenderer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/texture.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/texture.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/ui.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/ui.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/utility.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/utility.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/vertexArray.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexArray.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/vertexBuffer.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/vertexBuffer.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/general/src/window.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/general/src/window.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/glad.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/glad.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/log.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/log.c"
+},
+{
+  "directory": "/home/zanget3u/Dev/RenderingEngine/build",
+  "command": "/bin/x86_64-linux-gnu-gcc-10  -I/home/zanget3u/Dev/RenderingEngine/apps/sandboxDemo/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/2D/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/general/include -I/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/include -O3 -DNDEBUG \"-DLOG_USE_COLOR -O3\" -std=gnu11 -o CMakeFiles/sandboxDemo.dir/engine-core/vendor/src/stb_image.c.o -c /home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c",
+  "file": "/home/zanget3u/Dev/RenderingEngine/engine-core/vendor/src/stb_image.c"
+}
+]
